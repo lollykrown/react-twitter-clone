@@ -2,7 +2,7 @@ import React from 'react'
 
 export default function Main() {
     return (
-        <div>
+        <div className="main">
             <p>Hello from main</p>
         </div>
     )

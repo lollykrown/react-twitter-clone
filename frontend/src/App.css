@@ -1,4 +1,28 @@
+:root {
+  --mainBlue: #1da1f2;
+  --lightBlue: #f5f8fa;
+  --mainWhite: #ffffff;
+  --inactive: #8ed0f9;
+  --grey: #acb7bf;
+  --mainDark: #232528;
+  --search: #e6ecf0;
+}
 .App {
   display:flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  margin: 0 11rem 0 11rem
+}
+.home{
+  flex-grow: 2;
+  background-color: grey;
+}
+.sidenav{
+  flex-grow: 1;
+  background-color: blue;
+}
+.sidebar{
+  flex-grow: 1;
+  background-color: goldenrod;
 }
 
