@@ -5,19 +5,21 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'jquery/dist/jquery.min.js';
 import 'bootstrap/dist/js/bootstrap.min.js'
 import './App.css';
-import SideNav from './components/SideNav';
+import NavBar from './components/NavBar';
 // import Main from './components/Main';
 import SideBar from './components/SideBar';
-// import Profile from './pages/Profile';
+import Profile from './pages/Profile';
 import Home from './pages/Home';
+import Explore from './pages/Explore';
 
 function App() {
   return (
     <div className="App">
-      <SideNav/>
+      <NavBar/>
       <Switch>
         <Route exact path="/" component={Home} />
-        {/* <Route exact path="/profile" component={Profile}/> */}
+        <Route exact path="/profile" component={Profile}/>
+        <Route exact path="/explore" component={Explore}/>
       </Switch>
       {/* <Main/> */}
       <SideBar/>
