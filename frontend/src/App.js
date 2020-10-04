@@ -14,6 +14,7 @@ import Explore from './pages/Explore';
 
 function App() {
   return (
+    <React.Fragment className="container-fluid">
     <div className="App">
       <NavBar/>
       <Switch>
@@ -24,6 +25,7 @@ function App() {
       {/* <Main/> */}
       <SideBar/>
     </div>
+    </React.Fragment>
   );
 }
 

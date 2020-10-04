@@ -2,13 +2,15 @@ import React from 'react'
 import logo from '../logo.svg';
 import { Link } from "react-router-dom";
 
-export default function NavBar() {
+export default function navbar() {
     return (
-        <div className="sidenav">
+        <div className="navbar">
             <ul className="nav flex-column">
-                <Link className="nav-item" to="/">
-                    <img src={logo} alt="logo" height="40"/>
-                </Link>
+                <li className="nav-item">
+                    <Link className="nav-link" to="/">
+                        <img src={logo} alt="logo" height="40"/>
+                    </Link>
+                </li>
                 <li className="nav-item">
                     <a className="nav-link active" href="/">Home</a>
                 </li>

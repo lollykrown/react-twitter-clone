@@ -10,23 +10,20 @@
 .App {
   display:flex;
   flex-flow: row nowrap;
-  justify-content: space-between;
-  margin: 0 11rem 0 11rem
+  justify-content: space-around;
 }
-.home{
-  flex-grow: 2;
+.home, .profile, .explore{
+  flex-grow: 5;
   background-color: grey;
 }
-.profile{
-  flex-grow: 2;
-  background-color: grey;
-}
-.sidenav{
+
+.navbar{
   flex-grow: 1;
   background-color: rgb(245, 245, 245);
 }
 .sidebar{
-  flex-grow: 1;
+  flex-grow: 2;
+  margin-left: 1.75rem;
   background-color: goldenrod;
 }
 
