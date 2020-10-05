@@ -1,6 +1,6 @@
 import React from 'react'
 import twitter from '../twitter.png';
-import dp from '../dp.jpg';
+import kay from '../kay.jpg';
 import { Link } from "react-router-dom";
 import Avatar from "./Avatar";
 
@@ -65,7 +65,7 @@ export default function navbar() {
                 <button className="btn text-capitalize mb-4">tweet</button>
 
                 <div className="col-2 col-lg-3 profile-container d-flex mt-4 mb-0">
-                    <div className="mt-2"><Avatar src={dp} alt="avatar" /></div>
+                    <div className="mt-2"><Avatar src={kay} alt="avatar" /></div>
                     <div className="ml-3 mt-2 d-none d-lg-block ">
                         <p className="name text-capitalize">name</p>
                         <p className="username">@username</p>

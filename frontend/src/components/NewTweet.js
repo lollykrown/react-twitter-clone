@@ -7,12 +7,12 @@ import TextareaAutosize from "react-textarea-autosize";
 // import { displayError } from "../../utils";
 import Avatar from "./Avatar";
 // import { uploadImage } from "../../utils";
-import dp from '../dp.jpg';
+import kay from '../kay.jpg';
 
 const NewTweet = () => {
   return (
     <Wrapper>
-      <Avatar src={dp} alt="avatar" />
+      <Avatar src={kay} alt="avatar" />
       <form >
         <div className="new-tweet">
           <TextareaAutosize
@@ -59,12 +59,13 @@ const NewTweet = () => {
 
 const Wrapper = styled.div`
   display: flex;
-  padding: 1rem 1rem;
+  padding: 1rem 0 1rem 1rem;
   border-bottom: .75rem solid var(--search);
 
   .fa{
     cursor: pointer;
     font-size: 1.35rem;
+    margin-top:.5rem;
   }
   textarea {
     width: 100%;
@@ -74,9 +75,9 @@ const Wrapper = styled.div`
   }
 
   .tweet-btn{
+    float:right;
     background-color: #1da1f2;
-    margin-right: 0;
-    padding:.5rem 1.5rem;
+    padding:.3rem 1.5rem;
     border-radius: 1.5rem;
     font-weight:700 ;
     font-size: 1rem;
