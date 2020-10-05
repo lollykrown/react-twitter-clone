@@ -92,7 +92,7 @@ li {
 .nav-link{
   font-weight:700 ;
   font-size: 1.25rem;
-  color: rgba(0,0,0,0.8);
+  color: var(--mainDark);
   padding: .6rem 0 .6rem 1.25rem;
   margin: .2rem 0;
 }

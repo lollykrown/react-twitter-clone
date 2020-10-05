@@ -1,9 +1,19 @@
 import React from 'react'
+import styled from "styled-components";
+import Title from "../components/Title";
 
 export default function Explore() {
     return (
-        <div className="explore col-sm-10 col-md-10 col-lg-6">
-            <p>hello from explore</p>
-        </div>
-    )
+        <ExploreContainer className="home col-sm-10 col-md-10 col-lg-6">
+            <Title title="explore" icon="null" />
+            <div className="">
+            <p>explore</p>
+            </div>
+      </ExploreContainer>
+    );
 }
+
+const ExploreContainer = styled.div`
+
+
+`;

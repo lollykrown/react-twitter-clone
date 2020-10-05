@@ -7,7 +7,7 @@ import twitter from '../twitter.png';
 export default function () {
   return (
     <HomeContainer className="home col-sm-10 col-md-10 col-lg-6">
-      <Title title="notifications" icon={twitter} />
+      <Title title="home" icon={twitter} />
     <NewTweet/>
       <div className="">
         <p>home</p>

@@ -44,7 +44,7 @@ export default function navbar() {
                         </Link>
                     </li>
                     <li className="nav-item">
-                        <Link className="nav-link" to="/list">
+                        <Link className="nav-link" to="/lists">
                             <i className="fa fa-bookmark" aria-hidden="true"></i>
                             <span className="text-capitalize ml-3 d-none d-lg-inline">list</span>
                         </Link>                    
