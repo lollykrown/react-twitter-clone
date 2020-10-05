@@ -2,7 +2,7 @@ import React from 'react'
 
 export default function Profile() {
     return (
-        <div className="profile">
+        <div className="profile col-sm-10 col-md-10 col-lg-6">
             <p>hello from Profile</p>
         </div>
     )

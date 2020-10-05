@@ -14,20 +14,25 @@ import Explore from './pages/Explore';
 
 function App() {
   return (
-    <React.Fragment className="container-fluid">
+    <div className="container-fluid">
     <div className="App row limited">
       <NavBar/>
-      <Main>
+      {/* <Main> */}
+        {/* <Home/> */}
         <Switch>
           <Route exact path="/" component={Home} />
-          <Route exact path="/profile" component={Profile}/>
           <Route exact path="/explore" component={Explore}/>
+          <Route exact path="/notifications" component={Profile}/>
+          <Route exact path="/messages" component={Profile}/>
+          <Route exact path="/bookmarks" component={Profile}/>
+          <Route exact path="/lists" component={Profile}/>
+          <Route exact path="/profile" component={Profile}/>
           <Redirect from="*" to="/" />
         </Switch>
-      </Main>
+      {/* </Main> */}
       <SideBar/>
     </div>
-    </React.Fragment>
+    </div>
   );
 }
 

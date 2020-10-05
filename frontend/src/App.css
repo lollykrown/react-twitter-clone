@@ -3,10 +3,12 @@
   --lightBlue: #E8F5FE;
   --mainWhite: #ffffff;
   --inactive: #8ed0f9;
-  --grey: #acb7bf;
+  --grey: #657786;
   --mainDark: #232528;
-  --search: #e6ecf0;
+  --search: #E6ECF0;
   --btnHover: #1A91DA;
+  --sidebarHover: #EDF0F2;
+  --sidebarBg: #F5F8FA;
 }
 *, *:before, *:after {
   padding: 0;
@@ -14,9 +16,27 @@
   box-sizing: inherit;
 }
 
-html {-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%;}
+html {-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%;font-size:16px}
 * { -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; }
 
+body {
+  /* font-family: 'Poppins', sans-serif; */
+  /* background-color: ${(props) => props.theme.background};
+  color: ${(props) => props.theme.primaryColor}; */
+  line-height: 1.8;
+  overflow-x: hidden;
+}
+body::-webkit-scrollbar {
+  width: 0.25rem;
+}
+
+body::-webkit-scrollbar-track {
+/* background: ${(props) => props.theme.background}; */
+}
+
+body::-webkit-scrollbar-thumb {
+/* background: ${(props) => props.theme.accentColor}; */
+}
 /* GRID */
 .row {
     /* clear: both;*/
@@ -53,24 +73,18 @@ li {
 
 /* end of globals */
 
+.col-sm-10{
+  background-color:var(--search);
+}
+
+
 .App {
   display:flex;
   flex-flow: row nowrap;
   justify-content: space-around;
 }
-.main{
-  /* flex-grow: 6; */
-  background-color: grey;
-}
-
 .navbar{
-  /* flex-grow: 1; */
   padding: 0 1rem
-}
-.sidebar{
-  /* flex-grow: 5; */
-  margin-left: 1.75rem;
-  background-color: goldenrod;
 }
 .logo{
   padding: .2rem 1.25rem;
@@ -80,7 +94,7 @@ li {
   font-weight:700 ;
   font-size: 1.25rem;
   color: rgba(0,0,0,0.8);
-  padding: .75rem 0 .75rem 1.25rem;
+  padding: .6rem 0 .6rem 1.25rem;
   margin: .2rem 0;
 }
 .nav-link:hover, .nav-link:active{
@@ -90,7 +104,7 @@ li {
   background-color: var(--lightBlue);
   border-radius: 1.5rem;
   width: max-content;
-  padding: .75rem 1.25rem;
+  padding: .6rem 1.25rem;
 }
 .logo-container:hover{
   background-color: var(--lightBlue);
@@ -111,4 +125,25 @@ li {
 .btn:hover{
   background-color: var(--btnHover);
   color: var(--mainWhite);
+}
+.profile-container{
+  margin: 1rem .25rem;
+  padding:.75rem .5;
+}
+.profile-container:hover{
+  background-color: var(--lightBlue);
+  border-radius: 1.5rem;
+  padding:3rem .5 !important;
+  min-width:100%;
+}
+.name, .username{
+  line-height: .5;
+}
+.name{
+  font-weight:700 ;
+  font-size: 1.125rem;
+}
+.sidebar{
+  margin-left: 1.75rem;
+  background-color: goldenrod;
 }
