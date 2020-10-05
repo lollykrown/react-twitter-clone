@@ -1,29 +1,114 @@
 :root {
   --mainBlue: #1da1f2;
-  --lightBlue: #f5f8fa;
+  --lightBlue: #E8F5FE;
   --mainWhite: #ffffff;
   --inactive: #8ed0f9;
   --grey: #acb7bf;
   --mainDark: #232528;
   --search: #e6ecf0;
+  --btnHover: #1A91DA;
 }
+*, *:before, *:after {
+  padding: 0;
+  margin: 0;
+  box-sizing: inherit;
+}
+
+html {-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%;}
+* { -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; }
+
+/* GRID */
+.row {
+    /* clear: both;*/
+    display: flex;
+    flex-wrap: wrap;
+}
+.limited {
+  max-width: 1200px; 
+  margin: auto;
+}
+
+button:focus, textarea:focus, input:focus{
+  outline: none;
+}
+
+li {
+  list-style-type: none;
+}
+
+/* @media only screen and (min-width: 768px) {    
+  .col-md-12 {
+      flex-basis: 75%;
+  }
+  .col-2{
+    flex-basis: 25%;
+  }
+} */
+
+/* @media only screen and (min-width: 992px) {
+  .main{
+      flex-basis: 75%;
+  }     
+}  */
+
+/* end of globals */
+
 .App {
   display:flex;
   flex-flow: row nowrap;
   justify-content: space-around;
 }
-.home, .profile, .explore{
-  flex-grow: 5;
+.main{
+  /* flex-grow: 6; */
   background-color: grey;
 }
 
 .navbar{
-  flex-grow: 1;
-  background-color: rgb(245, 245, 245);
+  /* flex-grow: 1; */
+  padding: 0 1rem
 }
 .sidebar{
-  flex-grow: 2;
+  /* flex-grow: 5; */
   margin-left: 1.75rem;
   background-color: goldenrod;
 }
+.logo{
+  padding: .2rem 1.25rem;
+  margin: .75rem 0;
+}
+.nav-link{
+  font-weight:700 ;
+  font-size: 1.25rem;
+  color: rgba(0,0,0,0.8);
+  padding: .75rem 0 .75rem 1.25rem;
+  margin: .2rem 0;
+}
+.nav-link:hover, .nav-link:active{
+  color: var(--mainBlue);
+}
+.nav-link:hover{
+  background-color: var(--lightBlue);
+  border-radius: 1.5rem;
+  width: max-content;
+  padding: .75rem 1.25rem;
+}
+.logo-container:hover{
+  background-color: var(--lightBlue);
+  border-radius: 1.5rem;
+  padding: 1rem 0;
 
+}
+.btn{
+  width:100%;
+  background-color: #1da1f2;
+  margin: 1rem .25rem;
+  padding:.75rem 0;
+  border-radius: 1.5rem;
+  font-weight:700 ;
+  font-size: 1rem;
+  color: var(--mainWhite);
+}
+.btn:hover{
+  background-color: var(--btnHover);
+  color: var(--mainWhite);
+}

@@ -1,41 +1,69 @@
 import React from 'react'
-import logo from '../logo.svg';
+import twitter from '../twitter.png';
+import home from './home.svg';
+
 import { Link } from "react-router-dom";
+import { HomeIcon } from "./Icons";
 
 export default function navbar() {
     return (
-        <div className="navbar">
-            <ul className="nav flex-column">
-                <li className="nav-item">
-                    <Link className="nav-link" to="/">
-                        <img src={logo} alt="logo" height="40"/>
-                    </Link>
-                </li>
-                <li className="nav-item">
-                    <a className="nav-link active" href="/">Home</a>
-                </li>
-                <li className="nav-item">
-                    <a className="nav-link" href="/explore">Explore</a>
-                </li>
-                <li className="nav-item">
-                    <a className="nav-link" href="/">Notifications</a>
-                </li>
-                <li className="nav-item">
-                    <a className="nav-link " href="/">Messages</a>
-                </li>
-                <li className="nav-item">
-                    <a className="nav-link" href="/">Bookmarks</a>
-                </li>
-                <li className="nav-item">
-                    <a className="nav-link" href="/">List</a>
-                </li>
-                <li className="nav-item">
-                    <a className="nav-link" href="/profile">Profile</a>
-                </li>
-                <li className="nav-item">
-                    <a className="nav-link" href="/">More</a>
-                </li>
-            </ul>
+        <div className="navbar it col-2 col-lg-3">
+                <ul className="nav flex-column">
+                    <li className="">
+                        <Link className="logo-container" to="/">
+                            <img src={twitter} alt="logo" className="logo" height="30"/>
+                        </Link>
+                    </li>
+                    <li className="nav-item d-flex">
+                        <Link className="nav-link" to="/explore">
+                            <i class="fa fa-home" aria-hidden="true"></i> 
+                            <span className="text-capitalize ml-3 d-none d-lg-inline">home</span>
+                        </Link>
+                    </li>
+                    <li className="nav-item">
+                        <Link className="nav-link" to="/explore">
+                            <i class="fa fa-hashtag" aria-hidden="true"></i> 
+                            <span className="text-capitalize ml-3 d-none d-lg-inline">explore</span>
+                        </Link>
+                    </li>
+                    <li className="nav-item">
+                        <Link className="nav-link" to="/explore">
+                            <i class="fa fa-bell" aria-hidden="true"></i>
+                            <span className="text-capitalize ml-3 d-none d-lg-inline">notifications</span>
+                        </Link>
+                    </li>
+                    <li className="nav-item">
+                        <Link className="nav-link" to="/explore">
+                            <i class="fa fa-envelope" aria-hidden="true"></i>
+                            <span className="text-capitalize ml-3 d-none d-lg-inline">messages</span>
+                        </Link>
+                    </li>
+                    <li className="nav-item">
+                        <Link className="nav-link" to="/explore">
+                            <i class="fa fa-bookmark" aria-hidden="true"></i>
+                            <span className="text-capitalize ml-3 d-none d-lg-inline">bookmarks</span>
+                        </Link>
+                    </li>
+                    <li className="nav-item">
+                        <Link className="nav-link" to="/explore">
+                            <i class="fa fa-bookmark" aria-hidden="true"></i>
+                            <span className="text-capitalize ml-3 d-none d-lg-inline">list</span>
+                        </Link>                    
+                    </li>
+                    <li className="nav-item">
+                        <Link className="nav-link" to="/explore">
+                            <i class="fa fa-user" aria-hidden="true"></i>
+                            <span className="text-capitalize ml-3 d-none d-lg-inline">profile</span>
+                        </Link>                    
+                    </li>
+                    <li className="nav-item">
+                        <Link className="nav-link" to="/explore">
+                            <i class="fa fa-ellipsis-h" aria-hidden="true"></i>
+                            <span className="text-capitalize ml-3 d-none d-lg-inline">more</span>
+                        </Link>                    
+                    </li>
+                </ul>
+                <button className="btn text-capitalize">tweet</button>
         </div>
     )
 }
