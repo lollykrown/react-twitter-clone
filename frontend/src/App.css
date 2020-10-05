@@ -73,15 +73,14 @@ li {
 
 /* end of globals */
 
-.col-sm-10{
-  background-color:var(--search);
-}
-
-
 .App {
   display:flex;
   flex-flow: row nowrap;
   justify-content: space-around;
+}
+.home{
+  padding:0;
+  border: .1rem solid var(--search);
 }
 .navbar{
   padding: 0 1rem

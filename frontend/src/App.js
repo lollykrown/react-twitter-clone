@@ -6,32 +6,32 @@ import 'jquery/dist/jquery.min.js';
 import 'bootstrap/dist/js/bootstrap.min.js'
 import './App.css';
 import NavBar from './components/NavBar';
-import Main from './components/Main';
 import SideBar from './components/SideBar';
-import Profile from './pages/Profile';
 import Home from './pages/Home';
 import Explore from './pages/Explore';
+import Notifications from './pages/Notifications';
+import Messages from './pages/Messages';
+import Bookmarks from './pages/Bookmarks';
+import Lists from './pages/Lists';
+import Profile from './pages/Profile';
 
 function App() {
   return (
     <div className="container-fluid">
-    <div className="App row limited">
-      <NavBar/>
-      {/* <Main> */}
-        {/* <Home/> */}
-        <Switch>
-          <Route exact path="/" component={Home} />
-          <Route exact path="/explore" component={Explore}/>
-          <Route exact path="/notifications" component={Profile}/>
-          <Route exact path="/messages" component={Profile}/>
-          <Route exact path="/bookmarks" component={Profile}/>
-          <Route exact path="/lists" component={Profile}/>
-          <Route exact path="/profile" component={Profile}/>
-          <Redirect from="*" to="/" />
-        </Switch>
-      {/* </Main> */}
-      <SideBar/>
-    </div>
+      <div className="App row limited">
+        <NavBar/>
+          <Switch>
+            <Route exact path="/" component={Home} />
+            <Route exact path="/explore" component={Explore}/>
+            <Route exact path="/notifications" component={Notifications}/>
+            <Route exact path="/messages" component={Messages}/>
+            <Route exact path="/bookmarks" component={Bookmarks}/>
+            <Route exact path="/lists" component={Lists}/>
+            <Route exact path="/profile" component={Profile}/>
+            <Redirect from="*" to="/" />
+          </Switch>
+        <SideBar/>
+      </div>
     </div>
   );
 }
