@@ -26,19 +26,19 @@ const NewTweet = () => {
         </div>
         <div className="blue mt-1">
           <label htmlFor="file-input">
-                <i className="fa fa-image" aria-hidden="true"></i> 
+                <i className="far fa-image" aria-hidden="true"></i> 
                 {/* <input id="file-input" accept="image/*" type="file"  /> */}
               </label>
           <label htmlFor="gif-input">
-                <i className="fa fa-file" aria-hidden="true"></i> 
+                <i className="far fa-file" aria-hidden="true"></i> 
                 {/* <input id="gif-input" accept="image/*" type="file"  /> */}
               </label>
           <label htmlFor="smiley">
-                <i className="fa fa-smile" aria-hidden="true"></i> 
+                <i className="far fa-smile" aria-hidden="true"></i> 
                 {/* <input id="smiley" accept="image/*" type="file"  /> */}
               </label>
           <label htmlFor="schedule">
-                <i className="fa fa-calendar-plus" aria-hidden="true"></i> 
+                <i className="far fa-calendar-plus" aria-hidden="true"></i> 
                 {/* <input id="schedule" accept="image/*" type="file"  /> */}
               </label>
           <button className="tweet-btn mr-0" disabled={true}>
@@ -56,12 +56,12 @@ const Wrapper = styled.div`
   border-bottom: .75rem solid var(--search);
   margin-right: .5rem;
 
-  .fa{
+  .far{
     cursor: pointer;
     font-size: 1.35rem;
     padding: .5rem .75rem;
   }
-  .fa:hover{
+  .far:hover{
     background-color: var(--lightBlue);
     border-radius: 2rem;
     width: max-content;

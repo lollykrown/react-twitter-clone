@@ -28,31 +28,31 @@ export default function navbar() {
                     </li>
                 <li className="nav-item">
                         <Link className="nav-link" to="/notifications">
-                            <i className="fa fa-bell" aria-hidden="true"></i>
+                            <i className="far fa-bell" aria-hidden="true"></i>
                             <span className="text-capitalize ml-3 d-none d-lg-inline">notifications</span>
                         </Link>
                     </li>
                 <li className="nav-item">
                         <Link className="nav-link" to="/messages">
-                            <i className="fa fa-envelope" aria-hidden="true"></i>
+                            <i className="far fa-envelope" aria-hidden="true"></i>
                             <span className="text-capitalize ml-3 d-none d-lg-inline">messages</span>
                         </Link>
                     </li>
                 <li className="nav-item">
                         <Link className="nav-link" to="/bookmarks">
-                            <i className="fa fa-bookmark" aria-hidden="true"></i>
+                            <i className="far fa-bookmark" aria-hidden="true"></i>
                             <span className="text-capitalize ml-3 d-none d-lg-inline">bookmarks</span>
                         </Link>
                     </li>
                 <li className="nav-item">
                         <Link className="nav-link" to="/lists">
-                            <i className="fa fa-bookmark" aria-hidden="true"></i>
+                            <i className="far fa-list-alt" aria-hidden="true"></i>
                             <span className="text-capitalize ml-3 d-none d-lg-inline">list</span>
                         </Link>                    
                     </li>
                 <li className="nav-item">
                         <Link className="nav-link" to="/profile">
-                            <i className="fa fa-user" aria-hidden="true"></i>
+                            <i className="far fa-user" aria-hidden="true"></i>
                             <span className="text-capitalize ml-3 d-none d-lg-inline">profile</span>
                         </Link>                    
                     </li>
@@ -63,9 +63,9 @@ export default function navbar() {
                         </Link>                    
                     </li>
             </ul>
-            <button className="btn text-capitalize mb-4">tweet</button>
+            <button className="btn text-capitalize">tweet</button>
 
-            <div className="col-2 col-lg-3 profile-container d-flex mt-4 mb-0">
+            <div className="col-2 col-lg-3 profile-container d-flex mb-0">
                 <div className="mt-1"><Avatar src={kay} alt="avatar" /></div>
                 <div className="mt-3 d-none d-lg-block ">
                     <p className="name text-capitalize">nazarite&#8482;</p>
@@ -79,6 +79,7 @@ export default function navbar() {
 }
 
 const NavbarContainer = styled.div`
+max-height: 90vh;
   .navbar{
     padding: 0 1rem;
   }
@@ -91,7 +92,7 @@ const NavbarContainer = styled.div`
     font-size: 1.25rem;
     color: var(--mainDark);
     padding: .6rem 0 .6rem 1.25rem;
-    margin: .2rem 0;
+    margin: .125rem 0;
   }
   .nav-link:hover, .nav-link:active{
     color: var(--mainBlue);
