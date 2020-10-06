@@ -65,13 +65,8 @@ li {
 .App {
   display:flex;
   flex-flow: row nowrap;
-  justify-content: space-around;
 }
 .home{
   padding:0;
   border: .1rem solid var(--search);
-}
-.sidebar{
-  margin-left: 1.75rem;
-  background-color: goldenrod;
 }

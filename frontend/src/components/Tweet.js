@@ -3,7 +3,7 @@ import styled from "styled-components";
 import Avatar from './reusables/Avatar'
 import kay from '../kay.jpg';
 
-export default function Tweet({images, video}) {
+export default function Tweet({name, username, images, video,}) {
 
     const img = (images && images.length > 1)? images.map(i => {
     return <div className="gride"><img className="tweet-image mb-2" src={i} alt="tweet-img"/></div>
@@ -16,8 +16,8 @@ export default function Tweet({images, video}) {
             <Avatar src={kay} alt="avatar" />
             <div className="tweet-container">
                 <div className="top">
-                    <p className="mr-2 name text-capitalize">nazarite&#8482;</p>
-                    <p className="mr-2 username text-capitalize">@lollykrown</p>
+                    <p className="mr-2 name text-capitalize">{username}</p>
+                    <p className="mr-2 username text-capitalize">{name}</p>
                     <p className="mr-2 time">&#8231; 2hr</p>
                     <i className="fa fa-angle-down dropdown" aria-hidden="true"></i>
                 </div>
