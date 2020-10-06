@@ -18,7 +18,7 @@ import Profile from './pages/Profile';
 function App() {
   return (
     <div className="container-fluid">
-      <div className="App row limited">
+      <div className="App row">
         <NavBar/>
           <Switch>
             <Route exact path="/" component={Home} />

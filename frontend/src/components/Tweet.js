@@ -4,8 +4,9 @@ import Avatar from './reusables/Avatar'
 import kay from '../kay.jpg';
 
 export default function Tweet({images, video}) {
-    const img = images && <img className="tweet-image" src={images} alt="tweet-img"/>
-    const vid = video && <video controls autoplay className="tweet-image" src={video} alt="tweet-img"/>
+
+    const img = images && <img className="tweet-image mb-2" src={images} alt="tweet-img"/>
+    const vid = video && <video controls autoplay muted className="mb-1 tweet-image" src={video} alt="tweet-img"/>
 
     return (
         <HomeContainer >
@@ -23,10 +24,10 @@ export default function Tweet({images, video}) {
                 {img}
                 {vid}
                 <div className="top bottom">
-                    <i className="far fa-comment " aria-hidden="true"></i>
-                    <i className="fa fa-retweet mt-2"  aria-hidden="true"></i>
-                    <i className="far fa-heart " aria-hidden="true"></i>
-                    <i className="far fa-share-square " aria-hidden="true"></i>
+                    <i className="far fa-comment " aria-hidden="true" /><span className="figures">29</span>
+                    <i className="fa fa-retweet mt-2"  aria-hidden="true" /><span className="figures">206</span>
+                    <i className="far fa-heart " aria-hidden="true" /><span className="figures">560</span>
+                    <i className="far fa-share-square " aria-hidden="true" /><span className="figures">12</span>
                 </div>
             </div>
         </HomeContainer>
@@ -42,6 +43,9 @@ transition: 1s;
     background-color: var(--hover);  
 }
 
+.fa{
+    font-style:inherit;
+}
 .tweet-container{
     padding-top:.5rem;
 }
@@ -68,17 +72,16 @@ transition: 1s;
     color:var(--grey);
   }
   .tweet{
-    line-height: 1;
+    line-height: 1.25;
     padding-top:0;
+    font-size:.91rem;
   }
 .fa-retweet, .fa-comment, .fa-heart, .fa-share-square {
     font-size: 1.35rem;
     color: var(--grey);
     padding:.4rem;
 }
-.fa-share-square {
-    margin-right:4rem;
-}
+
 .bottom{
     justify-content: space-between;
 }
@@ -96,7 +99,7 @@ transition: 1s;
     padding:.4rem;
     transition: 1s;
   }
-  .fa-heart:hover{
+  .fa-heart:hover .figures:hover{
     background-color: #F5E2E8;
     border-radius: 2rem;
     color: #E0255F;
@@ -112,5 +115,10 @@ transition: 1s;
   }
   .tweet-image{
       width:100%;
+  }
+  .figures{
+    margin-right:auto;
+    margin-top:.25rem;
+    font-size: .9rem;
   }
 `;

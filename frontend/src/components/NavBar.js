@@ -7,7 +7,7 @@ import Avatar from "./reusables/Avatar";
 
 export default function navbar() {
     return (
-        <NavbarContainer className="navbar it col-2 col-lg-3">
+        <NavbarContainer className="navbar col-sm-2 col-md-2 col-lg-2 ">
             <ul className="nav flex-column">
                 <li className="">
                         <Link className="logo-container" to="/">
@@ -62,8 +62,13 @@ export default function navbar() {
                             <span className="text-capitalize ml-3 d-none d-lg-inline">more</span>
                         </Link>                    
                     </li>
+                <li className="nav-item d-lg-none share-btn">
+                    <Link className="nav-link" to="/">
+                        <i className="fa fa-plus-circle" aria-hidden="true"></i>
+                    </Link>                    
+                </li>
             </ul>
-            <button className="btn text-capitalize">tweet</button>
+            <button className="btn text-capitalize d-none d-lg-inline">tweet</button>
 
             <div className="col-2 col-lg-3 profile-container d-flex mb-0">
                 <div className="mt-1"><Avatar src={kay} alt="avatar" /></div>
@@ -71,6 +76,8 @@ export default function navbar() {
                     <p className="name text-capitalize">nazarite&#8482;</p>
                     <p className="username text-capitalize">@lollykrown</p>
                 </div>
+                <i className="fa fa-angle-down dropdown" aria-hidden="true"></i>
+
                 {/* <img src={twitter} height="20" alt="dropdown" className="mr-0"/> */}
             </div>
 
@@ -79,7 +86,12 @@ export default function navbar() {
 }
 
 const NavbarContainer = styled.div`
-max-height: 90vh;
+max-height: 100vh;
+// overflow-y: hidden;
+// z-index: 1;
+// width:max-content;
+// position:fixed;
+
   .navbar{
     padding: 0 1rem;
   }
@@ -108,6 +120,16 @@ max-height: 90vh;
     border-radius: 1.5rem;
     padding: 1rem 0;  
   }
+  .share-btn{
+    width:max-content;
+    background-color: #1da1f2;
+    // margin: 1rem .75rem;
+    padding:.75rem;
+    border-radius: 1.5rem;
+    font-weight:700 ;
+    font-size: 1rem;
+    color: var(--mainWhite);
+  }
   .btn{
     width:100%;
     background-color: #1da1f2;
@@ -130,6 +152,11 @@ max-height: 90vh;
     background-color: var(--lightBlue);
     border-radius: 2rem;
     min-width:100%;
+  }
+  .dropdown{
+    // position:absolute;
+    margin-left:auto;
+    padding:.5rem;
   }
   .name, .username{
     line-height: .1;

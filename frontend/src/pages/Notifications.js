@@ -4,7 +4,7 @@ import Title from "../components/reusables/Title";
 
 export default function Notifications() {
     return (
-        <NotificationContainer className="home col-sm-10 col-md-10 col-lg-6">
+        <NotificationContainer className="home col-sm-10 col-md-10 col-lg-5">
         <Title title="notifications" icon="null" />
         <div className="">
           <p>notifications</p>
