@@ -62,8 +62,8 @@ export default function navbar() {
                             <span className="text-capitalize ml-3 d-none d-lg-inline">more</span>
                         </Link>                    
                     </li>
-                <li className="nav-item d-lg-none share-btn">
-                    <Link className="nav-link" to="/">
+                <li className="nav-item d-lg-none ">
+                    <Link className="nav-link share-btn" to="/">
                         <i className="fa fa-plus-circle" aria-hidden="true"></i>
                     </Link>                    
                 </li>
@@ -77,8 +77,6 @@ export default function navbar() {
                     <p className="username text-capitalize">@lollykrown</p>
                 </div>
                 <i className="fa fa-angle-down dropdown" aria-hidden="true"></i>
-
-                {/* <img src={twitter} height="20" alt="dropdown" className="mr-0"/> */}
             </div>
 
         </NavbarContainer>
@@ -91,19 +89,21 @@ max-height: 100vh;
 // z-index: 1;
 // width:max-content;
 // position:fixed;
+padding: 0 !important;
 
   .navbar{
-    padding: 0 1rem;
+    padding: 0 1rem 0 1rem !important;
   }
   .logo{
     padding: .2rem 1.25rem;
-    margin: .75rem 0;
+    margin: 0;
   }
   .nav-link{
     font-weight:700 ;
     font-size: 1.25rem;
     color: var(--mainDark);
-    padding: .6rem 0 .6rem 1.25rem;
+    padding: .5rem 0 .5rem 1.25rem;
+    width: max-content;
     margin: .125rem 0;
   }
   .nav-link:hover, .nav-link:active{
@@ -112,24 +112,14 @@ max-height: 100vh;
   .nav-link:hover{
     background-color: var(--lightBlue);
     border-radius: 1.5rem;
-    width: max-content;
-    padding: .6rem 1.25rem;
+    padding: .5rem 1.25rem;
   }
   .logo-container:hover{
     background-color: var(--lightBlue);
     border-radius: 1.5rem;
     padding: 1rem 0;  
   }
-  .share-btn{
-    width:max-content;
-    background-color: #1da1f2;
-    // margin: 1rem .75rem;
-    padding:.75rem;
-    border-radius: 1.5rem;
-    font-weight:700 ;
-    font-size: 1rem;
-    color: var(--mainWhite);
-  }
+
   .btn{
     width:100%;
     background-color: #1da1f2;
@@ -140,7 +130,15 @@ max-height: 100vh;
     font-size: 1rem;
     color: var(--mainWhite);
   }
-  .btn:hover{
+  .share-btn{
+    background-color: var(--mainBlue);
+    border-radius: 1.5rem;
+    font-size: 1.5rem;
+    color: var(--mainWhite);
+    padding: .6rem 1.25rem;
+    margin: .125rem 0;
+  }
+  .btn:hover, .share-btn:hover{
     background-color: var(--btnHover);
     color: var(--mainWhite);
   }
