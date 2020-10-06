@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 // import { toast } from "react-toastify";
 import TextareaAutosize from "react-textarea-autosize";
-import Avatar from "./Avatar";
+import Avatar from "./reusables/Avatar";
 import kay from '../kay.jpg';
 
 const NewTweet = () => {
@@ -11,6 +11,7 @@ const NewTweet = () => {
       <Avatar src={kay} alt="avatar" />
       <form className="form">
         <TextareaAutosize
+          autoFocus
           max="160"
           cols="55"
           placeholder="What's happening?"
@@ -19,11 +20,11 @@ const NewTweet = () => {
           // value={tweet.value}
           // onChange={tweet.onChange}
         />
-        <div className="globe">
+        <div className="globe pr-2">
           <i className="fa fa-globe" aria-hidden="true"></i> 
           <span className="small-text">Everyone can reply</span>
         </div>
-        <div className="blue">
+        <div className="blue mt-1">
           <label htmlFor="file-input">
                 <i className="fa fa-image" aria-hidden="true"></i> 
                 {/* <input id="file-input" accept="image/*" type="file"  /> */}
@@ -53,6 +54,7 @@ const Wrapper = styled.div`
   display: flex;
   padding: 1rem 0 1rem 1rem;
   border-bottom: .75rem solid var(--search);
+  margin-right: .5rem;
 
   .fa{
     cursor: pointer;
@@ -70,8 +72,8 @@ const Wrapper = styled.div`
     border:none;
     font-size: 1.23rem;
     margin-bottom: .75rem;
+    resize:none;
   }
-
   .tweet-btn{
     float:right;
     border:none;
@@ -94,8 +96,10 @@ const Wrapper = styled.div`
     color: var(--mainBlue);
     border-bottom: .12rem solid var(--search);
   }
-  .small-text{
-    a
+  .globe:hover{
+    background-color: var(--lightBlue);
+    border-radius: 2rem;
+    width: max-content;
   }
 `;
 export default NewTweet;

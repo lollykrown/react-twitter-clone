@@ -3,7 +3,7 @@ import styled from "styled-components";
 import twitter from '../twitter.png';
 import kay from '../kay.jpg';
 import { Link } from "react-router-dom";
-import Avatar from "./Avatar";
+import Avatar from "./reusables/Avatar";
 
 export default function navbar() {
     return (
@@ -65,7 +65,7 @@ export default function navbar() {
             </ul>
             <button className="btn text-capitalize mb-4">tweet</button>
 
-            <div className="col-2 col-lg-3 profile-container d-flex mt-4 mb-0 py-2">
+            <div className="col-2 col-lg-3 profile-container d-flex mt-4 mb-0">
                 <div className="mt-1"><Avatar src={kay} alt="avatar" /></div>
                 <div className="mt-3 d-none d-lg-block ">
                     <p className="name text-capitalize">nazarite&#8482;</p>
@@ -123,6 +123,7 @@ const NavbarContainer = styled.div`
   }
   .profile-container{
     margin: 1rem .25rem;
+    padding-top: .5rem;
   }
   .profile-container:hover{
     background-color: var(--lightBlue);
@@ -135,5 +136,8 @@ const NavbarContainer = styled.div`
   .name{
     font-weight:700 ;
     font-size: 1.125rem;
+  }
+  .username{
+    color:var(--grey);
   }
 `;

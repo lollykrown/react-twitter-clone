@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from "styled-components";
-import Title from "../components/Title";
+import Title from "../components/reusables/Title";
 
 export default function Explore() {
     return (
