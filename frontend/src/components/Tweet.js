@@ -5,7 +5,10 @@ import kay from '../kay.jpg';
 
 export default function Tweet({images, video}) {
 
-    const img = images && <img className="tweet-image mb-2" src={images} alt="tweet-img"/>
+    const img = (images && images.length > 1)? images.map(i => {
+    return <div className="gride"><img className="tweet-image mb-2" src={i} alt="tweet-img"/></div>
+    }):(images && images.length === 1)? <img className="tweet-image mb-2" src={images} alt="tweet-img"/>:null;
+
     const vid = video && <video controls autoplay muted className="mb-1 tweet-image" src={video} alt="tweet-img"/>
 
     return (
@@ -120,5 +123,10 @@ transition: 1s;
     margin-right:auto;
     margin-top:.25rem;
     font-size: .9rem;
+  }
+  .gride{
+    display:inline-grid;
+    grid-template-columns: 1fr auto;
+    grid-template-rows: 1fr auto;
   }
 `;

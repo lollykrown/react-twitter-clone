@@ -70,7 +70,7 @@ export default function navbar() {
             </ul>
             <button className="btn text-capitalize d-none d-lg-inline">tweet</button>
 
-            <div className="col-2 col-lg-3 profile-container d-flex mb-0">
+            <div className="col-2 col-lg-3 profile-container d-none d-lg-flex  mb-0 ">
                 <div className="mt-1"><Avatar src={kay} alt="avatar" /></div>
                 <div className="mt-3 d-none d-lg-block ">
                     <p className="name text-capitalize">nazarite&#8482;</p>
