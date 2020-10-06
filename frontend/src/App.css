@@ -1,6 +1,7 @@
 :root {
   --mainBlue: #1da1f2;
   --lightBlue: #E8F5FE;
+  --disabledBlue: #8ED0F9;
   --mainWhite: #ffffff;
   --inactive: #8ed0f9;
   --grey: #657786;
@@ -81,66 +82,6 @@ li {
 .home{
   padding:0;
   border: .1rem solid var(--search);
-}
-.navbar{
-  padding: 0 1rem
-}
-.logo{
-  padding: .2rem 1.25rem;
-  margin: .75rem 0;
-}
-.nav-link{
-  font-weight:700 ;
-  font-size: 1.25rem;
-  color: var(--mainDark);
-  padding: .6rem 0 .6rem 1.25rem;
-  margin: .2rem 0;
-}
-.nav-link:hover, .nav-link:active{
-  color: var(--mainBlue);
-}
-.nav-link:hover{
-  background-color: var(--lightBlue);
-  border-radius: 1.5rem;
-  width: max-content;
-  padding: .6rem 1.25rem;
-}
-.logo-container:hover{
-  background-color: var(--lightBlue);
-  border-radius: 1.5rem;
-  padding: 1rem 0;
-
-}
-.btn{
-  width:100%;
-  background-color: #1da1f2;
-  margin: 1rem .25rem;
-  padding:.75rem 0;
-  border-radius: 1.5rem;
-  font-weight:700 ;
-  font-size: 1rem;
-  color: var(--mainWhite);
-}
-.btn:hover{
-  background-color: var(--btnHover);
-  color: var(--mainWhite);
-}
-.profile-container{
-  margin: 1rem .25rem;
-  padding:.75rem .5;
-}
-.profile-container:hover{
-  background-color: var(--lightBlue);
-  border-radius: 1.5rem;
-  padding:3rem .5 !important;
-  min-width:100%;
-}
-.name, .username{
-  line-height: .5;
-}
-.name{
-  font-weight:700 ;
-  font-size: 1.125rem;
 }
 .sidebar{
   margin-left: 1.75rem;

@@ -15,29 +15,29 @@ const NewTweet = () => {
           cols="55"
           placeholder="What's happening?"
           type="text"
-          className="text-area"
+          className="text-area ml-2"
           // value={tweet.value}
           // onChange={tweet.onChange}
         />
         <div className="globe">
-          <i className="fa fa-globe mr-2" aria-hidden="true"></i> 
-          <span>Everyone can reply</span>
+          <i className="fa fa-globe" aria-hidden="true"></i> 
+          <span className="small-text">Everyone can reply</span>
         </div>
         <div className="blue">
           <label htmlFor="file-input">
-                <i className="fa fa-image mr-3" aria-hidden="true"></i> 
+                <i className="fa fa-image" aria-hidden="true"></i> 
                 {/* <input id="file-input" accept="image/*" type="file"  /> */}
               </label>
           <label htmlFor="gif-input">
-                <i className="fa fa-file mr-3" aria-hidden="true"></i> 
+                <i className="fa fa-file" aria-hidden="true"></i> 
                 {/* <input id="gif-input" accept="image/*" type="file"  /> */}
               </label>
           <label htmlFor="smiley">
-                <i className="fa fa-smile mr-3" aria-hidden="true"></i> 
+                <i className="fa fa-smile" aria-hidden="true"></i> 
                 {/* <input id="smiley" accept="image/*" type="file"  /> */}
               </label>
           <label htmlFor="schedule">
-                <i className="fa fa-calendar-plus mr-3" aria-hidden="true"></i> 
+                <i className="fa fa-calendar-plus" aria-hidden="true"></i> 
                 {/* <input id="schedule" accept="image/*" type="file"  /> */}
               </label>
           <button className="tweet-btn mr-0" disabled={true}>
@@ -57,7 +57,13 @@ const Wrapper = styled.div`
   .fa{
     cursor: pointer;
     font-size: 1.35rem;
-    margin-top:.5rem;
+    padding: .5rem .75rem;
+  }
+  .fa:hover{
+    background-color: var(--lightBlue);
+    border-radius: 2rem;
+    width: max-content;
+    padding: .5rem .75rem;
   }
   textarea {
     width: 100%;
@@ -76,16 +82,20 @@ const Wrapper = styled.div`
     font-size: 1rem;
     color: var(--mainWhite);
   }
+  .tweet-btn:disabled {
+    background: var(--disabledBlue);
+  }
   .blue{
     color: var(--mainBlue)
   }
   .globe{
     font-weight:700;
+    font-size: .9rem;
     color: var(--mainBlue);
-    padding-bottom: .75rem;
-    margin-bottom: 1rem;
-    padding-left: .5rem;
     border-bottom: .12rem solid var(--search);
+  }
+  .small-text{
+    a
   }
 `;
 export default NewTweet;

@@ -2,7 +2,7 @@ import React from 'react'
 import styled from "styled-components";
 
 export default function Title({title, icon}) {
-    const iconEl = (icon && title === 'home') && <img src={icon} className="ml-auto" height="30" alt="icon"/>
+    const iconEl = (icon && title === 'home') && <img src={icon} className="icon ml-auto" alt="icon"/>
 
     const tit = (title !== 'explore') && <p className="title text-capitalize">{title}</p>
 
@@ -29,26 +29,36 @@ export default function Title({title, icon}) {
 }
 
 const TitleContainer = styled.div`
-border-bottom: .1rem solid var(--search);
-padding: .5rem .75rem 0 .75rem;
+    border-bottom: .1rem solid var(--search);
+    padding: .5rem .75rem 0 .75rem;
 
-.fa{
-    margin-left:auto;
-    font-size:1.5rem;
-    margin-top: .5rem;
-    color: var(--mainBlue)
+    .fa{
+        margin-left:auto;
+        font-size:1.5rem;
+        margin-top: .5rem;
+        color: var(--mainBlue)
+    }
+    .title{
+        font-weight:800 ;
+        font-size: 1.25rem;
+    }
+    .search-form{
+        width:90%;
+    }
+    .search{
+        width:100%;
+        border-radius: 1rem;
+        background-color: var(--search);
+    }
+    .icon{
+        border-radius: 2rem;
+        padding: .5rem;
+        height:42px;
+        width:42px;
+    }
+    .icon:hover{
+        background-color: var(--lightBlue);
+        border-radius: 2rem;
+        padding: .5rem;
 }
-.title{
-    font-weight:800 ;
-    font-size: 1.25rem;
-}
-.search-form{
-    width:90%;
-}
-.search{
-    width:100%;
-    border-radius: 1rem;
-    background-color: var(--search);
-}
-
 `;
