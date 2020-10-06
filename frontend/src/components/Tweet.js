@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from "styled-components";
 import Avatar from './reusables/Avatar'
-import kay from '../kay.jpg';
+import dp from '../dp.jpg';
 
 export default function Tweet({name, username, images, video,}) {
 
@@ -13,7 +13,7 @@ export default function Tweet({name, username, images, video,}) {
 
     return (
         <HomeContainer >
-            <Avatar src={kay} alt="avatar" />
+            <Avatar src={dp} alt="avatar" />
             <div className="tweet-container">
                 <div className="top">
                     <p className="mr-2 name text-capitalize">{username}</p>
@@ -67,9 +67,11 @@ transition: 1s;
   }
 .name, .username, .time, .fa{
     line-height: .1;
+    font-size:.91rem;
 }
 .name{
     font-weight:700;
+    font-size:.91rem;
   }
   .username{
     color:var(--grey);

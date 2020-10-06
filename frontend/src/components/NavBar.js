@@ -1,13 +1,13 @@
 import React from 'react'
 import styled from "styled-components";
 import twitter from '../twitter.png';
-import kay from '../kay.jpg';
+import dp from '../dp.jpg';
 import { Link } from "react-router-dom";
 import Avatar from "./reusables/Avatar";
 
 export default function navbar() {
     return (
-        <NavbarContainer className="navbar col-sm-2 col-md-2 col-lg-2 ">
+        <NavbarContainer className="navbar col-sm-2 col-md-2 col-lg-3">
             <ul className="nav flex-column">
                 <li className="">
                         <Link className="logo-container" to="/">
@@ -71,7 +71,7 @@ export default function navbar() {
             <button className="btn text-capitalize d-none d-lg-inline">tweet</button>
 
             <div className="col-2 col-lg-3 profile-container d-none d-lg-flex  mb-0 ">
-                <div className="mt-1"><Avatar src={kay} alt="avatar" /></div>
+                <div className="mt-1"><Avatar src={dp} alt="avatar" /></div>
                 <div className="mt-3 d-none d-lg-block ">
                     <p className="name text-capitalize">nazarite&#8482;</p>
                     <p className="username text-capitalize">@lollykrown</p>

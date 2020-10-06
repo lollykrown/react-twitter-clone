@@ -3,12 +3,12 @@ import styled from "styled-components";
 // import { toast } from "react-toastify";
 import TextareaAutosize from "react-textarea-autosize";
 import Avatar from "./reusables/Avatar";
-import kay from '../kay.jpg';
+import dp from '../dp.jpg';
 
 const NewTweet = () => {
   return (
     <Wrapper>
-      <Avatar src={kay} alt="avatar" />
+      <Avatar src={dp} alt="avatar" />
       <form className="form">
         <TextareaAutosize
           autoFocus
