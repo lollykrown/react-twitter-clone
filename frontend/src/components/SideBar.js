@@ -12,7 +12,9 @@ export default function SideBar() {
                 aria-label="Search"
                 />
             </form>
-            <div className="trends">
+            <div className="trends mt-3">
+                <p>Trends for you</p>
+
                 <div>
                     <p>Trending in nigeria</p>
                     <p>#TachaOurNipple</p>
@@ -33,5 +35,11 @@ const SidebarContainer = styled.div`
         width:100%;
         border-radius: 1rem;
         background-color: var(--search);
+    }
+    .trends{
+        background-color: var(--sidebarBg);
+        border-radius: .5rem;
+        padding: .5rem;
+
     }
 `;

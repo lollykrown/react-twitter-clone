@@ -8,18 +8,23 @@ import dp from '../dp.jpg';
 import word from '../word.mp4';
 
 export default function () {
+  const tweet = `This whole #EndSARS is just for the media, this happened yesterday in Glover street in Ebute-Metta. 
+  We are jokers in this country, this guy trains kids how to ride a unicycle every weekend for free.
+  I swear I am done with this country.
+  `;
+
   let images = [];
   images.push(dp,dp, dp, dp)
   return (
     <HomeContainer className="home col-sm-10 col-md-10 col-lg-5">
       <Title title="home" icon={twitter} />
         <NewTweet/>
-        <Tweet images={images}/>
-        <Tweet />
-        <Tweet video={word}/>
-        <Tweet />
-        <Tweet images={[dp]}/>
-        <Tweet />
+        <Tweet name='nurse kay' username='@oluwakayy' tweet={tweet}/>
+        <Tweet name='nurse kay' username='@oluwakayy' tweet='pics' images={images}/>
+        <Tweet name='nurse kay' username='@oluwakayy' tweet='video' video={word}/>
+        <Tweet name='nurse kay' username='@oluwakayy' tweet={tweet}/>
+        <Tweet name='nazarite&#8482;' username='lollykrown' tweet='pic' images={[dp]}/>
+        <Tweet name='nurse kay' username='@oluwakayy' tweet={tweet}/>
 
     </HomeContainer>
   );

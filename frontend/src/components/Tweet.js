@@ -3,7 +3,7 @@ import styled from "styled-components";
 import Avatar from './reusables/Avatar'
 import dp from '../dp.jpg';
 
-export default function Tweet({name, username, images, video,}) {
+export default function Tweet({name, username, images, video,tweet}) {
 
     const img = (images && images.length > 1)? images.map(i => {
     return <div className="gride"><img className="tweet-image mb-2" src={i} alt="tweet-img"/></div>
@@ -21,9 +21,7 @@ export default function Tweet({name, username, images, video,}) {
                     <p className="mr-2 time">&#8231; 2hr</p>
                     <i className="fa fa-angle-down dropdown" aria-hidden="true"></i>
                 </div>
-                <p className="mr-2 tweet">This whole #EndSARS is just for the media, this happened yesterday in Glover street in Ebute-Metta. 
-                We are jokers in this country, this guy trains kids how to ride a unicycle every weekend for free.
-                I swear I am done with this country.</p>
+                <p className="mr-2 tweet">{tweet}</p>
                 {img}
                 {vid}
                 <div className="top bottom">
