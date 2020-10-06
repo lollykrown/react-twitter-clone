@@ -65,7 +65,7 @@ export default function navbar() {
             </ul>
             <button className="btn text-capitalize mb-4">tweet</button>
 
-            <div className="col-2 col-lg-3 profile-container d-flex mt-4 mb-0">
+            <div className="col-2 col-lg-3 profile-container d-flex mt-4 mb-0 py-2">
                 <div className="mt-1"><Avatar src={kay} alt="avatar" /></div>
                 <div className="mt-3 d-none d-lg-block ">
                     <p className="name text-capitalize">nazarite&#8482;</p>
@@ -105,8 +105,7 @@ const NavbarContainer = styled.div`
   .logo-container:hover{
     background-color: var(--lightBlue);
     border-radius: 1.5rem;
-    padding: 1rem 0;
-  
+    padding: 1rem 0;  
   }
   .btn{
     width:100%;
@@ -124,12 +123,10 @@ const NavbarContainer = styled.div`
   }
   .profile-container{
     margin: 1rem .25rem;
-    padding:.75rem .5;
   }
   .profile-container:hover{
     background-color: var(--lightBlue);
-    border-radius: 1.5rem;
-    padding:3rem .5 !important;
+    border-radius: 2rem;
     min-width:100%;
   }
   .name, .username{

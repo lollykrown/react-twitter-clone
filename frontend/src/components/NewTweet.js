@@ -41,8 +41,8 @@ const NewTweet = () => {
                 {/* <input id="schedule" accept="image/*" type="file"  /> */}
               </label>
           <button className="tweet-btn mr-0" disabled={true}>
-                Tweet
-              </button>
+            Tweet
+          </button>
         </div>
       </form>
     </Wrapper>
