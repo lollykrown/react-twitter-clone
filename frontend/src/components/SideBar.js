@@ -53,38 +53,33 @@ export default function SideBar() {
                 <p className="whoto text-capitalize">Who to follow</p>
 
                 <div className="follow trending-topic">
-                    <div className="col-3"><Avatar src={dp} alt="avatar" /></div>
-                    <div className="col-6 ">
+                    <div className=""><Avatar src={dp} alt="avatar" /></div>
+                    <div className=" ">
                         <p className="name text-capitalize">nurse kay</p>
                         <p className="username text-capitalize">@oluwakayy</p>
                         <p className="ti d-none">promoted</p>
                     </div>
-                    <button className="btn col-3">tweet</button>
+                    <button className="btnn ml-auto text-capitalize">follow</button>
                 </div>
-                <div className="trending-topic mt-1">
-                    <p className="ti">Trending in nigeria</p>
-                    <p className="topic">#TachaOurNipple</p>
-                    <p className="no">32.7k Tweets</p>
+                
+                <div className="follow trending-topic">
+                    <div className=""><Avatar src={dp} alt="avatar" /></div>
+                    <div className=" ">
+                        <p className="name text-capitalize">nurse kay</p>
+                        <p className="username text-capitalize">@oluwakayy</p>
+                        <p className="ti d-none">promoted</p>
+                    </div>
+                    <button className="btnn ml-auto text-capitalize">follow</button>
                 </div>
-                <div className="trending-topic mt-1">
-                    <p className="ti">Trending in nigeria</p>
-                    <p className="topic">#LagosProtests</p>
-                    <p className="no">11.5k Tweets</p>
-                </div>
-                <div className="trending-topic mt-1">
-                    <p className="ti">Trending in nigeria</p>
-                    <p className="topic">#room402</p>
-                    <p className="no">32.7k Tweets</p>
-                </div>
-                <div className="trending-topic mt-1">
-                    <p className="ti">Trending in nigeria</p>
-                    <p className="topic">#Didi</p>
-                    <p className="no">29k Tweets</p>
-                </div>
-                <div className="trending-topic mt-1">
-                    <p className="ti">Trending in nigeria</p>
-                    <p className="topic">#room306</p>
-                    <p className="no">18.7k Tweets</p>
+                
+                <div className="follow trending-topic">
+                    <div className=""><Avatar src={dp} alt="avatar" /></div>
+                    <div className=" ">
+                        <p className="name text-capitalize">nurse kay</p>
+                        <p className="username text-capitalize">@oluwakayy</p>
+                        <p className="ti d-none">promoted</p>
+                    </div>
+                    <button className="btnn ml-auto text-capitalize">follow</button>
                 </div>
                 <div className="show mt-1">
                     <Link to='/' className="link">Show more</Link>
@@ -167,5 +162,20 @@ const SidebarContainer = styled.div`
     .follow{
         display:flex;
     }
+    .btnn{
+        margin-top:1rem;
+        height:max-content;
+        padding: 0 .75rem !important;
+        border-radius: .75rem;
+        border: solid .1rem var(--mainBlue);
+        font-weight:700 ;
+        font-size: .75rem;
+        color: var(--mainBlue);
+      }
+      .btnn:hover{
+        background-color: var(--disabledBlue);
+        padding: 0 .75rem !important;
+        font-size: .75rem;
+      }
 
 `;
