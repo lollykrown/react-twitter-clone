@@ -12,7 +12,7 @@ export default function Explore() {
 
             </div>
             <div className="">
-            <p>explore</p>
+                <p>explore</p>
             </div>
       </ExploreContainer>
     );

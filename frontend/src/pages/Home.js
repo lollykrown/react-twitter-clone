@@ -23,7 +23,7 @@ export default function () {
         <Tweet name='nurse kay' username='@oluwakayy' tweet='pics' images={images}/>
         <Tweet name='nurse kay' username='@oluwakayy' tweet='video' video={word}/>
         <Tweet name='nurse kay' username='@oluwakayy' tweet={tweet}/>
-        <Tweet name='nazarite&#8482;' username='lollykrown' tweet='pic' images={[dp]}/>
+        <Tweet name='nazarite&#8482;' username='lollykrown' tweet='pic' images={[dp,dp]}/>
         <Tweet name='nurse kay' username='@oluwakayy' tweet={tweet}/>
 
     </HomeContainer>

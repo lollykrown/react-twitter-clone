@@ -133,9 +133,10 @@ transition: 1s;
     margin-top:.25rem;
     font-size: .9rem;
   }
-  .gride{
+  .gride, .tweet-image{
     display:inline-grid;
     grid-template-columns: 1fr auto;
     grid-template-rows: 1fr auto;
+    border-radius: 1rem;
   }
 `;
