@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 import dp from '../dp.jpg';
 import Avatar from "./reusables/Avatar";
+import Trends from "./reusables/Trends";
 
 export default function SideBar() {
     return (
@@ -15,40 +16,7 @@ export default function SideBar() {
                 aria-label="Search"
                 />
             </form>
-            <div className="trends mt-2">
-                <div className="d-flex ">
-                    <p className="title text-capitalize">Trends for you</p>
-                    <i className="fas fa-cog" aria-hidden="true"></i>
-                </div>
-                <div className="trending-topic">
-                    <p className="ti">Trending in nigeria</p>
-                    <p className="topic">#TachaOurNipple</p>
-                    <p className="no">32.7k Tweets</p>
-                </div>
-                <div className="trending-topic">
-                    <p className="ti">Trending in nigeria</p>
-                    <p className="topic">#LagosProtests</p>
-                    <p className="no">11.5k Tweets</p>
-                </div>
-                <div className="trending-topic">
-                    <p className="ti">Trending in nigeria</p>
-                    <p className="topic">#room402</p>
-                    <p className="no">32.7k Tweets</p>
-                </div>
-                <div className="trending-topic">
-                    <p className="ti">Trending in nigeria</p>
-                    <p className="topic">#Didi</p>
-                    <p className="no">29k Tweets</p>
-                </div>
-                <div className="trending-topic">
-                    <p className="ti">Trending in nigeria</p>
-                    <p className="topic">#room306</p>
-                    <p className="no">18.7k Tweets</p>
-                </div>
-                <div className="show ">
-                    <Link to='/' className="link">Show more</Link>
-                </div>
-            </div>
+            <Trends />
             <div className="trends mt-3">
                 <p className="whoto text-capitalize">Who to follow</p>
 
@@ -112,7 +80,7 @@ const SidebarContainer = styled.div`
         border-bottom: .1rem solid var(--search);
         padding: 0 .75rem;
     }
-    .title, .whoto{
+    .whoto{
         font-weight:800 ;
         font-size: 1rem;
         margin-bottom:.25rem;
@@ -134,12 +102,12 @@ const SidebarContainer = styled.div`
         border-bottom: .1rem solid var(--search);
         padding: .35rem .75rem;
     }
-    .ti, .no, .username{
+    .ti, .username{
         font-size:.75rem;
         color:var(--grey);
         margin:0;
     }
-    .topic, .name{
+    .name{
         font-weight:700;
         font-size:.91rem;
         margin:0;

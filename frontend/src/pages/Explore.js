@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from "styled-components";
 import Title from "../components/reusables/Title";
-import dp from '../dp.jpg';
+import Trends from '../components/reusables/Trends'
 
 export default function Explore() {
     return (
@@ -12,6 +12,8 @@ export default function Explore() {
                 <p className="name text-capitalize">COVID-19 &#8231; LIVE</p>
                 <p className="username text-capitalize">Updates on Covid-19 in Nigeria</p>
             </div>
+            <Trends />
+
             <div className="">
                 <p>explore</p>
             </div>
