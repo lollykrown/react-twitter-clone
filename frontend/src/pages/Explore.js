@@ -6,7 +6,6 @@ import dp from '../dp.jpg';
 export default function Explore() {
     return (
         <ExploreContainer className="home col-sm-10 col-md-10 col-lg-6">
-            <Title title="explore" icon="null" />
             <div className="banner-cont">
             <img className="banner" src={dp} alt="banner"/>
 
