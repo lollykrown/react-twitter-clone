@@ -35,8 +35,14 @@ const TitleContainer = styled.div`
     .fa{
         margin-left:auto;
         font-size:1.5rem;
-        margin-top: .5rem;
-        color: var(--mainBlue)
+        line-height:inherit;
+        padding: 0 .5rem;
+        color: var(--mainBlue);
+    }
+    .fa:hover{
+        background-color: var(--lightBlue);
+        border-radius: 2rem;
+        padding: 0 .5rem;
     }
     .title{
         font-weight:800 ;
@@ -60,5 +66,7 @@ const TitleContainer = styled.div`
         background-color: var(--lightBlue);
         border-radius: 2rem;
         padding: .5rem;
+    }
+
 }
 `;

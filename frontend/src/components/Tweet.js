@@ -5,11 +5,11 @@ import dp from '../dp.jpg';
 
 export default function Tweet({name, username, images, video,tweet}) {
 
-    const img = (images && images.length > 1)? images.map(i => {
-    return <div className="gride"><img className="tweet-image mb-2" src={i} alt="tweet-img"/></div>
+    const img = (images && images.length > 1)? images.map((el, i) => {
+    return <div className="gride" key={i} ><img className="tweet-image mb-2" src={el} alt="tweet-img"/></div>
     }):(images && images.length === 1)? <img className="tweet-image mb-2" src={images} alt="tweet-img"/>:null;
 
-    const vid = video && <video controls autoplay muted className="mb-1 tweet-image" src={video} alt="tweet-img"/>
+    const vid = video && <video controls autoPlay muted className="mb-1 tweet-image" src={video} alt="tweet-img"/>
 
     return (
         <HomeContainer >
@@ -25,10 +25,10 @@ export default function Tweet({name, username, images, video,tweet}) {
                 {img}
                 {vid}
                 <div className="top bottom">
-                    <i className="far fa-comment " aria-hidden="true" /><span className="figures">29</span>
-                    <i className="fa fa-retweet mt-2"  aria-hidden="true" /><span className="figures">206</span>
-                    <i className="far fa-heart " aria-hidden="true" /><span className="figures">560</span>
-                    <i className="far fa-share-square " aria-hidden="true" /><span className="figures">12</span>
+                  <div className="no comment"><i className="far fa-comment " aria-hidden="true" /><span className="com">29</span></div>
+                  <div className="no retweet"><i className="fa fa-retweet mt-2"  aria-hidden="true" /><span className="ret">206</span></div>
+                  <div className="no heart"><i className="far fa-heart " aria-hidden="true" /><span className="hea">560</span></div>
+                  <div className="no share"><i className="far fa-share-square " aria-hidden="true" /><span className="sga">12</span></div>
                 </div>
             </div>
         </HomeContainer>
@@ -46,6 +46,7 @@ transition: 1s;
 
 .fa{
     font-style:inherit;
+    line-height:inherit;
 }
 .tweet-container{
     padding-top:.5rem;
@@ -88,38 +89,46 @@ transition: 1s;
 .bottom{
     justify-content: space-between;
 }
-.fa-comment:hover{
+.comment:hover .fa-comment{
     background-color: var(--lightBlue);
     border-radius: 2rem;
     color: var(--mainBlue);
     padding:.4rem;
-    transition: 1s;
   }
-  .fa-retweet:hover{
+  .comment:hover .com{
+    color: var(--mainBlue);
+  }
+  .retweet:hover .fa-retweet{
     background-color: #E0F1E8;
     border-radius: 2rem;
     color: #55CE8B;
     padding:.4rem;
-    transition: 1s;
   }
-  .fa-heart:hover .figures:hover{
+  .retweet:hover .ret{
+    color: #55CE8B;
+  }
+  .heart:hover .fa-heart{
     background-color: #F5E2E8;
     border-radius: 2rem;
     color: #E0255F;
     padding:.4rem;
-    transition: 1s;
   }
-  .fa-share-square:hover{
+  .heart:hover{
+    color: #E0255F;
+  }
+  .share:hover .fa-share-square{
     background-color: var(--lightBlue);
     border-radius: 2rem;
     color: var(--mainBlue);
     padding:.4rem;
-    transition: 1s;
+  }
+  .share:hover{
+    color: var(--mainBlue);
   }
   .tweet-image{
       width:100%;
   }
-  .figures{
+  .no{
     margin-right:auto;
     margin-top:.25rem;
     font-size: .9rem;

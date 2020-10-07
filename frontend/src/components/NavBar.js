@@ -2,56 +2,58 @@ import React from 'react'
 import styled from "styled-components";
 import twitter from '../twitter.png';
 import dp from '../dp.jpg';
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import Avatar from "./reusables/Avatar";
 
-export default function navbar() {
+const NavBar = (props) => {
+
+    let act = props.location.pathname || ''
     return (
-        <NavbarContainer className="navbar col-sm-2 col-md-2 col-lg-3">
+        <NavbarContainer className="navbar col-sm-2 col-md-2 col-lg-2">
             <ul className="nav flex-column">
-                <li className="">
+                <li className=''>
                         <Link className="logo-container" to="/">
                             <img src={twitter} alt="logo" className="logo" height="30"/>
                         </Link>
                     </li>
                 <li className="nav-item d-flex">
-                        <Link className="nav-link" to="/home">
+                        <Link className={`nav-link ${act === "/"? 'active': ''}`} to="/home">
                             <i className="fa fa-home" aria-hidden="true"></i> 
                             <span className="text-capitalize ml-3 d-none d-lg-inline">home</span>
                         </Link>
                     </li>
-                <li className="nav-item">
-                        <Link className="nav-link" to="/explore">
+                <li className='nav-item'>
+                        <Link className={`nav-link ${act === "/explore"? 'active': ''}`} to="/explore">
                             <i className="fa fa-hashtag" aria-hidden="true"></i> 
                             <span className="text-capitalize ml-3 d-none d-lg-inline">explore</span>
                         </Link>
                     </li>
                 <li className="nav-item">
-                        <Link className="nav-link" to="/notifications">
+                        <Link className={`nav-link ${act === "/notifications"? 'active': ''}`} to="/notifications">
                             <i className="far fa-bell" aria-hidden="true"></i>
                             <span className="text-capitalize ml-3 d-none d-lg-inline">notifications</span>
                         </Link>
                     </li>
                 <li className="nav-item">
-                        <Link className="nav-link" to="/messages">
+                        <Link className={`nav-link ${act === "/messages"? 'active': ''}`} to="/messages">
                             <i className="far fa-envelope" aria-hidden="true"></i>
                             <span className="text-capitalize ml-3 d-none d-lg-inline">messages</span>
                         </Link>
                     </li>
                 <li className="nav-item">
-                        <Link className="nav-link" to="/bookmarks">
+                        <Link className={`nav-link ${act === "/bookmarks"? 'active': ''}`} to="/bookmarks">
                             <i className="far fa-bookmark" aria-hidden="true"></i>
                             <span className="text-capitalize ml-3 d-none d-lg-inline">bookmarks</span>
                         </Link>
                     </li>
                 <li className="nav-item">
-                        <Link className="nav-link" to="/lists">
+                        <Link className={`nav-link ${act === "/lists"? 'active': ''}`} to="/lists">
                             <i className="far fa-list-alt" aria-hidden="true"></i>
-                            <span className="text-capitalize ml-3 d-none d-lg-inline">list</span>
+                            <span className="text-capitalize ml-3 d-none d-lg-inline">lists</span>
                         </Link>                    
                     </li>
                 <li className="nav-item">
-                        <Link className="nav-link" to="/profile">
+                        <Link className={`nav-link ${act === "/profile"? 'active': ''}`} to="/profile">
                             <i className="far fa-user" aria-hidden="true"></i>
                             <span className="text-capitalize ml-3 d-none d-lg-inline">profile</span>
                         </Link>                    
@@ -68,13 +70,13 @@ export default function navbar() {
                     </Link>                    
                 </li>
             </ul>
-            <button className="btn text-capitalize d-none d-lg-inline">tweet</button>
+            <button className="btn text-capitalize d-none d-lg-inline mr-4">tweet</button>
 
             <div className="col-2 col-lg-3 profile-container d-none d-lg-flex  mb-0 ">
                 <div className="mt-1"><Avatar src={dp} alt="avatar" /></div>
                 <div className="mt-3 d-none d-lg-block ">
-                    <p className="name text-capitalize">nazarite&#8482;</p>
-                    <p className="username text-capitalize">@lollykrown</p>
+                    <p className="name text-capitalize">nurse kay</p>
+                    <p className="username text-capitalize">@oluwakayy</p>
                 </div>
                 <i className="fa fa-angle-down dropdown" aria-hidden="true"></i>
             </div>
@@ -100,7 +102,7 @@ padding: 0 !important;
   }
   .nav-link{
     font-weight:700 ;
-    font-size: 1.25rem;
+    font-size: 1.125rem;
     color: var(--mainDark);
     padding: .5rem 0 .5rem 1.25rem;
     width: max-content;
@@ -113,6 +115,9 @@ padding: 0 !important;
     background-color: var(--lightBlue);
     border-radius: 1.5rem;
     padding: .5rem 1.25rem;
+  }
+  .active{
+    color: var(--mainBlue);
   }
   .logo-container:hover{
     background-color: var(--lightBlue);
@@ -167,3 +172,5 @@ padding: 0 !important;
     color:var(--grey);
   }
 `;
+
+export default withRouter(NavBar)

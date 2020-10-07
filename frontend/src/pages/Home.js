@@ -16,7 +16,7 @@ export default function () {
   let images = [];
   images.push(dp,dp, dp, dp)
   return (
-    <HomeContainer className="home col-sm-10 col-md-10 col-lg-5">
+    <HomeContainer className="home col-sm-10 col-md-10 col-lg-6">
       <Title title="home" icon={twitter} />
         <NewTweet/>
         <Tweet name='nurse kay' username='@oluwakayy' tweet={tweet}/>

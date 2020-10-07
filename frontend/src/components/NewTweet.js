@@ -21,7 +21,7 @@ const NewTweet = () => {
           // onChange={tweet.onChange}
         />
         <div className="globe pr-2">
-          <i className="fa fa-globe" aria-hidden="true"></i> 
+          <i className="fa fa-globe ml-2" aria-hidden="true"></i> 
           <span className="small-text ml-1">Everyone can reply</span>
         </div>
         <div className="blue mt-1">
