@@ -13,11 +13,23 @@ export default function SideBar() {
                 />
             </form>
             <div className="trends mt-3">
-                <p>Trends for you</p>
-
+                <div className="d-flex ">
+                    <p className="title text-capitalize">Trends for you</p>
+                    <i className="fas fa-cog" aria-hidden="true"></i>
+                </div>
                 <div>
                     <p>Trending in nigeria</p>
                     <p>#TachaOurNipple</p>
+                    <p>32.7k Tweets</p>
+                </div>
+                <div>
+                    <p>Trending in nigeria</p>
+                    <p>#LagosProtests</p>
+                    <p>11.5k Tweets</p>
+                </div>
+                <div>
+                    <p>Trending in nigeria</p>
+                    <p>#room402</p>
                     <p>32.7k Tweets</p>
                 </div>
             </div>
@@ -39,7 +51,21 @@ const SidebarContainer = styled.div`
     .trends{
         background-color: var(--sidebarBg);
         border-radius: .5rem;
-        padding: .5rem;
+        padding: .5rem .75rem;
 
+    }
+    .d-flex{
+        border-bottom: .1rem solid var(--search);
+        padding-bottom:0;
+    }
+    .title{
+        font-weight:800 ;
+        font-size: 1rem;
+        margin-bottom:.25rem;
+    }
+    .fas{
+        margin-left:auto;
+        font-size:1rem;
+        margin-top: .5rem;
     }
 `;
