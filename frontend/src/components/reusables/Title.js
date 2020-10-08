@@ -2,6 +2,7 @@ import React from 'react'
 import styled from "styled-components";
 
 export default function Title({title, icon}) {
+    const border = (title === 'notifications') ?'border-bottom:none': 'border-bottom: .1rem solid var(--search)';
     const iconEl = (icon && title === 'home') && <img src={icon} className="icon ml-auto" alt="icon"/>
 
     const tit = (title !== 'explore') && <p className="title text-capitalize">{title}</p>
@@ -19,7 +20,7 @@ export default function Title({title, icon}) {
     </form>):null
 
     return (
-        <TitleContainer className="d-flex ">
+        <TitleContainer border={border} className="d-flex ">
             {tit}
             {search}
             {iconEl}
@@ -29,12 +30,12 @@ export default function Title({title, icon}) {
 }
 
 const TitleContainer = styled.div`
-    border-bottom: .1rem solid var(--search);
-    padding: .5rem .75rem 0 .75rem;
+    border-bottom:${props => (props.title === 'notifications'?'none':'.1rem solid var(--search)')};
+    padding: .25rem .75rem 0 .75rem;
 
     .fa{
         margin-left:auto;
-        font-size:1.5rem;
+        font-size:1.25rem;
         line-height:inherit;
         padding: 0 .5rem;
         color: var(--mainBlue);
@@ -45,8 +46,10 @@ const TitleContainer = styled.div`
         padding: 0 .5rem;
     }
     .title{
-        font-weight:800 ;
-        font-size: 1.25rem;
+        font-weight:800;
+        font-size: 1.125rem;
+        margin-block-end:0;
+        margin-top:.25rem;
     }
     .search-form{
         width:90%;
@@ -64,8 +67,6 @@ const TitleContainer = styled.div`
     }
     .icon:hover{
         background-color: var(--lightBlue);
-        border-radius: 2rem;
-        padding: .5rem;
     }
 
 }

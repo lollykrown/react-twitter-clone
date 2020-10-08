@@ -52,7 +52,7 @@ const NewTweet = () => {
 
 const Wrapper = styled.div`
   display: flex;
-  padding: 1rem 0 1rem 1rem;
+  padding: 1rem 0 0 1rem;
   border-bottom: .75rem solid var(--search);
   margin-right: .5rem;
 
