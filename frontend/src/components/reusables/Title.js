@@ -2,11 +2,12 @@ import React from 'react'
 import styled from "styled-components";
 
 export default function Title({title, icon, username}) {
-    const border = (title === 'notifications') ?'border-bottom:none': 'border-bottom: .1rem solid var(--search)';
+
     const iconEl = (icon && title === 'home') && <img src={icon} className="icon ml-auto" alt="icon"/>
 
-    const tit = (title !== 'explore' && title !== 'bookmarks') && <p className="title text-capitalize">{title}</p>
-    const bookmarks = (title === 'bookmarks') && (
+    const tit = (title !== 'explore' && title !== 'bookmarks' && title !== 'lists') && <p className="title text-capitalize">{title}</p>
+
+    const bookmarks = (title === 'bookmarks' || title === 'lists') && (
         <div className="cont">
             <div>
                 <p className="title text-capitalize">{title}</p>
@@ -30,11 +31,11 @@ export default function Title({title, icon, username}) {
     </form>):null
 
     return (
-        <TitleContainer border={border} className="d-flex">
+        <TitleContainer className="d-flex">
             {bookmarks}
             {tit}
-            {settings}
             {search}
+            {settings}
             {iconEl}
         </TitleContainer>
     )
