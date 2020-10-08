@@ -1,11 +1,21 @@
 import React from 'react'
 import styled from "styled-components";
 
-export default function Title({title, icon}) {
+export default function Title({title, icon, username}) {
     const border = (title === 'notifications') ?'border-bottom:none': 'border-bottom: .1rem solid var(--search)';
     const iconEl = (icon && title === 'home') && <img src={icon} className="icon ml-auto" alt="icon"/>
 
-    const tit = (title !== 'explore') && <p className="title text-capitalize">{title}</p>
+    const tit = (title !== 'explore' && title !== 'bookmarks') && <p className="title text-capitalize">{title}</p>
+    const bookmarks = (title === 'bookmarks') && (
+        <div className="cont">
+            <div>
+                <p className="title text-capitalize">{title}</p>
+                <p className="username text-capitalize">{username}</p>
+            </div>
+            <div className="fa"><i className="fa fa-ellipsis-h" aria-hidden="true"></i></div>
+        </div>
+        )
+
 
     const settings = ((title === 'notifications') || (title ==='explore'))? <i className="fa fa-cog" aria-hidden="true"></i>:null
 
@@ -20,18 +30,19 @@ export default function Title({title, icon}) {
     </form>):null
 
     return (
-        <TitleContainer border={border} className="d-flex ">
+        <TitleContainer border={border} className="d-flex">
+            {bookmarks}
             {tit}
+            {settings}
             {search}
             {iconEl}
-            {settings}
         </TitleContainer>
     )
 }
 
 const TitleContainer = styled.div`
-    border-bottom:${props => (props.title === 'notifications'?'none':'.1rem solid var(--search)')};
-    padding: .25rem .75rem 0 .75rem;
+padding: .25rem .75rem 0 .75rem;
+border-bottom:.1rem solid var(--search);
 
     .fa{
         margin-left:auto;
@@ -40,10 +51,21 @@ const TitleContainer = styled.div`
         padding: 0 .5rem;
         color: var(--mainBlue);
     }
-    .fa:hover{
+    .fa-cog:hover{
         background-color: var(--lightBlue);
         border-radius: 2rem;
         padding: 0 .5rem;
+    }
+    .fa-ellipsis-h{
+        paddin:bottom:.125rem;
+        margin-top:.5rem;
+    }
+    .fa-ellipsis-h:hover{
+        display:block;
+        paddin:bottom:.125rem;
+        background-color: var(--lightBlue);
+        margin-top:.5rem;
+        border-radius: 2rem;
     }
     .title{
         font-weight:800;
@@ -68,6 +90,14 @@ const TitleContainer = styled.div`
     .icon:hover{
         background-color: var(--lightBlue);
     }
-
+    .cont{
+        display:flex;
+        width:100%;
+    }
+    .username{
+        color: var(--grey);
+        font-size: .75rem;
+        margin-bottom:0;
+    }
 }
 `;
