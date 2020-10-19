@@ -37,7 +37,7 @@ export default function Login(props) {
                 return;
             }
             console.log(props)
-            props.history.push('/')
+            props.history.replace('/')
         } catch (err) {
             if (axios.isCancel(e)) {
                 console.log('Get request canceled');
@@ -64,7 +64,6 @@ export default function Login(props) {
                 <input type="text" name="password" value={account.password} onChange={handleChange} placeholder="password" />
                 <button className="btn">Sign in</button>
                 <p>{errors}</p>
-
             </form>
 
         </LoginContainer>
