@@ -35,7 +35,7 @@ function router() {
             return next(err);
           }
           debug(req.sessionID);
-          return res.status(200).json({msg:'logged in'});
+          return res.status(200).json({status:true,message:'logged in'});
         });
       })(req, res, next);
     });

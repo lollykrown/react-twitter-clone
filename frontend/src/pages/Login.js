@@ -4,7 +4,7 @@ import styled from "styled-components";
 
 export default function Login(props) {
 
-    const url = "http://localhost:5000/login";
+    const url = "http://localhost:5000/logn";
 
     const signal = useRef(axios.CancelToken.source());
 
@@ -31,13 +31,13 @@ export default function Login(props) {
                 username, password
             }, { cancelToken: signal.current.token, })
             console.log(res)
+            res.data.status && props.history.replace('/')
+
             if (!res.status) {
                 console.log(res.message)
                 setErrors(res.message)
                 return;
             }
-            console.log(props)
-            props.history.replace('/')
         } catch (err) {
             if (axios.isCancel(e)) {
                 console.log('Get request canceled');
@@ -65,7 +65,6 @@ export default function Login(props) {
                 <button className="btn">Sign in</button>
                 <p>{errors}</p>
             </form>
-
         </LoginContainer>
     )
 }
