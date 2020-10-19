@@ -12,7 +12,7 @@ function tweetController() {
         } else {
           // You are not logged in
           debug('You need to log in first')
-          res.redirect('/');
+          res.json({message: 'You need to log in first'})
         }
       }
   function postTweet(req, res) {
@@ -25,7 +25,7 @@ function tweetController() {
 
           res.status(200).json({
             status: true,
-            message: 'tweet sent',
+            message: 'tweet sent',lu,
           })
         } catch (err) {
           debug(err.stack)
@@ -48,7 +48,7 @@ function tweetController() {
   function getTweetsByUser(req, res) {
     (async function get() {
       try {
-        Lesson.find({ user: req.user._id }).exec()
+        Tweet.find({ user: req.user._id }).exec()
           .then(docs => res.json(docs))
           .catch(err => debug(`Oops! ${err}`))
       } catch (err) {
@@ -61,7 +61,7 @@ function tweetController() {
     (async function update() {
       let { subject, time, tutor, level } = req.body
       try {
-        Lesson.findByIdAndUpdate({ _id: req.params.id }, { $set: { subject, time, tutor, level } }, { new: true }).exec()
+        Tweet.findByIdAndUpdate({ _id: req.params.id }, { $set: { subject, time, tutor, level } }, { new: true }).exec()
           .then(docs => res.status(200).json(docs))
           .catch(err => debug(`Oops! ${err.stack}`))
       } catch (err) {
@@ -73,7 +73,7 @@ function tweetController() {
   function deleteTweetById(req, res) {
     (async function del() {
       try {
-        Lesson.findByIdAndDelete({ _id: req.params.id }).exec()
+        Tweet.findByIdAndDelete({ _id: req.params.id }).exec()
           .then(docs => res.status(204).json({
             status: true,
             message: `${docs.subject} lesson by ${docs.tutor} deleted`,

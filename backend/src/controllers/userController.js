@@ -1,28 +1,15 @@
 const debug = require("debug")("app:userController");
-const passport = require("passport");
 const bcrypt = require("bcryptjs");
 const User = require("../models/users");
-const Token = require("../models/tokens");
-const token = require("../utils/token");
-const mailer = require("../utils/mail");
-const { generateNumber, generateString } = require("../utils/random")();
-const sendSms = require("../utils/sms");
-const validator = require("email-validator");
 
-const validateEmail = (email) => {
-  if (!validator.validate(email)) {
-    return false;
-  }
-  return true;
-};
 
 function userController() {
   // Sign up with email address
   function signUpWithEmail(req, res) {
     (async function auth() {
       try {
-        let { userName, profileName, email, phone, password } = req.body;
-        if (!userName) {
+        let { username, profileName, email, password, profilePictureUrl } = req.body;
+        if (!username) {
           res.status(423).send({
             status: false,
             message: "Please provide your firstname",
@@ -43,13 +30,6 @@ function userController() {
           });
           return;
         }
-        if (!phone) {
-          res.status(423).send({
-            status: false,
-            message: "Please provide your phone number",
-          });
-          return;
-        }
         if (!password) {
           res.status(400).send({
             status: false,
@@ -57,22 +37,16 @@ function userController() {
           });
           return;
         }
-        let valid = validateEmail(email);
-        if (!valid) {
-          res.status(400).send({
-            status: "failed",
-            message: "Invalid email!",
-          });
-        }
 
-        const user = await User.findOne({ email }).exec();
+        console.log(username, profileName, email, password)
+        const user = await User.findOne({ username }).exec();
         if (user) {
           return res
             .status(423)
             .send({
               status: false,
               message:
-                "An account with this email already exists",
+                "An account with this username already exists",
             });
         }
 
@@ -81,13 +55,13 @@ function userController() {
           .then((password) => {
             const user = new User({
               email,
-              phone,
               password,
-              userName,
+              username,
               profileName,
+              profilePictureUrl
             });
             user.save().then((newUser) => {
-              debug(newUser);
+            console.log(newUser);
             });
           })
           .then(() => {
@@ -97,9 +71,9 @@ function userController() {
                 "You have been successfully registered,",
             });
           })
-          .catch((err) => debug(err));
+          .catch((err) => console.log(err));
       } catch (err) {
-        debug(err.stack);
+        console.log(err.stack);
         res.status(500).json({
           message: "Internal Server Error",
         });
@@ -121,7 +95,7 @@ function userController() {
     //     );
     //   next();
     // });
-    res.redirect("/login");
+    res.json({msg:"logged out"});
   }
 
   return {

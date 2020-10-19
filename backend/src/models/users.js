@@ -7,28 +7,21 @@ const usersSchema = new Schema({
     type: String,
     unique: true,
   },
-  phone: {
-    type: String,
-    unique: true
-  },
 	password: {
     type: String,
+    required:true
   },
-  firstName: {
+  username: {
     type: String,
+    unique: true,
+    required:true
   },
-  lastName: {
+  profileName: {
     type: String,
+    required:true
   },
   profilePictureUrl: {
     type: String,
-  },
-  activated: {
-    type: Boolean,
-    default: false
-  },
-  pwdResetToken: {
-    type: String
   }
 }, { paranoid: true, }, {timestamps: true})
 
