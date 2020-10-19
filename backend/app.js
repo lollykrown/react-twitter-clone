@@ -7,19 +7,19 @@ const session = require('express-session');
 const mongoose = require('mongoose');
 const morgan = require('morgan');
 const debug = require('debug')('app:root')
-const Logger = require('./src/utils/logger')
+// const Logger = require('./src/utils/logger')
 // import cors from 'cors';
 // import passport from 'passport';
 
 const app = express();
 
 // set up winston logger
-const log = new Logger('app_root');
+// const log = new Logger('app_root');
 
-// require('dotenv').config()
+require('dotenv').config()
 
-// mongoose.connect(process.env.DB_DEV_URL, { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false, useCreateIndex: true });
-// const db = mongoose.connection;
+mongoose.connect(process.env.DB_URL, { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false, useCreateIndex: true });
+const db = mongoose.connection;
 
 // app.set('trust proxy', 1);
 // const sessionOptions = {
@@ -36,11 +36,11 @@ const log = new Logger('app_root');
 //   name: 'id'
 // }
 
-// db.on('error', console.error.bind(console, 'connection error:'));
-// db.once('open', function () {
-//   log.info(`Connected to MongoDB: ${db.host}`);
-//   debug(`Connected to MongoDB: ${db.host}`);
-// });
+db.on('error', console.error.bind(console, 'connection error:'));
+db.once('open', function () {
+  // log.info(`Connected to MongoDB: ${db.host}`);
+  console.log(`Connected to MongoDB: ${db.host}`);
+});
 
 // Set up CORS
 // app.use(cors());
@@ -57,6 +57,6 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 const port = process.env.PORT || 5000
 app.listen(port, function () {
-  log.info('Listening on port ...',port)
-  debug(`Listening on port ${port}...`)
+  // log.info('Listening on port ...',port)
+  console.log(`Listening on port ${port}...`)
 })
