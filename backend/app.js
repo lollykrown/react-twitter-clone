@@ -8,10 +8,7 @@ const mongoose = require('mongoose');
 const morgan = require('morgan');
 const debug = require('debug')('app:root')
 const MongoStore = require('connect-mongo')(session);
-
-// const Logger = require('./src/utils/logger')
-// import cors from 'cors';
-// import passport from 'passport';
+const cors = require('cors')
 
 const app = express();
 
@@ -24,6 +21,7 @@ mongoose.connect(process.env.DB_URL, { useNewUrlParser: true, useUnifiedTopology
 const db = mongoose.connection;
 
 app.set('trust proxy', 1);
+
 const sessionOptions = {
   saveUninitialized: false,
   resave: false,
@@ -45,7 +43,7 @@ db.once('open', function () {
 });
 
 // Set up CORS
-// app.use(cors());
+app.use(cors());
 
 app.use(session(sessionOptions));
 app.use(morgan('tiny'));

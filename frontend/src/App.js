@@ -14,6 +14,8 @@ import Messages from './pages/Messages';
 import Bookmarks from './pages/Bookmarks';
 import Lists from './pages/Lists';
 import Profile from './pages/Profile';
+import Login from './pages/Login';
+
 
 function App() {
   return (
@@ -21,6 +23,7 @@ function App() {
       <div className="App row limited">
         <NavBar/>
           <Switch>
+            <Route exact path="/login" component={Login} />
             <Route exact path="/" component={Home} />
             <Route exact path="/explore" component={Explore}/>
             <Route exact path="/notifications" component={Notifications}/>
