@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 // import { toast } from "react-toastify";
 import TextareaAutosize from "react-textarea-autosize";
@@ -6,6 +6,12 @@ import Avatar from "./reusables/Avatar";
 import dp from '../dp.jpg';
 
 const NewTweet = () => {
+  const [ tweet, setTweet ] = useState('')
+
+  const setVal = (e) => {
+    setTweet(e.target.value)
+  }
+
   return (
     <Wrapper>
       <Avatar src={dp} alt="avatar" />
@@ -17,8 +23,8 @@ const NewTweet = () => {
           placeholder="What's happening?"
           type="text"
           className="text-area ml-2"
-          // value={tweet.value}
-          // onChange={tweet.onChange}
+          value={tweet}
+          onChange={e => setVal(e)}
         />
         <div className="globe pr-2">
           <i className="fa fa-globe ml-2" aria-hidden="true"></i> 
@@ -41,7 +47,7 @@ const NewTweet = () => {
                 <i className="far fa-calendar-plus" aria-hidden="true"></i> 
                 {/* <input id="schedule" accept="image/*" type="file"  /> */}
               </label>
-          <button className="tweet-btn mr-0" disabled={true}>
+          <button className="tweet-btn mr-0" disabled={tweet.length===0?true:false}>
             Tweet
           </button>
         </div>

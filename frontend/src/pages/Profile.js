@@ -9,7 +9,7 @@ export default function Profile() {
     `;
 
     return (
-        <div className="profile col-sm-10 col-md-10 col-lg-5">
+        <div className="home col-sm-10 col-md-10 col-lg-6">
             <Title title="oluwakayy"  username='@oluwakayy' icon="null" />
             <div>
                 
