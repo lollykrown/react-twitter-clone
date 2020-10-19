@@ -13,7 +13,7 @@ function router() {
   //sign up with email
   authRouter.route("/register").post(signUpWithEmail)
 
-  //custom callback for logiging in
+  //custom callback for logging in
   authRouter
     .route("/login")
     .post((req, res, next) => {
@@ -31,10 +31,10 @@ function router() {
         // if (!user) { return res.render('404'); }
         req.logIn(user, function (err) {
           if (err) {
-            logger.error(err)
+            //logger.error(err)
             return next(err);
           }
-          debug(req.sessionID);
+          //debug(req.sessionID);
           return res.status(200).json({status:true,message:'logged in'});
         });
       })(req, res, next);

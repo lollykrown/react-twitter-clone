@@ -1,21 +1,60 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import styled from "styled-components";
 // import { toast } from "react-toastify";
 import TextareaAutosize from "react-textarea-autosize";
 import Avatar from "./reusables/Avatar";
 import dp from '../dp.jpg';
+import axios from 'axios'
 
 const NewTweet = () => {
+  const url = "http://localhost:5000/compose/tweet'";
+
   const [ tweet, setTweet ] = useState('')
 
-  const setVal = (e) => {
-    setTweet(e.target.value)
+  //const [ errors, setErrors ] = useState(null)
+
+  const signal = useRef(axios.CancelToken.source());
+
+  let handleChange = (e) => {
+      let val = e.target.value;
+      setTweet(val);
   }
+
+const handleSubmit = async (e) => {
+  e.preventDefault();
+
+  try {
+      const res = await axios.post(url, {
+          tweet
+      }, { cancelToken: signal.current.token, })
+      console.log(res)
+
+      if (!res.status) {
+          //setErrors(res.data.message)
+          return;
+      }
+  } catch (err) {
+      if (axios.isCancel(e)) {
+          console.log('Get request canceled');
+          //setErrors(e.message)
+      } else {
+          console.log(err)
+          //setErrors(err.message)
+      }
+  }
+
+  
+  return () => {
+      console.log('unmount and cancel running axios request');
+      signal.current.cancel('Operation canceled by the user.');
+      setTweet('');
+    };
+}
 
   return (
     <Wrapper>
       <Avatar src={dp} alt="avatar" />
-      <form className="form">
+      <form className="form" onSubmit={e => { handleSubmit(e) }}>
         <TextareaAutosize
           autoFocus
           max="160"
@@ -24,8 +63,9 @@ const NewTweet = () => {
           type="text"
           className="text-area ml-2"
           value={tweet}
-          onChange={e => setVal(e)}
+          onChange={handleChange}
         />
+        {/* {alert(errors)} */}
         <div className="globe pr-2">
           <i className="fa fa-globe ml-2" aria-hidden="true"></i> 
           <span className="small-text ml-1">Everyone can reply</span>

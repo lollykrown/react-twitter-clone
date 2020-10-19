@@ -4,7 +4,7 @@ import styled from "styled-components";
 
 export default function Login(props) {
 
-    const url = "http://localhost:5000/logn";
+    const url = "http://localhost:5000/login";
 
     const signal = useRef(axios.CancelToken.source());
 
@@ -34,8 +34,8 @@ export default function Login(props) {
             res.data.status && props.history.replace('/')
 
             if (!res.status) {
-                console.log(res.message)
-                setErrors(res.message)
+                //console.log(res.message)
+                setErrors(res.data.message)
                 return;
             }
         } catch (err) {

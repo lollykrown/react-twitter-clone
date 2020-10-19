@@ -23,8 +23,8 @@ const db = mongoose.connection;
 app.set('trust proxy', 1);
 
 const sessionOptions = {
-  saveUninitialized: false,
-  resave: false,
+  saveUninitialized: true,
+  resave: true,
   secret: process.env.SECRET,
   cookie: {
     //secure: true,
@@ -43,7 +43,10 @@ db.once('open', function () {
 });
 
 // Set up CORS
-app.use(cors());
+const corsOptions = {
+  credentials: true,
+};
+app.use(cors(corsOptions));
 
 app.use(session(sessionOptions));
 app.use(morgan('tiny'));
