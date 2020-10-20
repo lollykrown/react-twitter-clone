@@ -7,11 +7,10 @@ moment().format()
 
 export default function Tweet(props) {
 
-    const { tweet, user, createdAt } = props.tweet
+    const { tweet, user, createdAt, comments, likes, retweets } = props.tweet
+    const { username, profileName, profilePictureUrl } = user
     const images = props.images
     const video = props.video
-
-    //console.log('time', moment(m).fromNow())
 
     const img = (images && images.length > 1)? images.map((el, i) => {
     return <div className="gride" key={i} ><img className="tweet-image mb-2" src={el} alt="tweet-img"/></div>
@@ -21,14 +20,14 @@ export default function Tweet(props) {
 
     return (
         <HomeContainer >
-            <Link to='/profile'><Avatar src={user.profilePictureUrl} alt="avatar" /></Link>
+            <Link to='/profile'><Avatar src={profilePictureUrl} alt="avatar" /></Link>
             <div className="tweet-container">
                 <div className="top">
                     <Link to='/profile'>
-                      <p className="mr-2 username text-capitalize">{user.profileName}</p>
+                      <p className="mr-2 username text-capitalize">{profileName}</p>
                     </Link>
                     <Link to='/profile'>
-                        <p className="mr-2 name text-capitalize">@{user.username}</p>
+                        <p className="mr-2 name text-capitalize">@{username}</p>
                     </Link>
                     <p className="mr-2 time">&#8231; {moment(createdAt).fromNow()}</p>
                     <i className="fa fa-angle-down dropdown" aria-hidden="true"></i>
@@ -37,10 +36,10 @@ export default function Tweet(props) {
                 {img}
                 {vid}
                 <div className="top bottom">
-                  <div className="no comment"><i className="far fa-comment " aria-hidden="true" /><span className="com">29</span></div>
-                  <div className="no retweet"><i className="fa fa-retweet mt-2"  aria-hidden="true" /><span className="ret">206</span></div>
-                  <div className="no heart"><i className="far fa-heart " aria-hidden="true" /><span className="hea">560</span></div>
-                  <div className="no share"><i className="far fa-share-square " aria-hidden="true" /><span className="sga">12</span></div>
+                  <div className="no comment"><i className="far fa-comment " aria-hidden="true" />{comments && <span className="com">{comments}</span>}</div>
+                  <div className="no retweet"><i className="fa fa-retweet mt-2"  aria-hidden="true" />{retweets && <span className="ret">{retweets}</span>}</div>
+                  <div className="no heart"><i className="far fa-heart " aria-hidden="true" />{likes && <span className="hea">{likes}</span>}</div>
+                  <div className="no share"><i className="far fa-share-square " aria-hidden="true" /><span className="sga"></span></div>
                 </div>
             </div>
         </HomeContainer>

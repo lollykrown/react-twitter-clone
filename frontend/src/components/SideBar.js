@@ -1,11 +1,12 @@
 import React from 'react'
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import dp from '../dp.jpg';
 import Avatar from "./reusables/Avatar";
 import Trends from "./reusables/Trends";
 
 export default function SideBar() {
+    const profilePictureUrl='https://res.cloudinary.com/lollykrown/image/upload/v1533672970/samples/bike.jpg'
+
     return (
         <SidebarContainer className="sidebar it col-lg-3 d-none d-lg-block">
             <form className="form-inline search-form mb-2 mt-1">
@@ -21,7 +22,7 @@ export default function SideBar() {
                 <p className="whoto text-capitalize">Who to follow</p>
 
                 <div className="follow trending-topic">
-                    <div className=""><Avatar src={dp} alt="avatar" /></div>
+                    <div className=""><Avatar src={profilePictureUrl} alt="avatar" /></div>
                     <div className=" ">
                         <p className="name text-capitalize">nurse kay</p>
                         <p className="username text-capitalize">@oluwakayy</p>
@@ -31,7 +32,7 @@ export default function SideBar() {
                 </div>
                 
                 <div className="follow trending-topic">
-                    <div className=""><Avatar src={dp} alt="avatar" /></div>
+                    <div className=""><Avatar src={profilePictureUrl} alt="avatar" /></div>
                     <div className=" ">
                         <p className="name text-capitalize">nurse kay</p>
                         <p className="username text-capitalize">@oluwakayy</p>
@@ -41,7 +42,7 @@ export default function SideBar() {
                 </div>
                 
                 <div className="follow trending-topic">
-                    <div className=""><Avatar src={dp} alt="avatar" /></div>
+                    <div className=""><Avatar src={profilePictureUrl} alt="avatar" /></div>
                     <div className=" ">
                         <p className="name text-capitalize">nurse kay</p>
                         <p className="username text-capitalize">@oluwakayy</p>

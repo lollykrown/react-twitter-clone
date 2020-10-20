@@ -48,6 +48,9 @@ export default function () {
 
   const tweet = {
     tweet:twee,
+    comments:12,
+    retweets:23,
+    likes:76,
     user:{
       profileName:'nurse kay',
       username:'oluwakayy',
@@ -55,6 +58,7 @@ export default function () {
     },
     createdAt: Date.now()
   }
+  
   let images = [];
   images.push(dp,dp, dp, dp)
   return (

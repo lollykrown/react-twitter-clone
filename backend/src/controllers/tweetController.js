@@ -22,7 +22,7 @@ function tweetController() {
       try {
         let { tweet, image, video } = req.body;
 
-        const us = await User.findOne({ username: 'oluwakayy' }).exec()
+        const us = await User.findOne({ username: 'lollykrown' }).exec()
         console.log(us)
 
         const twit = new Tweet({ tweet, image, video, user: us._id })
