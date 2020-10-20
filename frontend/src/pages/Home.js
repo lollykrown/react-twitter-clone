@@ -18,7 +18,7 @@ export default function () {
 
   useEffect(() => {
 
-    const getMovies = async () => {    
+    const getTweets = async () => {    
   
       try {
         const res = await axios.get(url,  { cancelToken: signal.current.token });
@@ -33,21 +33,25 @@ export default function () {
       }
     };
     
-    getMovies()
+    getTweets()
     return () => {
       console.log('unmount and cancel running axios request');
       signal.current.cancel('Operation canceled by the user.');
     };
   }, [url])
 
-  const twee = `Online protesters WAKE UP!!!!. Let's resume work, Reply 
-  this tweet with #EndSARS
+  const twee = `The government wants us to believe they are working to meet our 
+  demands but they can’t even guarantee the safety and security of peaceful protesters 
+  and innocent citizens from thugs!! What exactly do they think we have been fighting 
+  for??? #EndSARS
   `;
 
   const tweet = {
     tweet:twee,
-    username:'@oluwakayy',
-    name:'nurse kay'
+    user:{
+      username:'@oluwakayy',
+      name:'nurse kay'
+    }
   }
   let images = [];
   images.push(dp,dp, dp, dp)

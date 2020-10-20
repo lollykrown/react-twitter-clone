@@ -25,6 +25,10 @@ const tweetsSchema = new Schema({
   },
   comments: {
     type: Number,
+  },
+  createdAt: {
+    type: Date,
+    default: Date.now()
   }
 }, { paranoid: true, }, {timestamps: true})
 

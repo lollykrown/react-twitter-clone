@@ -54,4 +54,4 @@ usersSchema.methods.validPassword = function(password){
   }).catch(err => debug(err))
 }
 
-module.exports = mongoose.model( 'Users', usersSchema )
+module.exports = mongoose.model( 'User', usersSchema )

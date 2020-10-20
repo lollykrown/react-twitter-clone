@@ -3,48 +3,52 @@ const User = require('../models/users')
 const Tweet = require('../models/tweet')
 
 function tweetController() {
-    function isUserSignedIn(req, res, next) {
-        if (req.user) {
-          debug(req.isAuthenticated())
-          debug('You are logged in')
-          debug(req.cookies)
-          next();
-        } else {
-          // You are not logged in
-          debug('You need to log in first')
-          res.json({message: 'You need to log in first'})
-        }
-      }
-    function postTweet(req, res) {
-        (async function post() {
-          try {
-            let { tweet, image, video } = req.body;
-
-            const us = await User.findOne({username: 'lollykrown'}).exec()
-            console.log(us)
-
-            const twit = new Tweet({ tweet, image, video, user: us._id})
-            const lu = await twit.save()
-
-            res.status(200).json({
-              status: true,
-              message: 'tweet sent',
-              data:lu
-            })
-          } catch (err) {
-            debug(err.stack)
-          }
-        }());
+  function isUserSignedIn(req, res, next) {
+    if (req.user) {
+      debug(req.isAuthenticated())
+      debug('You are logged in')
+      debug(req.cookies)
+      next();
+    } else {
+      // You are not logged in
+      debug('You need to log in first')
+      res.json({ message: 'You need to log in first' })
     }
+  }
+  function postTweet(req, res) {
+    (async function post() {
+      try {
+        let { tweet, image, video } = req.body;
+
+        const us = await User.findOne({ username: 'lollykrown' }).exec()
+        console.log(us)
+
+        const twit = new Tweet({ tweet, image, video, user: us._id })
+        const lu = await twit.save()
+
+        res.status(200).json({
+          status: true,
+          message: 'tweet sent',
+          data: lu
+        })
+      } catch (err) {
+        debug(err.stack)
+      }
+    }());
+  }
 
   function getAllTweets(req, res) {
     (async function get() {
       try {
-        const tweets = await Tweet.find({}).populate('user').exec()
+        
+        const tweets = await Tweet.find({})
+          .populate({ path: 'user', select: '-_id username profileName' })
+          .sort().exec()
+
         console.log('twee', tweets)
-        Tweet.find({}).exec()
-          .then(docs => res.status(200).json(docs))
-          .catch(err => debug(`Oops! ${err}`))
+
+        return res.status(200).json(tweets)
+
       } catch (err) {
         debug(err.stack)
       }

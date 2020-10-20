@@ -5,7 +5,7 @@ import dp from '../dp.jpg';
 
 export default function Tweet(props) {
 
-    const {name, username,tweet} = props.tweet
+    const { tweet, user } = props.tweet
     const images = props.images
     const video = props.video
 
@@ -20,8 +20,8 @@ export default function Tweet(props) {
             <Avatar src={dp} alt="avatar" />
             <div className="tweet-container">
                 <div className="top">
-                    <p className="mr-2 name text-capitalize">{username}</p>
-                    <p className="mr-2 username text-capitalize">{name}</p>
+                    <p className="mr-2 name text-capitalize">@{user.username}</p>
+                    <p className="mr-2 username text-capitalize">{user.profileName}</p>
                     <p className="mr-2 time">&#8231; 2hr</p>
                     <i className="fa fa-angle-down dropdown" aria-hidden="true"></i>
                 </div>
@@ -54,6 +54,7 @@ transition: 1s;
 }
 .tweet-container{
     padding-top:.5rem;
+    width:100%;
 }
 .top{
     display: flex;
