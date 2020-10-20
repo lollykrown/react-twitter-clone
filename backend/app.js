@@ -54,7 +54,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 
-require('./src/config/passport.js')(app);
+// require('./src/config/passport.js')(app);
 
 // API
 const authRouter = require('./src/routes/authRoutes')();
@@ -64,8 +64,9 @@ app.get('/', function (req, res) {
   res.send('welcome');
 });
 
-app.use('/', authRouter);
 app.use('/', tweetRouter);
+app.use('/', authRouter);
+
 
 const port = process.env.PORT || 5000
 app.listen(port, function () {

@@ -17,16 +17,15 @@ const NewTweet = () => {
 
   let handleChange = (e) => {
       let val = e.target.value;
-      setTweet(val);
+      setTweet(val)
   }
 
 const handleSubmit = async (e) => {
   e.preventDefault();
 
   try {
-      const res = await axios.post(url, {
-          tweet
-      }, { cancelToken: signal.current.token, })
+    console.log(tweet) 
+      const res = await axios.post(url, {tweet})
       console.log(res)
 
       if (!res.status) {
@@ -34,19 +33,19 @@ const handleSubmit = async (e) => {
           return;
       }
   } catch (err) {
-      if (axios.isCancel(e)) {
-          console.log('Get request canceled');
-          console.log(e.message)
-      } else {
+      // if (axios.isCancel(err)) {
+      //     console.log('Get request canceled');
+      //     console.log(err.message)
+      // } else {
           console.log(err.message)
           //setErrors(err.message)
-      }
+      // }
   }
 
   
   return () => {
       console.log('unmount and cancel running axios request');
-      signal.current.cancel('Operation canceled by the user.');
+      // signal.current.cancel('Operation canceled by the user.');
       setTweet('');
     };
 }

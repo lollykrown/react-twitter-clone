@@ -13,21 +13,18 @@ const tweetsSchema = new Schema({
 	video: {
     type: String,
   },
-  user: [{
+  user: {
     type: Schema.Types.ObjectId,
     ref: 'User'
-  }],
+  },
   retweets: {
     type: Number,
-    required:true
   },
   likes: {
     type: Number,
-    required:true
   },
   comments: {
     type: Number,
-    required:true
   }
 }, { paranoid: true, }, {timestamps: true})
 
