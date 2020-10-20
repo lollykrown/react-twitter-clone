@@ -41,6 +41,9 @@ body::-webkit-scrollbar-track {
 body::-webkit-scrollbar-thumb {
 /* background: ${(props) => props.theme.accentColor}; */
 }
+.blue{
+  color:var(--mainBlue);
+}
 /* GRID */
 .row {
     /* clear: both;*/

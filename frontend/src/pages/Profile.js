@@ -9,7 +9,7 @@ export default function Profile() {
 
     return (
         <ProfileWrapper className="home col-sm-10 col-md-10 col-lg-6">
-            <Title title="oluwakayy" username='@oluwakayy' icon="null" />
+            <Title title="profile" titl="oluwakayy" username='@oluwakayy'/>
             <div className="parent">
                 <div className="top-image">
                     <img
@@ -24,13 +24,13 @@ export default function Profile() {
                         <div className="dp">
                             <img
                                 src={dp}
-                                className="card-img img-fluid"
+                                className="img img-fluid"
                                 alt="poster"
                             />
                         </div>
                         <div className="end">
                             <Link className="link" to="/">
-                                <i className="fa fa-plus-circle" aria-hidden="true"></i>
+                                <i className="fa fa-ellipsis-h" aria-hidden="true"></i>
                             </Link>  
                             <Link className="link" to="/notifications">
                                 <i className="far fa-bell" aria-hidden="true"></i>
@@ -39,6 +39,13 @@ export default function Profile() {
                         </div>
 
                     </div>
+                    <p className="namee">Nurse Kay</p>
+                    <p className="usernamee">@oluwakayy</p>
+                    <p className="bio">God first and Always!<br/>
+                    &#128138; 	&#128137; <br/>
+                    Bird set free | software developer <br/>
+                    <span className="blue">#Arsenal</span></p>
+
                 </div>
             </div>
 
@@ -52,9 +59,8 @@ const ProfileWrapper = styled.div`
 .top-image, .img-bd {
     position:relative;
     width:100%;
-    top:5px;
     z-index:-1;
-    max-height:40vh
+    max-height:230px;
   }
   
   .bg {
@@ -62,7 +68,7 @@ const ProfileWrapper = styled.div`
     position: absolute;
     width: 90%;
     left: 1.75rem;
-    top: 12rem;
+    top: 13.5rem;
     z-index: 1;
   }
 
@@ -71,25 +77,52 @@ const ProfileWrapper = styled.div`
     justify-content: space-between;
   }
   .end{
-    margin: auto 0;  
+    align-self:flex-end;
+    padding-bottom:1rem;
   }
-  .card-img, .dp {
+  .img, .dp {
     border-radius: 12rem;
   }
 .dp {
-    border: 8px solid var(--mainWhite);
+    border: 6px solid var(--mainWhite);
+  }
+  .img{
+    width:150px;
   }
 .link{
     display:inline;
 }
-
+.fa, .far{
+    font-size: 1.25rem;
+    color: var(--mainBlue);
+    border: 1px solid var(--mainBlue);
+    border-radius: 1.5rem;
+    padding: .7rem;
+    width: max-content;
+    margin: .125rem .5rem .125rem 0;
+}
 .btn{
     background-color: #1da1f2;
     border-radius: 1.5rem;
     font-weight:700 ;
-    padding:.25rem .5rem;
+    padding:.35rem .75rem;
     font-size: 1rem;
     color: var(--mainWhite);
+  }
+  .namee, .usernamee{
+    line-height: .4;
+  }
+  .bio{
+      line-height:1.2;
+      font-size:.9rem;
+  }
+  .namee{
+    margin-top:.5rem;
+    font-weight:700 ;
+    font-size: 1.125rem;
+  }
+  .usernamee{
+    color:var(--grey);
   }
 `;
 
