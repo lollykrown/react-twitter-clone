@@ -7,11 +7,11 @@ import dp from '../dp.jpg';
 import axios from 'axios'
 
 const NewTweet = () => {
-  const url = "http://localhost:5000/compose/tweet'";
+  const url = "http://localhost:5000/compose/tweet";
 
   const [ tweet, setTweet ] = useState('')
 
-  //const [ errors, setErrors ] = useState(null)
+  // const [ errors, setErrors ] = useState(null)
 
   const signal = useRef(axios.CancelToken.source());
 
@@ -30,15 +30,15 @@ const handleSubmit = async (e) => {
       console.log(res)
 
       if (!res.status) {
-          //setErrors(res.data.message)
+          console.log(res.data.message)
           return;
       }
   } catch (err) {
       if (axios.isCancel(e)) {
           console.log('Get request canceled');
-          //setErrors(e.message)
+          console.log(e.message)
       } else {
-          console.log(err)
+          console.log(err.message)
           //setErrors(err.message)
       }
   }
