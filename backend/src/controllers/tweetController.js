@@ -18,17 +18,18 @@ function tweetController() {
   function postTweet(req, res) {
       (async function post() {
         try {
-          let { text, image, video } = req.body;
+          let { tweet, image, video } = req.body;
 
           const us = await User.findOne({username: 'lollykrown'}).exec()
           console.log(us)
 
-          const tweet = new Tweet({ text, image, video, user: us._id})
-          const lu = await tweet.save()
+          const twit = new Tweet({ tweet, image, video, user: us._id})
+          const lu = await twit.save()
 
           res.status(200).json({
             status: true,
-            message: 'tweet sent',lu,
+            message: 'tweet sent',
+            data:lu
           })
         } catch (err) {
           debug(err.stack)

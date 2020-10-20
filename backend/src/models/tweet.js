@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
 const tweetsSchema = new Schema({
-	text: {
+	tweet: {
     type: String,
     unique: true,
     required:true

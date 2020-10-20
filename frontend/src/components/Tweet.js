@@ -3,7 +3,9 @@ import styled from "styled-components";
 import Avatar from './reusables/Avatar'
 import dp from '../dp.jpg';
 
-export default function Tweet({name, username, images, video,tweet}) {
+export default function Tweet(props) {
+
+  const {name, username, images, video,tweet} = props.tweet
 
     const img = (images && images.length > 1)? images.map((el, i) => {
     return <div className="gride" key={i} ><img className="tweet-image mb-2" src={el} alt="tweet-img"/></div>
