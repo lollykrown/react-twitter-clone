@@ -23,8 +23,8 @@ const db = mongoose.connection;
 app.set('trust proxy', 1);
 
 const sessionOptions = {
-  saveUninitialized: true,
-  resave: true,
+  saveUninitialized: false,
+  resave: false,
   secret: process.env.SECRET,
   cookie: {
     //secure: true,
