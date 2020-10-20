@@ -1,12 +1,12 @@
 import React from 'react'
 import styled from "styled-components";
 import twitter from '../twitter.png';
-import dp from '../dp.jpg';
 import { Link, withRouter } from "react-router-dom";
 import Avatar from "./reusables/Avatar";
 
 const NavBar = (props) => {
-
+    const profilePictureUrl='https://res.cloudinary.com/lollykrown/image/upload/v1533672970/samples/bike.jpg'
+   
     let act = props.location.pathname || ''
     return (
         <NavbarContainer className="navbar col-sm-2 col-md-2 col-lg-2">
@@ -73,7 +73,7 @@ const NavBar = (props) => {
             <button className="btn text-capitalize d-none d-lg-inline mr-4">tweet</button>
 
             <div className="col-2 col-lg-3 profile-container d-none d-lg-flex  mb-0 ">
-                <div className="mt-1"><Avatar src={dp} alt="avatar" /></div>
+                <div className="mt-1"><Avatar src={profilePictureUrl} alt="avatar" /></div>
                 <div className="mt-3 d-none d-lg-block ">
                     <p className="name text-capitalize">nurse kay</p>
                     <p className="username text-capitalize">@oluwakayy</p>

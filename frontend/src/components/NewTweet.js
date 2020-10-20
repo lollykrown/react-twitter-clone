@@ -3,12 +3,10 @@ import styled from "styled-components";
 // import { toast } from "react-toastify";
 import TextareaAutosize from "react-textarea-autosize";
 import Avatar from "./reusables/Avatar";
-import dp from '../dp.jpg';
 import axios from 'axios'
 
-const NewTweet = () => {
+const NewTweet = ({dp}) => {
   const url = "http://localhost:5000/compose/tweet";
-
   const [ tweet, setTweet ] = useState('')
 
   // const [ errors, setErrors ] = useState(null)

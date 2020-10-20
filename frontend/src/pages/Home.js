@@ -49,9 +49,9 @@ export default function () {
   const tweet = {
     tweet:twee,
     user:{
+      profileName:'nurse kay',
       username:'oluwakayy',
-      name:'nurse kay',
-      profilePictureUrl:'https://res.cloudinary.com/lollykrown/image/upload/v1603210482/Portfolios/10929554_10152805944389900_8055332835260610135_n.jpg'
+      profilePictureUrl:'https://res.cloudinary.com/lollykrown/image/upload/v1533672970/samples/bike.jpg'
     },
     createdAt: Date.now()
   }
@@ -60,7 +60,7 @@ export default function () {
   return (
     <HomeContainer className="home col-sm-10 col-md-10 col-lg-6">
       <Title title="home" icon={twitter} />
-        <NewTweet/>
+        <NewTweet dp={tweet.user.profilePictureUrl}/>
         {tweets.map((tweet, i) => <Tweet key={i} tweet={tweet}/>)}
         <Tweet tweet={tweet} images={images}/>
         <Tweet tweet={tweet}/>
