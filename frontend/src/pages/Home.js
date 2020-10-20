@@ -51,7 +51,8 @@ export default function () {
     user:{
       username:'@oluwakayy',
       name:'nurse kay'
-    }
+    },
+    createdAt: Date.now()
   }
   let images = [];
   images.push(dp,dp, dp, dp)

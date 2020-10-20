@@ -26,7 +26,7 @@ const tweetsSchema = new Schema({
   comments: {
     type: Number,
   },
-  createdAt: {
+  createdAt:{
     type: Date,
     default: Date.now()
   }

@@ -2,12 +2,15 @@ import React from 'react'
 import styled from "styled-components";
 import Avatar from './reusables/Avatar'
 import dp from '../dp.jpg';
+import moment from 'moment';
 
 export default function Tweet(props) {
 
-    const { tweet, user } = props.tweet
+    const { tweet, user, createdAt } = props.tweet
     const images = props.images
     const video = props.video
+
+    //console.log('time', moment(m).fromNow())
 
     const img = (images && images.length > 1)? images.map((el, i) => {
     return <div className="gride" key={i} ><img className="tweet-image mb-2" src={el} alt="tweet-img"/></div>
@@ -22,7 +25,7 @@ export default function Tweet(props) {
                 <div className="top">
                     <p className="mr-2 name text-capitalize">@{user.username}</p>
                     <p className="mr-2 username text-capitalize">{user.profileName}</p>
-                    <p className="mr-2 time">&#8231; 2hr</p>
+                    <p className="mr-2 time">&#8231; {moment(createdAt).fromNow()}</p>
                     <i className="fa fa-angle-down dropdown" aria-hidden="true"></i>
                 </div>
                 <p className="mr-2 tweet">{tweet}</p>

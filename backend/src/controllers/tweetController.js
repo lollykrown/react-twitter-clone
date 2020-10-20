@@ -1,6 +1,8 @@
 const debug = require('debug')('app:tweetController');
 const User = require('../models/users')
 const Tweet = require('../models/tweet')
+// const moment = require('moment')
+
 
 function tweetController() {
   function isUserSignedIn(req, res, next) {
@@ -42,11 +44,12 @@ function tweetController() {
       try {
         
         const tweets = await Tweet.find({})
+          .sort({createdAt:-1})
           .populate({ path: 'user', select: '-_id username profileName' })
-          .sort({createdAt:1}).exec()
-
-        console.log('twee', tweets)
-
+          .exec()
+        
+        console.log('tweet', tweets)
+        
         return res.status(200).json(tweets)
 
       } catch (err) {
