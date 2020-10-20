@@ -49,8 +49,9 @@ export default function () {
   const tweet = {
     tweet:twee,
     user:{
-      username:'@oluwakayy',
-      name:'nurse kay'
+      username:'oluwakayy',
+      name:'nurse kay',
+      profilePictureUrl:'https://res.cloudinary.com/lollykrown/image/upload/v1603210482/Portfolios/10929554_10152805944389900_8055332835260610135_n.jpg'
     },
     createdAt: Date.now()
   }

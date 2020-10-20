@@ -15,7 +15,7 @@ export default function Profile() {
                 
             </div>
 
-            <Tweet tweet={tweet} name='nurse kay' username='@oluwakayy'/> 
+            {/* <Tweet tweet={tweet} name='nurse kay' username='@oluwakayy'/>  */}
         </div>
     )
 }

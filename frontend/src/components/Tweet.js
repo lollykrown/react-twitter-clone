@@ -2,6 +2,7 @@ import React from 'react'
 import styled from "styled-components";
 import Avatar from './reusables/Avatar'
 import dp from '../dp.jpg';
+import { Link } from "react-router-dom";
 import moment from 'moment';
 moment().format()
 
@@ -21,11 +22,14 @@ export default function Tweet(props) {
 
     return (
         <HomeContainer >
-            <Avatar src={dp} alt="avatar" />
+            <Link to='/profile'><Avatar src={user.profilePictureUrl} alt="avatar" /></Link>
             <div className="tweet-container">
                 <div className="top">
-                    <p className="mr-2 name text-capitalize">@{user.username}</p>
+                    <Link to='/profile'>
+                        <p className="mr-2 name text-capitalize">@{user.username}</p>
+                    </Link>
                     <p className="mr-2 username text-capitalize">{user.profileName}</p>
+
                     <p className="mr-2 time">&#8231; {moment(createdAt).fromNow()}</p>
                     <i className="fa fa-angle-down dropdown" aria-hidden="true"></i>
                 </div>
@@ -80,6 +84,7 @@ transition: 1s;
 .name{
     font-weight:700;
     font-size:.91rem;
+    color:var(--mainDark);
   }
   .username{
     color:var(--grey);
