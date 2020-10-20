@@ -60,11 +60,11 @@ export default function () {
     <HomeContainer className="home col-sm-10 col-md-10 col-lg-6">
       <Title title="home" icon={twitter} />
         <NewTweet/>
-
+        {tweets.map((tweet, i) => <Tweet key={i} tweet={tweet}/>)}
         <Tweet tweet={tweet} images={images}/>
         <Tweet tweet={tweet}/>
         <Tweet tweet={tweet} video={word}/>
-        {tweets.map((tweet, i) => <Tweet key={i} tweet={tweet}/>)}
+        
         <Tweet tweet={tweet}/>
         <Tweet tweet={tweet} images={[dp,dp]}/>
 

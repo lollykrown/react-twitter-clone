@@ -3,6 +3,7 @@ import styled from "styled-components";
 import Avatar from './reusables/Avatar'
 import dp from '../dp.jpg';
 import moment from 'moment';
+moment().format()
 
 export default function Tweet(props) {
 
