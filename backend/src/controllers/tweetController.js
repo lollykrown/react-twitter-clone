@@ -43,7 +43,7 @@ function tweetController() {
         
         const tweets = await Tweet.find({})
           .populate({ path: 'user', select: '-_id username profileName' })
-          .sort().exec()
+          .sort({createdAt:1}).exec()
 
         console.log('twee', tweets)
 
