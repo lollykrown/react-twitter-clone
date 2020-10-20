@@ -15,31 +15,33 @@ function tweetController() {
           res.json({message: 'You need to log in first'})
         }
       }
-  function postTweet(req, res) {
-      (async function post() {
-        try {
-          let { tweet, image, video } = req.body;
+    function postTweet(req, res) {
+        (async function post() {
+          try {
+            let { tweet, image, video } = req.body;
 
-          const us = await User.findOne({username: 'lollykrown'}).exec()
-          console.log(us)
+            const us = await User.findOne({username: 'lollykrown'}).exec()
+            console.log(us)
 
-          const twit = new Tweet({ tweet, image, video, user: us._id})
-          const lu = await twit.save()
+            const twit = new Tweet({ tweet, image, video, user: us._id})
+            const lu = await twit.save()
 
-          res.status(200).json({
-            status: true,
-            message: 'tweet sent',
-            data:lu
-          })
-        } catch (err) {
-          debug(err.stack)
-        }
-      }());
-  }
+            res.status(200).json({
+              status: true,
+              message: 'tweet sent',
+              data:lu
+            })
+          } catch (err) {
+            debug(err.stack)
+          }
+        }());
+    }
 
   function getAllTweets(req, res) {
     (async function get() {
       try {
+        const tweets = await Tweet.find({}).populate('user').exec()
+        console.log('twee', tweets)
         Tweet.find({}).exec()
           .then(docs => res.status(200).json(docs))
           .catch(err => debug(`Oops! ${err}`))

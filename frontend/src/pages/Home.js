@@ -40,9 +40,8 @@ export default function () {
     };
   }, [url])
 
-  const twee = `This whole #EndSARS is just for the media, this happened yesterday in Glover street in Ebute-Metta. 
-  We are jokers in this country, this guy trains kids how to ride a unicycle every weekend for free.
-  I swear I am done with this country.
+  const twee = `Online protesters WAKE UP!!!!. Let's resume work, Reply 
+  this tweet with #EndSARS
   `;
 
   const tweet = {
@@ -56,12 +55,14 @@ export default function () {
     <HomeContainer className="home col-sm-10 col-md-10 col-lg-6">
       <Title title="home" icon={twitter} />
         <NewTweet/>
-        <Tweet name='nurse kay' username='@oluwakayy' tweet={tweet}/>
+
+        <Tweet tweet={tweet} images={images}/>
+        <Tweet tweet={tweet}/>
+        <Tweet tweet={tweet} video={word}/>
         {tweets.map((tweet, i) => <Tweet key={i} tweet={tweet}/>)}
-        {/* <Tweet name='nurse kay' username='@oluwakayy' tweet={tweet}/>
-        <Tweet name='nurse kay' username='@oluwakayy' tweet='pics' images={images}/>
-        <Tweet name='nurse kay' username='@oluwakayy' tweet='video' video={word}/>
-        <Tweet name='nazarite&#8482;' username='lollykrown' tweet='pic' images={[dp,dp]}/>*/}
+        <Tweet tweet={tweet}/>
+        <Tweet tweet={tweet} images={[dp,dp]}/>
+
 
     </HomeContainer>
   );

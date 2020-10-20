@@ -5,7 +5,9 @@ import dp from '../dp.jpg';
 
 export default function Tweet(props) {
 
-  const {name, username, images, video,tweet} = props.tweet
+    const {name, username,tweet} = props.tweet
+    const images = props.images
+    const video = props.video
 
     const img = (images && images.length > 1)? images.map((el, i) => {
     return <div className="gride" key={i} ><img className="tweet-image mb-2" src={el} alt="tweet-img"/></div>
