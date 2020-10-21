@@ -13,7 +13,7 @@ export default function Title({title, titl, icon, username }) {
                 <p className="title text-capitalize">{titl}</p>
                 <p className="username text-capitalize">{username}</p>
             </div>
-            <div className="f"><i className="fa fa-ellipsis-h" aria-hidden="true"></i></div>
+            <div className="fa"><i className="fa fa-ellipsis-h" aria-hidden="true"></i></div>
         </div>
         )
 
@@ -80,10 +80,10 @@ border-bottom:.1rem solid var(--search);
     }
     .fa-arrow-left{
         border:none;
-        font-size:1.25rem;
+        font-size:1.125rem;
         line-height:inherit;
-        padding: .25rem .75rem !important;
-        margin:.5rem 1rem 0 0!important;
+        padding: .1rem .75rem !important;
+        margin: 0 1rem 0 0!important;
     }
     .fa-arrow-left:hover{
         paddin:bottom:.125rem;
@@ -97,7 +97,6 @@ border-bottom:.1rem solid var(--search);
         font-weight:800;
         font-size: 1.125rem;
         margin-block-end:0;
-        margin-top:.25rem;
     }
     .search-form{
         width:90%;

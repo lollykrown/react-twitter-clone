@@ -5,16 +5,19 @@ import styled from "styled-components";
 import dp from '../dp.jpg';
 import { Link } from "react-router-dom";
 
-export default function Profile() {
+export default function Profile(props) {
+    let act = props.location.pathname || '';
+    const pic='https://res.cloudinary.com/lollykrown/image/upload/v1533672970/samples/bike.jpg'
+
 
     return (
         <ProfileWrapper className="home col-sm-10 col-md-10 col-lg-6">
-            <Title title="profile" titl="oluwakayy" username='@oluwakayy'/>
+            <Title title="profile" titl="Nurse Kay" username='3,378 Tweets' />
             <div className="parent">
                 <div className="top-image">
                     <img
                         className="img-fluid img-bd"
-                        src={dp}
+                        src={pic}
                         alt="backdrop poster"
                     />
                 </div>
@@ -31,7 +34,7 @@ export default function Profile() {
                         <div className="end">
                             <Link className="link" to="/">
                                 <i className="fa fa-ellipsis-h" aria-hidden="true"></i>
-                            </Link>  
+                            </Link>
                             <Link className="link" to="/notifications">
                                 <i className="far fa-bell" aria-hidden="true"></i>
                             </Link>
@@ -39,14 +42,33 @@ export default function Profile() {
                         </div>
 
                     </div>
-                    <p className="namee">Nurse Kay</p>
-                    <p className="usernamee">@oluwakayy</p>
-                    <p className="bio">God first and Always!<br/>
-                    &#128138; 	&#128137; <br/>
-                    Bird set free | software developer <br/>
-                    <span className="blue">#Arsenal</span></p>
+                    <p className="name">Nurse Kay</p>
+                    <p className="username">@oluwakayy</p>
+                    <p className="bio">Jesus junkie. Nurse. &#128137; &#128138; Software developer. Lazy writer.<br/><br/>
+                    Redeeming the image of a Nigerian Nurse, one person at a time. <span className="blue">#Arsenal</span></p>
 
+                    <div className="d-flex pl-0">
+                        <p className="text-bold mr-4">2,124<span className="text-capitalize username"> following</span></p>
+                        <p className="text-bold">2,325<span className="text-capitalize username"> followers</span></p>
+
+                    </div>
                 </div>
+                <div className="u">
+                        <ul className="nav nav-fill ">
+                            <li className="nav-item tab-cont">
+                                <Link className={`nav-link text-capitalize tab acti`} to="/profile/tweets">tweets</Link>
+                            </li>
+                            <li className="nav-item tab-cont">
+                                <Link className={`nav-link text-capitalize tab ${act === "/profile/with_replies" ? 'acti' : ''}`} to="/profile/with_replies">tweets &amp; replies</Link>
+                            </li>
+                            <li className="nav-item tab-cont">
+                                <Link className={`nav-link text-capitalize tab ${act === "/profile/media" ? 'acti' : ''}`} to="/profile/media">media</Link>
+                            </li>
+                            <li className="nav-item tab-cont">
+                                <Link className={`nav-link text-capitalize tab ${act === "/profile/likes" ? 'acti' : ''}`} to="/profile/likes">likes</Link>
+                            </li>
+                        </ul>
+                    </div>
             </div>
 
             {/* <Tweet tweet={tweet} name='nurse kay' username='@oluwakayy'/>  */}
@@ -60,18 +82,23 @@ const ProfileWrapper = styled.div`
     position:relative;
     width:100%;
     z-index:-1;
-    max-height:230px;
+    max-height:200px;
   }
   
   .bg {
     background-color: transparent;
     position: absolute;
     width: 90%;
-    left: 1.75rem;
-    top: 13.5rem;
+    left: 1rem;
+    top: 10.5rem;
     z-index: 1;
   }
 
+  .u {
+    position: absolute;
+    width: 100%;
+    top:31rem;
+  }
   .d{
     display:flex;
     justify-content: space-between;
@@ -82,12 +109,13 @@ const ProfileWrapper = styled.div`
   }
   .img, .dp {
     border-radius: 12rem;
+    width:150px;
+  }
+  .img{
+      height:140px;
   }
 .dp {
     border: 6px solid var(--mainWhite);
-  }
-  .img{
-    width:150px;
   }
 .link{
     display:inline;
@@ -109,19 +137,19 @@ const ProfileWrapper = styled.div`
     font-size: 1rem;
     color: var(--mainWhite);
   }
-  .namee, .usernamee{
+  .name, .username{
     line-height: .4;
   }
   .bio{
       line-height:1.2;
       font-size:.9rem;
   }
-  .namee{
+  .name{
     margin-top:.5rem;
     font-weight:700 ;
     font-size: 1.125rem;
   }
-  .usernamee{
+  .username{
     color:var(--grey);
   }
 `;

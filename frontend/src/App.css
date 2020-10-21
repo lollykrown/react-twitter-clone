@@ -76,3 +76,27 @@ a, a:hover {
   padding:0;
   border: .1rem solid var(--search);
 }
+
+.tab-cont{
+  border-bottom:.125rem solid var(--search);
+  padding:0;
+}
+.tab{
+  padding:.75rem 0;
+  font-size: .9rem;
+  font-weight:700;
+  color: var(--grey);
+  border-bottom:none;
+}
+.tab:hover{
+  background-color: var(--lightBlue);
+  color: var(--mainBlue);
+}
+.acti{
+  border-bottom:.15rem solid var(--mainBlue);
+  color: var(--mainBlue);
+}
+.d-flex{
+  padding: .25rem .75rem 0 .75rem;
+  margin-bottom:.5rem;
+}
