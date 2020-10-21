@@ -58,6 +58,7 @@ app.use(cookieParser());
 
 // API
 const authRouter = require('./src/routes/authRoutes')();
+const userRouter = require('./src/routes/userRoutes')();
 const tweetRouter = require('./src/routes/tweetRoutes')();
 
 app.get('/', function (req, res) {
@@ -66,6 +67,9 @@ app.get('/', function (req, res) {
 
 app.use('/', tweetRouter);
 app.use('/', authRouter);
+app.use('/', userRouter);
+
+
 
 
 const port = process.env.PORT || 5000

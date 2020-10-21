@@ -5,23 +5,31 @@ const bcrypt = require('bcryptjs');
 const usersSchema = new Schema({
 	email: {
     type: String,
+    required: [true, "Please enter your email"],
+    trim: true,
+    lowercase: true,
     unique: true,
   },
 	password: {
     type: String,
-    required:true
+    required: [true, "Please enter your password"]
   },
   username: {
     type: String,
+    required: [true, "Please enter your username"],
+    trim: true,
     unique: true,
-    required:true
   },
   profileName: {
     type: String,
     required:true
   },
+  bio:{
+    type:String,
+  },
   profilePictureUrl: {
     type: String,
+    default:'https://via.placeholder.com/150/1da1f2/808080%20?Text=lollykrown.xyz'
   },
   followers: [{ type: mongoose.Schema.ObjectId, ref: "User" }],
   followersCount: {
@@ -33,6 +41,20 @@ const usersSchema = new Schema({
     default: 0,
   },
   following: [{ type: mongoose.Schema.ObjectId, ref: "User" }],
+  tweetsCount:{
+    type:Number,
+    default:0
+  },
+  website: {
+    type:String
+  },
+  birthDate: {
+    type:String
+  },
+  dateJoined:{
+    type:Date,
+    default:Date.now()
+  }
 }, { paranoid: true, }, {timestamps: true})
 
 usersSchema.post('save', function(error, doc, next) {

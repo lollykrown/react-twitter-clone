@@ -3,12 +3,17 @@ import Title from "../components/reusables/Title";
 import Tweet from "../components/Tweet";
 import styled from "styled-components";
 import dp from '../dp.jpg';
-import { Link } from "react-router-dom";
+import { Link, withRouter, useLocation } from "react-router-dom";
 
-export default function Profile(props) {
+const Profile = (props) => {
     let act = props.location.pathname || '';
+
     const pic='https://res.cloudinary.com/lollykrown/image/upload/v1533672970/samples/bike.jpg'
 
+    let location = useLocation();
+    console.log('loc',location);
+    const username = props.location.username
+    console.log(username)
 
     return (
         <ProfileWrapper className="home col-sm-10 col-md-10 col-lg-6">
@@ -75,7 +80,7 @@ export default function Profile(props) {
         </ProfileWrapper>
     )
 }
-
+export default withRouter(Profile)
 
 const ProfileWrapper = styled.div`
 .top-image, .img-bd {

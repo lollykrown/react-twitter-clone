@@ -12,7 +12,7 @@ export default function Bookmarks() {
         <div className="home col-sm-10 col-md-10 col-lg-6" >
             <Title title="bookmarks"  username='@oluwakayy' icon="null" />
 
-            <Tweet tweet={tweet} name='nurse kay' username='@oluwakayy'/>         
+            {/* <Tweet tweet={tweet} name='nurse kay' username='@oluwakayy'/>          */}
         </div>
     )
 }

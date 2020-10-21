@@ -8,7 +8,8 @@ moment().format()
 export default function Tweet(props) {
 
     const { tweet, user, createdAt, comments, likes, retweets } = props.tweet
-    const { username, profileName, profilePictureUrl } = user
+    const { username, profileName, profilePictureUrl, dateJoined, followers,
+      followersCount, following, followingCount, tweetsCount } = user
     const images = props.images
     const video = props.video
 
@@ -20,13 +21,13 @@ export default function Tweet(props) {
 
     return (
         <HomeContainer >
-            <Link to='/profile'><Avatar src={profilePictureUrl} alt="avatar" /></Link>
+            <Link to={`${username}`}><Avatar src={profilePictureUrl} alt="avatar" /></Link>
             <div className="tweet-container">
                 <div className="top">
-                    <Link to='/profile'>
+                    <Link to={`${username}`}>
                       <p className="mr-2 username text-capitalize">{profileName}</p>
                     </Link>
-                    <Link to='/profile'>
+                    <Link to={`${username}`}>
                         <p className="mr-2 name text-capitalize">@{username}</p>
                     </Link>
                     <p className="mr-2 time">&#8231; {moment(createdAt).fromNow()}</p>

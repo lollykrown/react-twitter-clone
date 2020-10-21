@@ -30,7 +30,7 @@ function App() {
             <Route exact path="/messages" component={Messages}/>
             <Route exact path="/bookmarks" component={Bookmarks}/>
             <Route exact path="/lists" component={Lists}/>
-            <Route exact path="/profile" component={Profile}/>
+            <Route exact path="/:username" component={Profile}/>
             <Redirect from="*" to="/" />
           </Switch>
         <SideBar/>

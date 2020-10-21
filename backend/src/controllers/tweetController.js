@@ -22,7 +22,7 @@ function tweetController() {
       try {
         let { tweet, image, video } = req.body;
 
-        const us = await User.findOne({ username: 'lollykrown' }).exec()
+        const us = await User.findOne({ username: 'nazarite_' }).exec()
         console.log(us)
 
         const twit = new Tweet({ tweet, image, video, user: us._id })
@@ -45,7 +45,7 @@ function tweetController() {
         
         const tweets = await Tweet.find({})
           .sort({createdAt:-1})
-          .populate({ path: 'user', select: '-_id username profileName profilePictureUrl' })
+          .populate({ path: 'user', select: '-_id -email -password' })
           .exec()
         
         console.log('tweet', tweets)

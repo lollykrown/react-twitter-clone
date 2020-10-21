@@ -61,7 +61,7 @@ function userController() {
               profilePictureUrl
             });
             user.save().then((newUser) => {
-            console.log(newUser);
+              console.log(newUser);
             });
           })
           .then(() => {
@@ -95,12 +95,43 @@ function userController() {
     //     );
     //   next();
     // });
-    res.json({msg:"logged out"});
+    res.json({ msg: "logged out" });
+  }
+
+  function getUser(req, res) {
+    (async function auth() {
+      try {
+        let username = req.params.username;
+
+        const user = await User.findOne({ username }).exec();
+        if (!user) {
+          return res
+            .status(423)
+            .send({
+              status: false,
+              message:
+                "An account with this username does not exist",
+            });
+        }
+
+        res.status(200).json({
+          status: true,
+          data:user
+        });
+
+      } catch (err) {
+        console.log(err.stack);
+        res.status(500).json({
+          message: "Internal Server Error",
+        });
+      }
+    })();
   }
 
   return {
     signUpWithEmail,
-    signOut
+    signOut,
+    getUser
   };
 }
 
