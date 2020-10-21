@@ -22,7 +22,6 @@ export default function () {
   
       try {
         const res = await axios.get(url,  { cancelToken: signal.current.token });
-        console.log(res.data)
         setTweets(res.data)
       } catch (error) {
         if (axios.isCancel(error)) {

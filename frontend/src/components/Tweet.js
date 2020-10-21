@@ -3,13 +3,11 @@ import styled from "styled-components";
 import Avatar from './reusables/Avatar'
 import { Link } from "react-router-dom";
 import moment from 'moment';
-moment().format()
 
 export default function Tweet(props) {
 
     const { tweet, user, createdAt, comments, likes, retweets } = props.tweet
-    const { username, profileName, profilePictureUrl, dateJoined, followers,
-      followersCount, following, followingCount, tweetsCount } = user
+    const { username, profileName, profilePictureUrl } = user
     const images = props.images
     const video = props.video
 
@@ -40,7 +38,7 @@ export default function Tweet(props) {
                   <div className="no comment"><i className="far fa-comment " aria-hidden="true" />{comments && <span className="com">{comments}</span>}</div>
                   <div className="no retweet"><i className="fa fa-retweet mt-2"  aria-hidden="true" />{retweets && <span className="ret">{retweets}</span>}</div>
                   <div className="no heart"><i className="far fa-heart " aria-hidden="true" />{likes && <span className="hea">{likes}</span>}</div>
-                  <div className="no share"><i className="far fa-share-square " aria-hidden="true" /><span className="sga"></span></div>
+                  <div className="no share"><i className="fa fa-share-alt " aria-hidden="true" /><span className="sga"></span></div>
                 </div>
             </div>
         </HomeContainer>
@@ -94,10 +92,14 @@ transition: 1s;
     padding-top:0;
     font-size:.91rem;
   }
-.fa-retweet, .fa-comment, .fa-heart, .fa-share-square {
+.fa-retweet, .fa-comment, .fa-heart, .fa-share-alt {
     font-size: 1.35rem;
     color: var(--grey);
     padding:.4rem;
+}
+.fa-share-alt {
+  padding:.5rem;
+  margin-top:.5rem;
 }
 
 .bottom{
@@ -130,11 +132,11 @@ transition: 1s;
   .heart:hover{
     color: #E0255F;
   }
-  .share:hover .fa-share-square{
+  .share:hover .fa-share-alt{
     background-color: var(--lightBlue);
     border-radius: 2rem;
     color: var(--mainBlue);
-    padding:.4rem;
+    padding:.5rem;
   }
   .share:hover{
     color: var(--mainBlue);

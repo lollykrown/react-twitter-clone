@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from "styled-components";
 
-export default function Title({title, titl, icon, username }) {
+export default function Title({title, titl, icon, username, back }) {
 
     const iconEl = (icon && title === 'home') && <img src={icon} className="icon ml-auto" alt="icon"/>
 
@@ -19,7 +19,7 @@ export default function Title({title, titl, icon, username }) {
 
         const profile = (title === 'profile' ) && (
             <div className="cont">
-                <div className=""><i className="fa fa-arrow-left"aria-hidden="true"></i></div>
+                <div className="" onClick={back}><i className="fa fa-arrow-left"aria-hidden="true"></i></div>
 
                 <div className="p-name">
                     <p className="title text-capitalize">{titl}</p>

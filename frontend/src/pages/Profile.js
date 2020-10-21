@@ -1,28 +1,89 @@
-import React from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import Title from "../components/reusables/Title";
 import Tweet from "../components/Tweet";
 import styled from "styled-components";
-import dp from '../dp.jpg';
 import { Link, withRouter, useLocation } from "react-router-dom";
+import axios from 'axios'
+import moment from 'moment';
+// moment().format()
 
 const Profile = (props) => {
     let act = props.location.pathname || '';
 
-    const pic='https://res.cloudinary.com/lollykrown/image/upload/v1533672970/samples/bike.jpg'
+    let loc = useLocation();
+    const name = loc.pathname;
 
-    let location = useLocation();
-    console.log('loc',location);
-    const username = props.location.username
-    console.log(username)
+    const [user, setUser] = useState({})
 
+    const signal = useRef(axios.CancelToken.source());
+
+    const goBack = () => {
+        props.history.goBack()
+    }
+    useEffect(() => {
+
+        const getUsers = async (str) => {
+            const res = str.substring(1, str.length);
+            console.log(res)
+            const url = `http://localhost:5000/${res}`;
+            try {
+                const res = await axios.get(url, { cancelToken: signal.current.token });
+                console.log(res.data)
+                setUser(res.data.user)
+            } catch (error) {
+                if (axios.isCancel(error)) {
+                    console.log('Request canceled', error.message);
+                } else {
+                    throw error
+                }
+            }
+        };
+
+        getUsers(name)
+        return () => {
+            console.log('unmount and cancel running axios request');
+            signal.current.cancel('Operation canceled by the user.');
+        };
+    }, [name])
+
+    const { username, profileName, bio, profilePictureUrl, backdropUrl, dateJoined, followers,
+        followersCount, following, followingCount, tweetsCount, location, website, birthDay } = user;
+
+        const url = "http://localhost:5000/tweets";
+        const [ tweets, setTweets ] = useState([])
+      
+        useEffect(() => {
+      
+          const getTweets = async () => {    
+        
+            try {
+              const res = await axios.get(url,  { cancelToken: signal.current.token });
+              setTweets(res.data)
+            } catch (error) {
+              if (axios.isCancel(error)) {
+                console.log('Request canceled', error.message);
+              } else {
+                throw error
+              }
+            }
+          };
+          
+          getTweets()
+          return () => {
+            console.log('unmount and cancel running axios request');
+            signal.current.cancel('Operation canceled by the user.');
+          };
+        }, [url])
+        
+    
     return (
         <ProfileWrapper className="home col-sm-10 col-md-10 col-lg-6">
-            <Title title="profile" titl="Nurse Kay" username='3,378 Tweets' />
+            <Title title="profile" titl={profileName} back={goBack} username={`${tweetsCount}k tweets`} />
             <div className="parent">
                 <div className="top-image">
                     <img
                         className="img-fluid img-bd"
-                        src={pic}
+                        src={backdropUrl}
                         alt="backdrop poster"
                     />
                 </div>
@@ -31,49 +92,91 @@ const Profile = (props) => {
                     <div className="d">
                         <div className="dp">
                             <img
-                                src={dp}
+                                src={profilePictureUrl}
                                 className="img img-fluid"
                                 alt="poster"
                             />
                         </div>
                         <div className="end">
                             <Link className="link" to="/">
-                                <i className="fa fa-ellipsis-h" aria-hidden="true"></i>
+                                <i className="p fa fa-ellipsis-h" aria-hidden="true"></i>
                             </Link>
                             <Link className="link" to="/notifications">
-                                <i className="far fa-bell" aria-hidden="true"></i>
+                                <i className="p far fa-bell" aria-hidden="true"></i>
                             </Link>
                             <button className="btn link ml-auto text-capitalize">following</button>
                         </div>
 
                     </div>
-                    <p className="name">Nurse Kay</p>
-                    <p className="username">@oluwakayy</p>
-                    <p className="bio">Jesus junkie. Nurse. &#128137; &#128138; Software developer. Lazy writer.<br/><br/>
-                    Redeeming the image of a Nigerian Nurse, one person at a time. <span className="blue">#Arsenal</span></p>
+                    <p className="name">{profileName}</p>
+                    <p className="username">@{username}</p>
+                    <p className="bio">{bio}</p>
+
+                    <div className="d-flex pl-0 bio">
+                        {location && <div className="mr-2">
+                            <i className="li fa fa-map-marker mr-2" aria-hidden="true" />
+                            <span className="sga">{location}</span>
+                        </div>}
+                        {website && <div className="mr-2">
+                            <i className="li fa fa-link mr-2" aria-hidden="true" />
+                            <span className="sga">{website}</span>
+                        </div>}
+                        {birthDay && <div className="mr-2">
+                            <i className="li fa fa-map-pin mr-2" aria-hidden="true" />
+                            <span className="sga">Born {moment(birthDay).format('MMMM d')}</span>
+                        </div>}
+                        {dateJoined && <div className="">
+                            <i className="li far fa-calendar-plus mr-2" aria-hidden="true" />
+                            <span className="sga">Joined {moment(dateJoined).format('MMMM YYYY')}</span>
+                        </div>}
+                    </div>
 
                     <div className="d-flex pl-0">
-                        <p className="text-bold mr-4">2,124<span className="text-capitalize username"> following</span></p>
-                        <p className="text-bold">2,325<span className="text-capitalize username"> followers</span></p>
-
+                        <Link className="mr-4" to={`/${username}/followers`}>
+                            <span className="digit">{followersCount}</span>
+                            <span className="text-capitalize username"> following</span>
+                        </Link>
+                        <Link to={`/${username}/followers`}>
+                            <span className="digit">{followingCount}</span>
+                            <span className="text-capitalize username"> followers</span>
+                        </Link>
                     </div>
                 </div>
-                <div className="u">
-                        <ul className="nav nav-fill ">
-                            <li className="nav-item tab-cont">
-                                <Link className={`nav-link text-capitalize tab acti`} to="/profile/tweets">tweets</Link>
-                            </li>
-                            <li className="nav-item tab-cont">
-                                <Link className={`nav-link text-capitalize tab ${act === "/profile/with_replies" ? 'acti' : ''}`} to="/profile/with_replies">tweets &amp; replies</Link>
-                            </li>
-                            <li className="nav-item tab-cont">
-                                <Link className={`nav-link text-capitalize tab ${act === "/profile/media" ? 'acti' : ''}`} to="/profile/media">media</Link>
-                            </li>
-                            <li className="nav-item tab-cont">
-                                <Link className={`nav-link text-capitalize tab ${act === "/profile/likes" ? 'acti' : ''}`} to="/profile/likes">likes</Link>
-                            </li>
-                        </ul>
+                {/* <div className="u">
+                    <ul className="nav nav-fill ">
+                        <li className="nav-item tab-cont">
+                            <Link className={`nav-link text-capitalize tab acti`} to="/profile/tweets">tweets</Link>
+                        </li>
+                        <li className="nav-item tab-cont">
+                            <Link className={`nav-link text-capitalize tab ${act === "/profile/with_replies" ? 'acti' : ''}`} to="/profile/with_replies">tweets &amp; replies</Link>
+                        </li>
+                        <li className="nav-item tab-cont">
+                            <Link className={`nav-link text-capitalize tab ${act === "/profile/media" ? 'acti' : ''}`} to="/profile/media">media</Link>
+                        </li>
+                        <li className="nav-item tab-cont">
+                            <Link className={`nav-link text-capitalize tab ${act === "/profile/likes" ? 'acti' : ''}`} to="/profile/likes">likes</Link>
+                        </li>
+                    </ul>
+                </div> */}
+                
+                <nav className="u">
+                    <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                        <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Home</a>
+                        <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Profile</a>
+                        <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">Contact</a>
                     </div>
+                </nav>
+                <div class="up tab-content" id="nav-tabContent">
+                    <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+                    {tweets.map((tweet, i) => <Tweet key={i} tweet={tweet}/>)}  
+                    </div>
+                    <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+                        fdsfghjhgfdfghg
+                    </div>
+                    <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
+                        .edrftgyhujijhgfx
+                    </div>
+                </div>
             </div>
 
             {/* <Tweet tweet={tweet} name='nurse kay' username='@oluwakayy'/>  */}
@@ -98,19 +201,13 @@ const ProfileWrapper = styled.div`
     top: 10.5rem;
     z-index: 1;
   }
-
-  .u {
-    position: absolute;
-    width: 100%;
-    top:31rem;
-  }
   .d{
     display:flex;
     justify-content: space-between;
   }
   .end{
     align-self:flex-end;
-    padding-bottom:1rem;
+    padding-bottom:.75rem;
   }
   .img, .dp {
     border-radius: 12rem;
@@ -125,7 +222,11 @@ const ProfileWrapper = styled.div`
 .link{
     display:inline;
 }
-.fa, .far{
+a{
+    text-decoration:none;
+    color: var(--mainBlue);
+}
+.p{
     font-size: 1.25rem;
     color: var(--mainBlue);
     border: 1px solid var(--mainBlue);
@@ -154,8 +255,28 @@ const ProfileWrapper = styled.div`
     font-weight:700 ;
     font-size: 1.125rem;
   }
-  .username{
+  .username, .sga{
     color:var(--grey);
+  }
+  .digit{
+      font-weight:700;
+      color:var(--mainDark);
+  }
+  .li{
+      color:var(--mainBlue);
+      font-size: 1.125rem;
+  }
+
+  .u {
+    position: absolute;
+    width: 100%;
+    top:31rem;
+  }
+  .up {
+    position: absolute;
+    width: 100%;
+    top:33.5rem;
+    padding:1rem;
   }
 `;
 

@@ -39,7 +39,7 @@ body::-webkit-scrollbar-track {
 }
 
 body::-webkit-scrollbar-thumb {
-/* background: ${(props) => props.theme.accentColor}; */
+background: var(--grey);
 }
 .blue{
   color:var(--mainBlue);
@@ -75,8 +75,11 @@ a, a:hover {
 .home{
   padding:0;
   border: .1rem solid var(--search);
+  height: max-content;
 }
-
+.sidebar{
+  /* position: fixed; */
+}
 .tab-cont{
   border-bottom:.125rem solid var(--search);
   padding:0;

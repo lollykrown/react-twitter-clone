@@ -17,7 +17,7 @@ const NavBar = (props) => {
                         </Link>
                     </li>
                 <li className="nav-item d-flex">
-                        <Link className={`nav-link ${act === "/"? 'active': ''}`} to="/home">
+                        <Link className={`nav-link ${act === "/"? 'active': ''}`} to="/">
                             <i className="fa fa-home" aria-hidden="true"></i> 
                             <span className="text-capitalize ml-3 d-none d-lg-inline">home</span>
                         </Link>

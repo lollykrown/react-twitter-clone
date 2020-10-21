@@ -103,7 +103,7 @@ function userController() {
       try {
         let username = req.params.username;
 
-        const user = await User.findOne({ username }).exec();
+        const user = await User.findOne({ username }).select('-_id -email -password').exec();
         if (!user) {
           return res
             .status(423)
@@ -116,7 +116,7 @@ function userController() {
 
         res.status(200).json({
           status: true,
-          data:user
+          user
         });
 
       } catch (err) {

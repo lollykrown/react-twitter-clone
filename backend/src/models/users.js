@@ -31,6 +31,10 @@ const usersSchema = new Schema({
     type: String,
     default:'https://via.placeholder.com/150/1da1f2/808080%20?Text=lollykrown.xyz'
   },
+  backdropUrl:{
+    type:String,
+    default:'https://via.placeholder.com/400/1da1f2/808080%20?Text=lollykrown.xyz'
+  },
   followers: [{ type: mongoose.Schema.ObjectId, ref: "User" }],
   followersCount: {
     type: Number,
