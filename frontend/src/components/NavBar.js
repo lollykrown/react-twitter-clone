@@ -53,7 +53,7 @@ const NavBar = (props) => {
                         </Link>                    
                     </li>
                 <li className="nav-item">
-                        <Link className={`nav-link ${act === "/profile"? 'active': ''}`} to="/profile">
+                        <Link className={`nav-link ${act === "/Lollykrown"? 'active': ''}`} to="/Lollykrown">
                             <i className="far fa-user" aria-hidden="true"></i>
                             <span className="text-capitalize ml-3 d-none d-lg-inline">profile</span>
                         </Link>                    

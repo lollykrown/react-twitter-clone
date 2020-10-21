@@ -23,10 +23,10 @@ export default function Tweet(props) {
             <div className="tweet-container">
                 <div className="top">
                     <Link to={`${username}`}>
-                      <p className="mr-2 username text-capitalize">{profileName}</p>
+                      <p className="mr-2 user text-capitalize">{profileName}</p>
                     </Link>
                     <Link to={`${username}`}>
-                        <p className="mr-2 name text-capitalize">@{username}</p>
+                        <p className="mr-2 nam text-capitalize">@{username}</p>
                     </Link>
                     <p className="mr-2 time">&#8231; {moment(createdAt).fromNow()}</p>
                     <i className="fa fa-angle-down dropdown" aria-hidden="true"></i>
@@ -75,16 +75,16 @@ transition: 1s;
     border-radius: 2rem;
     padding:.5rem;
   }
-.name, .username, .time, .fa{
+.nam, .user, .time, .fa{
     line-height: .1;
     font-size:.91rem;
 }
-.username{
+.user{
     font-weight:700;
     font-size:.91rem;
     color:var(--mainDark);
   }
-  .name{
+  .nam{
     color:var(--grey);
   }
   .tweet{

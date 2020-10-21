@@ -160,21 +160,22 @@ const Profile = (props) => {
                 </div> */}
                 
                 <nav className="u">
-                    <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                        <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Home</a>
-                        <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Profile</a>
-                        <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">Contact</a>
+                    <div className="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
+                        <a className={`nav-item nav-link text-capitalize acti`} id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">tweets</a>
+                        <a className={`nav-item nav-link text-capitalize ${act === "/profile/likes" ? 'acti' : ''}`}  id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">tweets &amp; replies</a>
+                        <a className="nav-item nav-link text-capitalize" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">media</a>
+                        <a className="nav-item nav-link text-capitalize" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">likes</a>
                     </div>
                 </nav>
-                <div class="up tab-content" id="nav-tabContent">
-                    <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+                <div className="up tab-content" id="nav-tabContent">
+                    <div className="tab-pane fade show" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
                     {tweets.map((tweet, i) => <Tweet key={i} tweet={tweet}/>)}  
                     </div>
-                    <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
-                        fdsfghjhgfdfghg
+                    <div className="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+                        fdsfghjhgfdhg
                     </div>
-                    <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
-                        .edrftgyhujijhgfx
+                    <div className="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
+                        last
                     </div>
                 </div>
             </div>
@@ -271,12 +272,27 @@ a{
     position: absolute;
     width: 100%;
     top:31rem;
+    border-bottom:.125rem solid var(--search);
   }
   .up {
     position: absolute;
     width: 100%;
     top:33.5rem;
     padding:1rem;
+  }
+  .nav-item{
+    font-weight:700;
+    color: var(--grey);
+    border:none;
+    padding:.75rem 0;
+  }
+  .nav-item:hover{
+    background-color: var(--lightBlue);
+    color: var(--mainBlue);
+  }
+  .acti{
+    border-bottom:.15rem solid var(--mainBlue);
+    color: var(--mainBlue);
   }
 `;
 

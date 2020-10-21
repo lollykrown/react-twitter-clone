@@ -35,7 +35,7 @@ export default function Trends() {
                     <p className="no">18.7k Tweets</p>
                 </div>
                 <div className="show ">
-                    <Link to='/' className="link">Show more</Link>
+                    <Link to='/explore' className="link">Show more</Link>
                 </div>
             </TrendsContainer>
             
