@@ -7,6 +7,7 @@ import Avatar from "./reusables/Avatar";
 const NavBar = (props) => {
     const profilePictureUrl='https://res.cloudinary.com/lollykrown/image/upload/v1533672970/samples/bike.jpg'
    
+    const username = localStorage.getItem('username')
     let act = props.location.pathname || ''
     return (
         <NavbarContainer className="navbar col-sm-2 col-md-2 col-lg-2">
@@ -53,7 +54,7 @@ const NavBar = (props) => {
                         </Link>                    
                     </li>
                 <li className="nav-item">
-                        <Link className={`nav-link ${act === "/Lollykrown"? 'active': ''}`} to="/Lollykrown">
+                        <Link className={`nav-link ${act === `/${username}`? 'active': ''}`} to={`${username}`}>
                             <i className="far fa-user" aria-hidden="true"></i>
                             <span className="text-capitalize ml-3 d-none d-lg-inline">profile</span>
                         </Link>                    

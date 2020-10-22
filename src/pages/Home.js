@@ -22,10 +22,7 @@ export default function () {
   
       try {
         const res = await axios.get(url,  {
-          // headers: {
-          //   'Content-Type': 'application/json'
-          // },
-          //withCredentials:true,
+          withCredentials:true,
           cancelToken: signal.current.token })
         setTweets(res.data)
       } catch (error) {

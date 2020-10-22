@@ -8,7 +8,7 @@ function tweetController() {
   function isUserSignedIn(req, res, next) {
     if (req.user) {
       console.log(req.isAuthenticated())
-      debug('You are logged in')
+      console.log('You are logged in')
       console.log(req.cookies)
       next();
     } else {
@@ -42,9 +42,8 @@ function tweetController() {
   function getAllTweets(req, res) {
     (async function get() {
       try {
-        // if (req.user) {
-          console.log('rout')
-        // }
+        (req.user) &&console.log('rout',req.user)
+        
         const tweets = await Tweet.find({})
           .sort({createdAt:-1})
           .populate({ path: 'user', select: '-_id -email -password' })

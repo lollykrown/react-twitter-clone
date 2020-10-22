@@ -7,7 +7,7 @@ function router() {
     const { isUserSignedIn, postTweet, getAllTweets, getTweetsByUser,updateTweetById,deleteTweetById, } = tweetController()
 
     // Check if user is logged in 
-    // tweetRouter.use(isUserSignedIn);
+    tweetRouter.use(isUserSignedIn);
 
     tweetRouter.route('/compose/tweet')
         // create park

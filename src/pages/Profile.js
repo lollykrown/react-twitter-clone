@@ -9,9 +9,11 @@ import moment from 'moment';
 
 const Profile = (props) => {
     let act = props.location.pathname || '';
-
+    
     let loc = useLocation();
-    const name = loc.pathname;
+    const nameSlash = loc.pathname;
+    const name = nameSlash.substring(1, nameSlash.length);
+    const userName = props.username || name;
 
     const [user, setUser] = useState({})
 
@@ -22,12 +24,13 @@ const Profile = (props) => {
     }
     useEffect(() => {
 
-        const getUsers = async (str) => {
-            const res = str.substring(1, str.length);
-            console.log(res)
-            const url = `http://localhost:5000/${res}`;
+        const getUser = async (str) => {
+            const url = `http://localhost:5000/${str}`;
             try {
-                const res = await axios.get(url, { cancelToken: signal.current.token });
+                const res = await axios.get(url, {
+                    withCredentials:true,
+                    cancelToken: signal.current.token })
+
                 console.log(res.data)
                 setUser(res.data.user)
             } catch (error) {
@@ -39,12 +42,12 @@ const Profile = (props) => {
             }
         };
 
-        getUsers(name)
+        getUser(userName)
         return () => {
             console.log('unmount and cancel running axios request');
             signal.current.cancel('Operation canceled by the user.');
         };
-    }, [name])
+    }, [userName])
 
     const { username, profileName, bio, profilePictureUrl, backdropUrl, dateJoined, followers,
         followersCount, following, followingCount, tweetsCount, location, website, birthDay } = user;
@@ -57,7 +60,9 @@ const Profile = (props) => {
           const getTweets = async () => {    
         
             try {
-              const res = await axios.get(url,  { cancelToken: signal.current.token });
+              const res = await axios.get(url, {
+                withCredentials:true,
+                cancelToken: signal.current.token })
               setTweets(res.data)
             } catch (error) {
               if (axios.isCancel(error)) {

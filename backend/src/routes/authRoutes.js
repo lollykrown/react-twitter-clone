@@ -36,8 +36,7 @@ function router() {
             //logger.error(err)
             return next(err);
           }
-          console.log(req.headers.cookie);
-          return res.status(200).json({status:true,message:'logged in',user, cookie:req.header.cookie});
+          return res.status(200).json({status:true,message:'logged in',user});
         });
       })(req, res, next);
     });

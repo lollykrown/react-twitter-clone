@@ -38,7 +38,7 @@ module.exports = function localStrategy() {
                 const user = {
                   id: result._id,
                   email: result.email,
-                  userName: result.userName,
+                  username: result.username,
                   profileName: result.profileName,
                   phone: result.phone
                 }
