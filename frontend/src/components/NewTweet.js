@@ -23,7 +23,12 @@ const handleSubmit = async (e) => {
 
   try {
     console.log(tweet) 
-      const res = await axios.post(url, {tweet}, { cancelToken: signal.current.token })
+      const res = await axios.post(url, {tweet:tweet}, {
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        withCredentials:true,
+        cancelToken: signal.current.token })
       console.log(res)
       setTweet('');
       if (!res.status) {

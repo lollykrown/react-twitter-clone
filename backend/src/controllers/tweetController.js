@@ -22,9 +22,10 @@ function tweetController() {
       try {
         let { tweet, image, video } = req.body;
         req.user && console.log(req.user)
-        const us = await User.findOne({ username: 'nazarite_' }).exec()
-        console.log(us)
-        await User.findByIdAndUpdate({ id:us._id }, {$push: { tweetsCount: tweetsCount+1 }}, { new: true })
+        const us = await User.findOne({ username: 'nazarite_' }).exec();
+        console.log('val',us)
+        const update = await User.findByIdAndUpdate({ _id:us._id }, {$set:{ tweetsCount: us.tweetsCount+1 }}, { new: true }).exec()
+        console.log('update', update)
 
         const twit = new Tweet({ tweet, image, video, user: us._id })
         const lu = await twit.save()
