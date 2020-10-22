@@ -34,7 +34,7 @@ const sessionOptions = {
     maxAge: 600000 // 60 x 1000sec
   },
   store: new MongoStore({ mongooseConnection: mongoose.connection }),
-  name: 'Authorization',
+  name: 'id',
 }
 
 db.on('error', console.error.bind(console, 'connection error:'));
@@ -56,16 +56,19 @@ const corsOptions = {
  }
 
 
-app.use(cors(corsOptions));
+// app.use(cors(corsOptions));
 app.use(morgan('tiny'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(session(sessionOptions));
-// app.use(cookieSession({
-//   name: 'session',
-//   keys: ['key1', 'key2']
-// }))
+
+
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
 
 require('./src/config/passport.js')(app);
 
