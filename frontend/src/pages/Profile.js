@@ -15,13 +15,7 @@ const Profile = (props) => {
     let loc = useLocation();
     const nameSlash = loc.pathname;
     const name = nameSlash.substring(1, nameSlash.length);
-<<<<<<< HEAD:frontend/src/pages/Profile.js
     const userName = name || localStorage.getItem('username');
-=======
-    const userName = props.username || name;
-
-    const [user, setUser] = useState({})
->>>>>>> 96d68af9a464e66e6daf7bcda19c20e99c063a18:src/pages/Profile.js
 
     const signal = useRef(axios.CancelToken.source());
 
@@ -56,39 +50,7 @@ const Profile = (props) => {
     }, [userName])
 
     const { username, profileName, bio, profilePictureUrl, backdropUrl, dateJoined, followers,
-        followersCount, following, followingCount, tweetsCount, location, website, birthDay } = user;
-<<<<<<< HEAD:frontend/src/pages/Profile.js
-=======
-
-        const url = "http://localhost:5000/tweets";
-        const [ tweets, setTweets ] = useState([])
-      
-        useEffect(() => {
-      
-          const getTweets = async () => {    
-        
-            try {
-              const res = await axios.get(url, {
-                withCredentials:true,
-                cancelToken: signal.current.token })
-              setTweets(res.data)
-            } catch (error) {
-              if (axios.isCancel(error)) {
-                console.log('Request canceled', error.message);
-              } else {
-                throw error
-              }
-            }
-          };
-          
-          getTweets()
-          return () => {
-            console.log('unmount and cancel running axios request');
-            signal.current.cancel('Operation canceled by the user.');
-          };
-        }, [url])
->>>>>>> 96d68af9a464e66e6daf7bcda19c20e99c063a18:src/pages/Profile.js
-        
+        followersCount, following, followingCount, tweetsCount, location, website, birthDay } = user;   
     return (
         <ProfileWrapper className="home col-sm-10 col-md-10 col-lg-6">
             <Title title="profile" titl={profileName} back={goBack} username={`${tweetsCount}k tweets`} />
