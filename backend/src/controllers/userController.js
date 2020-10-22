@@ -133,7 +133,7 @@ function userController() {
         let username = req.params.username;
 
         const user = await User.findByIdAndUpdate({ username }).exec();
-        if (!user) {
+        if (user) {
           return res
             .status(423)
             .send({
