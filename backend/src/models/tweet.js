@@ -19,12 +19,15 @@ const tweetsSchema = new Schema({
   },
   retweets: {
     type: Number,
+    default:0
   },
   likes: {
     type: Number,
+    default:0
   },
   comments: {
     type: Number,
+    default:0
   },
   createdAt:{
     type: Date,

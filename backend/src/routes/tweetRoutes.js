@@ -4,7 +4,8 @@ const tweetController = require('../controllers/tweetController')
 
 function router() {
 
-    const { isUserSignedIn, postTweet, getAllTweets, getTweetsByUser,updateTweetById,deleteTweetById, } = tweetController()
+    const { isUserSignedIn, postTweet, getAllTweets, getTweetsByAUser,updateLikesById,updateRetweetsById,
+        deleteTweetById, } = tweetController()
 
     // Check if user is logged in 
     tweetRouter.use(isUserSignedIn);
@@ -15,16 +16,20 @@ function router() {
     tweetRouter.route('/tweets')
         // retrieve all parks
         .get(getAllTweets)
-    tweetRouter.route('/tweets/:id')
-        // get a park by owner id
-        .get(getTweetsByUser)
-    tweetRouter.route('tweet/:id')
-        // get a park by id
-        .get(getTweetsByUser)
-        // update a park by id
-        .patch(updateTweetById)
+
+    tweetRouter.route('/tweet/likes/:id')
+        // add likes
+        .post(updateLikesById)
+        
+    tweetRouter.route('/tweet/retweets/:id')
+        // add likes
+        .post(updateRetweetsById)
         // delete a park by id
         .delete(deleteTweetById)
+
+    tweetRouter.route('/tweets/:id')
+        // get a park by owner id
+        .get(getTweetsByAUser)
     return tweetRouter
 }
 

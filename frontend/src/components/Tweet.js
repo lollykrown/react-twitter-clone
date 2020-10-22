@@ -1,13 +1,13 @@
-import React from 'react'
+import React, {useRef} from 'react'
 import styled from "styled-components";
 import Avatar from './reusables/Avatar'
 import { Link } from "react-router-dom";
 import moment from 'moment';
+import axios from 'axios'
 
 export default function Tweet(props) {
-
-    const { tweet, user, createdAt, comments, likes, retweets } = props.tweet
-    const { username, profileName, profilePictureUrl } = user
+    const { _id:tweetId, tweet, user, createdAt, comments, likes, retweets } = props.tweet
+    const { _id:userId, username, profileName, profilePictureUrl } = user
     const images = props.images
     const video = props.video
 
@@ -17,6 +17,39 @@ export default function Tweet(props) {
 
     const vid = video && <video controls autoPlay muted className="mb-1 tweet-image" src={video} alt="tweet-img"/>
 
+    const signal = useRef(axios.CancelToken.source());
+
+    const likeButton = async(id, userId, action) => {
+      console.log(id, userId)
+      const url = `http://localhost:5000/tweet/${action}/${id}`;
+      try {
+          const res = await axios.post(url, {userId: userId}, {
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            withCredentials:true,
+            cancelToken: signal.current.token })
+          console.log(res)
+          if (!res.status) {
+              console.log(res.data.message)
+              return;
+          }
+      } catch (err) {
+          if (axios.isCancel(err)) {
+              console.log('Get request canceled');
+              console.log(err.message)
+          } else {
+              console.log(err.message)
+              //setErrors(err.message)
+          }
+      }
+    
+      
+      return () => {
+          console.log('unmount and cancel running axios request');
+          signal.current.cancel('Operation canceled by the user.');
+        };
+    }
     return (
         <HomeContainer >
             <Link to={`/${username}`}><Avatar src={profilePictureUrl} alt="avatar" /></Link>
@@ -36,8 +69,8 @@ export default function Tweet(props) {
                 {vid}
                 <div className="top bottom">
                   <div className="no comment"><i className="far fa-comment " aria-hidden="true" />{comments && <span className="com">{comments}</span>}</div>
-                  <div className="no retweet"><i className="fa fa-retweet mt-2"  aria-hidden="true" />{retweets && <span className="ret">{retweets}</span>}</div>
-                  <div className="no heart"><i className="far fa-heart " aria-hidden="true" />{likes && <span className="hea">{likes}</span>}</div>
+                  <div className="no retweet" onClick={()=> likeButton(tweetId, userId, 'retweets')}><i className="fa fa-retweet mt-2"  aria-hidden="true" />{retweets && <span className="ret">{retweets}</span>}</div>
+                  <div className="no heart" onClick={()=> likeButton(tweetId, userId, 'likes')}><i className="far fa-heart " aria-hidden="true" />{likes && <span className="hea">{likes}</span>}</div>
                   <div className="no share"><i className="fa fa-share-alt " aria-hidden="true" /><span className="sga"></span></div>
                 </div>
             </div>

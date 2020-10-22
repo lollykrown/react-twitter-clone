@@ -48,7 +48,7 @@ function tweetController() {
 
         const tweets = await Tweet.find({})
           .sort({createdAt:-1})
-          .populate({ path: 'user', select: '-_id -email -password' })
+          .populate({ path: 'user', select: '-email -password' })
           .exec()
 
         return res.status(200).json(tweets)
@@ -59,7 +59,7 @@ function tweetController() {
     }());
   }
 
-  function getTweetsByUser(req, res) {
+  function getTweetsByAUser(req, res) {
     (async function get() {
       try {
         Tweet.find({ user: req.user._id }).exec()
@@ -71,19 +71,52 @@ function tweetController() {
     }());
   }
 
-  function updateTweetById(req, res) {
+  function updateLikesById(req, res) {
     (async function update() {
-      let { subject, time, tutor, level } = req.body
       try {
-        Tweet.findByIdAndUpdate({ _id: req.params.id }, { $set: { subject, time, tutor, level } }, { new: true }).exec()
-          .then(docs => res.status(200).json(docs))
-          .catch(err => debug(`Oops! ${err.stack}`))
+        const {userId} = req.body;
+        console.log('user', userId)
+        const update = await User.findByIdAndUpdate({ _id:userId}, {$push:{ likedTweets: req.params.id }}, { new: true }).exec()
+        console.log(update)
+
+        Tweet.findById({ _id:req.params.id })
+        .then(docs => {
+          docs.likes = docs.likes+1
+
+          docs.save().then(response => {
+            res.status(200).json(response)
+          })
+          .catch(err => console.log(`Oops! ${err.stack}`))
+        })
+        .catch(err => console.log(`Oops! ${err.stack}`))
       } catch (err) {
         debug(err.stack)
       }
     }());
   }
+  function updateRetweetsById(req, res) {
+    (async function update() {
+      try {
+        const {userId} = req.body;
+        console.log('user', userId)
+        const update = await User.findByIdAndUpdate({ _id:userId}, {$push:{ retweets: req.params.id }}, { new: true }).exec()
+        console.log(update)
 
+        Tweet.findById({ _id:req.params.id })
+        .then(docs => {
+          docs.retweets = docs.retweets+1
+
+          docs.save().then(response => {
+            res.status(200).json(response)
+          })
+          .catch(err => console.log(`Oops! ${err.stack}`))
+        })
+        .catch(err => console.log(`Oops! ${err.stack}`))
+      } catch (err) {
+        debug(err.stack)
+      }
+    }());
+  }
   function deleteTweetById(req, res) {
     (async function del() {
       try {
@@ -103,8 +136,9 @@ function tweetController() {
     isUserSignedIn,
     postTweet,
     getAllTweets,
-    getTweetsByUser,
-    updateTweetById,
+    getTweetsByAUser,
+    updateLikesById,
+    updateRetweetsById,
     deleteTweetById,
   };
 }
