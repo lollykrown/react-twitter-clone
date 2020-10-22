@@ -8,13 +8,8 @@ function tweetController() {
   function isUserSignedIn(req, res, next) {
     if (req.user) {
       console.log(req.isAuthenticated())
-<<<<<<< HEAD
-      debug('You are logged in')
-      debug(req.cookies)
-=======
       console.log('You are logged in')
       console.log(req.cookies)
->>>>>>> 96d68af9a464e66e6daf7bcda19c20e99c063a18
       next();
     } else {
       // You are not logged in
@@ -29,6 +24,7 @@ function tweetController() {
         req.user && console.log(req.user)
         const us = await User.findOne({ username: 'nazarite_' }).exec()
         console.log(us)
+        await User.findByIdAndUpdate({ id:us._id }, {$push: { tweetsCount: tweetsCount+1 }}, { new: true })
 
         const twit = new Tweet({ tweet, image, video, user: us._id })
         const lu = await twit.save()
@@ -47,23 +43,13 @@ function tweetController() {
   function getAllTweets(req, res) {
     (async function get() {
       try {
-<<<<<<< HEAD
         req.user &&console.log(req.user)
-=======
-        (req.user) &&console.log('rout',req.user)
->>>>>>> 96d68af9a464e66e6daf7bcda19c20e99c063a18
-        
+
         const tweets = await Tweet.find({})
           .sort({createdAt:-1})
           .populate({ path: 'user', select: '-_id -email -password' })
           .exec()
-        
-<<<<<<< HEAD
-        //console.log('tweet', tweets)
-=======
-        // console.log('tweet', tweets)
->>>>>>> 96d68af9a464e66e6daf7bcda19c20e99c063a18
-        
+
         return res.status(200).json(tweets)
 
       } catch (err) {

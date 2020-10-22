@@ -75,10 +75,6 @@ app.get('/', function (req, res) {
 app.use('/', authRouter);
 app.use('/', tweetRouter);
 app.use('/', userRouter);
-<<<<<<< HEAD
-=======
-
->>>>>>> 96d68af9a464e66e6daf7bcda19c20e99c063a18
 
 const port = process.env.PORT || 5000
 app.listen(port, function () {

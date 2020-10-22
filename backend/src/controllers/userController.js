@@ -1,6 +1,7 @@
 const debug = require("debug")("app:userController");
 const bcrypt = require("bcryptjs");
 const User = require("../models/users");
+const Tweet = require("../models/tweet");
 
 function userController() {
   // Sign up with email address
@@ -132,7 +133,9 @@ function userController() {
       try {
         let username = req.params.username;
 
-        const user = await User.findByIdAndUpdate({ username }).exec();
+        const user = await User.findByIdAndUpdate({ username }, {$push: { subjects: subject, lessons: newe._id }}, { new: true })
+        const twe = await Tweet.findByIdAndUpdate({ username }, {$push: { subjects: subject, lessons: newe._id }}, { new: true })
+
         if (user) {
           return res
             .status(423)

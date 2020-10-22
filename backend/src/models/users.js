@@ -49,6 +49,8 @@ const usersSchema = new Schema({
     type:Number,
     default:0
   },
+  likedTweets:[{ type: mongoose.Schema.ObjectId, ref: "Tweets" }],
+  retweets:[{ type: mongoose.Schema.ObjectId, ref: "Tweets" }],
   website: {
     type:String
   },
