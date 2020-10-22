@@ -1,19 +1,21 @@
-import React, { useState, useRef, useEffect } from 'react'
+import React, { useState, useRef, useEffect, useContext } from 'react'
 import Title from "../components/reusables/Title";
 import Tweet from "../components/Tweet";
 import styled from "styled-components";
 import { Link, withRouter, useLocation } from "react-router-dom";
 import axios from 'axios'
 import moment from 'moment';
-// moment().format()
+import { DataContext } from "../contexts/dataContext";
 
 const Profile = (props) => {
+    const { tweets, user, addUser} = useContext(DataContext)
+
     let act = props.location.pathname || '';
 
     let loc = useLocation();
-    const name = loc.pathname;
-
-    const [user, setUser] = useState({})
+    const nameSlash = loc.pathname;
+    const name = nameSlash.substring(1, nameSlash.length);
+    const userName = name || localStorage.getItem('username');
 
     const signal = useRef(axios.CancelToken.source());
 
@@ -22,14 +24,15 @@ const Profile = (props) => {
     }
     useEffect(() => {
 
-        const getUsers = async (str) => {
-            const res = str.substring(1, str.length);
-            console.log(res)
-            const url = `http://localhost:5000/${res}`;
+        const getUser = async (str) => {
+            const url = `http://localhost:5000/${str}`;
             try {
-                const res = await axios.get(url, { cancelToken: signal.current.token });
+                const res = await axios.get(url, {
+                    withCredentials:true,
+                    cancelToken: signal.current.token })
+
                 console.log(res.data)
-                setUser(res.data.user)
+                addUser(res.data.user)
             } catch (error) {
                 if (axios.isCancel(error)) {
                     console.log('Request canceled', error.message);
@@ -39,43 +42,16 @@ const Profile = (props) => {
             }
         };
 
-        getUsers(name)
+        getUser(userName)
         return () => {
             console.log('unmount and cancel running axios request');
             signal.current.cancel('Operation canceled by the user.');
         };
-    }, [name])
+    }, [userName])
 
     const { username, profileName, bio, profilePictureUrl, backdropUrl, dateJoined, followers,
         followersCount, following, followingCount, tweetsCount, location, website, birthDay } = user;
-
-        const url = "http://localhost:5000/tweets";
-        const [ tweets, setTweets ] = useState([])
-      
-        useEffect(() => {
-      
-          const getTweets = async () => {    
         
-            try {
-              const res = await axios.get(url,  { cancelToken: signal.current.token });
-              setTweets(res.data)
-            } catch (error) {
-              if (axios.isCancel(error)) {
-                console.log('Request canceled', error.message);
-              } else {
-                throw error
-              }
-            }
-          };
-          
-          getTweets()
-          return () => {
-            console.log('unmount and cancel running axios request');
-            signal.current.cancel('Operation canceled by the user.');
-          };
-        }, [url])
-        
-    
     return (
         <ProfileWrapper className="home col-sm-10 col-md-10 col-lg-6">
             <Title title="profile" titl={profileName} back={goBack} username={`${tweetsCount}k tweets`} />

@@ -24,7 +24,6 @@ export default function Login(props) {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        const proxyurl = "https://cors-anywhere.herokuapp.com/";
         try {
             const res = await axios.post(url, account, {
                 headers: {
@@ -32,7 +31,8 @@ export default function Login(props) {
                 },
                  withCredentials:true,
                  cancelToken: signal.current.token })
-            console.log(res)
+            console.log(res.data)
+            localStorage.setItem('username', res.data.user.username)
             res.data.status && props.history.replace('/')
 
             if (!res.status) {

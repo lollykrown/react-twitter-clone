@@ -127,6 +127,35 @@ function userController() {
     })();
   }
 
+  function favTweet(req, res) {
+    (async function auth() {
+      try {
+        let username = req.params.username;
+
+        const user = await User.findByIdAndUpdate({ username }).exec();
+        if (!user) {
+          return res
+            .status(423)
+            .send({
+              status: false,
+              message:
+                "An account with this username does not exist",
+            });
+        }
+
+        res.status(200).json({
+          status: true,
+          user
+        });
+
+      } catch (err) {
+        console.log(err.stack);
+        res.status(500).json({
+          message: "Internal Server Error",
+        });
+      }
+    })();
+  }
   return {
     signUpWithEmail,
     signOut,

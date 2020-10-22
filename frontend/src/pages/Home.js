@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useContext } from "react";
 import styled from "styled-components";
 import Title from "../components/reusables/Title";
 import NewTweet from "../components/NewTweet";
@@ -7,11 +7,12 @@ import Tweet from "../components/Tweet";
 import dp from '../dp.jpg';
 import word from '../word.mp4';
 import axios from 'axios'
+import { DataContext } from "../contexts/dataContext";
 
 export default function () {
-  const url = "http://localhost:5000/tweets";
+  const { addTweets, tweets} = useContext(DataContext)
 
-  const [ tweets, setTweets ] = useState([])
+  const url = "http://localhost:5000/tweets";
 
   const signal = useRef(axios.CancelToken.source());
 
@@ -22,13 +23,10 @@ export default function () {
   
       try {
         const res = await axios.get(url,  {
-          headers: { Cookie: "cookie1=value; cookie2=value; cookie3=value;" },
-          // headers: {
-          //   'Content-Type': 'application/json'
-          // },
           withCredentials:true,
           cancelToken: signal.current.token })
-        setTweets(res.data)
+          console.log(res)
+          addTweets(res.data)
       } catch (error) {
         if (axios.isCancel(error)) {
           console.log('Request canceled', error.message);

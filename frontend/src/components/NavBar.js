@@ -5,84 +5,85 @@ import { Link, withRouter } from "react-router-dom";
 import Avatar from "./reusables/Avatar";
 
 const NavBar = (props) => {
-    const profilePictureUrl='https://res.cloudinary.com/lollykrown/image/upload/v1533672970/samples/bike.jpg'
-   
-    let act = props.location.pathname || ''
-    return (
-        <NavbarContainer className="navbar col-sm-2 col-md-2 col-lg-2">
-            <ul className="nav flex-column">
-                <li className=''>
-                        <Link className="logo-container" to="/">
-                            <img src={twitter} alt="logo" className="logo" height="30"/>
-                        </Link>
-                    </li>
-                <li className="nav-item d-flex">
-                        <Link className={`nav-link ${act === "/"? 'active': ''}`} to="/">
-                            <i className="fa fa-home" aria-hidden="true"></i> 
-                            <span className="text-capitalize ml-3 d-none d-lg-inline">home</span>
-                        </Link>
-                    </li>
-                <li className='nav-item'>
-                        <Link className={`nav-link ${act === "/explore"? 'active': ''}`} to="/explore">
-                            <i className="fa fa-hashtag" aria-hidden="true"></i> 
-                            <span className="text-capitalize ml-3 d-none d-lg-inline">explore</span>
-                        </Link>
-                    </li>
-                <li className="nav-item">
-                        <Link className={`nav-link ${act === "/notifications"? 'active': ''}`} to="/notifications">
-                            <i className="far fa-bell" aria-hidden="true"></i>
-                            <span className="text-capitalize ml-3 d-none d-lg-inline">notifications</span>
-                        </Link>
-                    </li>
-                <li className="nav-item">
-                        <Link className={`nav-link ${act === "/messages"? 'active': ''}`} to="/messages">
-                            <i className="far fa-envelope" aria-hidden="true"></i>
-                            <span className="text-capitalize ml-3 d-none d-lg-inline">messages</span>
-                        </Link>
-                    </li>
-                <li className="nav-item">
-                        <Link className={`nav-link ${act === "/bookmarks"? 'active': ''}`} to="/bookmarks">
-                            <i className="far fa-bookmark" aria-hidden="true"></i>
-                            <span className="text-capitalize ml-3 d-none d-lg-inline">bookmarks</span>
-                        </Link>
-                    </li>
-                <li className="nav-item">
-                        <Link className={`nav-link ${act === "/lists"? 'active': ''}`} to="/lists">
-                            <i className="far fa-list-alt" aria-hidden="true"></i>
-                            <span className="text-capitalize ml-3 d-none d-lg-inline">lists</span>
-                        </Link>                    
-                    </li>
-                <li className="nav-item">
-                        <Link className={`nav-link ${act === "/Lollykrown"? 'active': ''}`} to="/Lollykrown">
-                            <i className="far fa-user" aria-hidden="true"></i>
-                            <span className="text-capitalize ml-3 d-none d-lg-inline">profile</span>
-                        </Link>                    
-                    </li>
-                <li className="nav-item">
-                        <Link className="nav-link" to="/">
-                            <i className="fa fa-ellipsis-h" aria-hidden="true"></i>
-                            <span className="text-capitalize ml-3 d-none d-lg-inline">more</span>
-                        </Link>                    
-                    </li>
-                <li className="nav-item d-lg-none ">
-                    <Link className="nav-link share-btn" to="/">
-                        <i className="fa fa-plus-circle" aria-hidden="true"></i>
-                    </Link>                    
-                </li>
-            </ul>
-            <button className="btn text-capitalize d-none d-lg-inline mr-4">tweet</button>
+  const profilePictureUrl = 'https://res.cloudinary.com/lollykrown/image/upload/v1533672970/samples/bike.jpg'
+  const username = localStorage.getItem('username')
 
-            <div className="col-2 col-lg-3 profile-container d-none d-lg-flex  mb-0 ">
-                <div className="mt-1"><Avatar src={profilePictureUrl} alt="avatar" /></div>
-                <div className="mt-3 d-none d-lg-block ">
-                    <p className="name text-capitalize">nurse kay</p>
-                    <p className="username text-capitalize">@oluwakayy</p>
-                </div>
-                {/* <i className="fa fa-angle-down dropdown" aria-hidden="true"></i> */}
-            </div>
+  let act = props.location.pathname || ''
+  return (
+    <NavbarContainer className="navbar col-sm-2 col-md-2 col-lg-2">
+      <ul className="nav flex-column">
+        <li className=''>
+          <Link className="logo-container" to="/">
+            <img src={twitter} alt="logo" className="logo" height="30" />
+          </Link>
+        </li>
+        <li className="nav-item d-flex">
+          <Link className={`nav-link ${act === "/" ? 'active' : ''}`} to="/">
+            <i className="fa fa-home" aria-hidden="true"></i>
+            <span className="text-capitalize ml-3 d-none d-lg-inline">home</span>
+          </Link>
+        </li>
+        <li className='nav-item'>
+          <Link className={`nav-link ${act === "/explore" ? 'active' : ''}`} to="/explore">
+            <i className="fa fa-hashtag" aria-hidden="true"></i>
+            <span className="text-capitalize ml-3 d-none d-lg-inline">explore</span>
+          </Link>
+        </li>
+        <li className="nav-item">
+          <Link className={`nav-link ${act === "/notifications" ? 'active' : ''}`} to="/notifications">
+            <i className="far fa-bell" aria-hidden="true"></i>
+            <span className="text-capitalize ml-3 d-none d-lg-inline">notifications</span>
+          </Link>
+        </li>
+        <li className="nav-item">
+          <Link className={`nav-link ${act === "/messages" ? 'active' : ''}`} to="/messages">
+            <i className="far fa-envelope" aria-hidden="true"></i>
+            <span className="text-capitalize ml-3 d-none d-lg-inline">messages</span>
+          </Link>
+        </li>
+        <li className="nav-item">
+          <Link className={`nav-link ${act === "/bookmarks" ? 'active' : ''}`} to="/bookmarks">
+            <i className="far fa-bookmark" aria-hidden="true"></i>
+            <span className="text-capitalize ml-3 d-none d-lg-inline">bookmarks</span>
+          </Link>
+        </li>
+        <li className="nav-item">
+          <Link className={`nav-link ${act === "/lists" ? 'active' : ''}`} to="/lists">
+            <i className="far fa-list-alt" aria-hidden="true"></i>
+            <span className="text-capitalize ml-3 d-none d-lg-inline">lists</span>
+          </Link>
+        </li>
+        <li className="nav-item">
+          <Link className={`nav-link ${act === `/${username}` ? 'active' : ''}`} to={`${username}`}>
+            <i className="far fa-user" aria-hidden="true"></i>
+            <span className="text-capitalize ml-3 d-none d-lg-inline">profile</span>
+          </Link>
+        </li>
+        <li className="nav-item">
+          <Link className="nav-link" to="/">
+            <i className="fa fa-ellipsis-h" aria-hidden="true"></i>
+            <span className="text-capitalize ml-3 d-none d-lg-inline">more</span>
+          </Link>
+        </li>
+        <li className="nav-item d-lg-none ">
+          <Link className="nav-link share-btn" to="/">
+            <i className="fa fa-plus-circle" aria-hidden="true"></i>
+          </Link>
+        </li>
+      </ul>
+      <button className="btn text-capitalize d-none d-lg-inline mr-4">tweet</button>
 
-        </NavbarContainer>
-    )
+      <div className="col-2 col-lg-3 profile-container d-none d-lg-flex  mb-0 ">
+        <div className="mt-1"><Avatar src={profilePictureUrl} alt="avatar" /></div>
+        <div className="mt-3 d-none d-lg-block ">
+          <p className="name text-capitalize">nurse kay</p>
+          <p className="username text-capitalize">@oluwakayy</p>
+        </div>
+        {/* <i className="fa fa-angle-down dropdown" aria-hidden="true"></i> */}
+      </div>
+
+    </NavbarContainer>
+  )
 }
 
 const NavbarContainer = styled.div`

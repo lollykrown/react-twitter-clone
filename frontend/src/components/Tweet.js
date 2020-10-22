@@ -19,13 +19,13 @@ export default function Tweet(props) {
 
     return (
         <HomeContainer >
-            <Link to={`${username}`}><Avatar src={profilePictureUrl} alt="avatar" /></Link>
+            <Link to={`/${username}`}><Avatar src={profilePictureUrl} alt="avatar" /></Link>
             <div className="tweet-container">
                 <div className="top">
-                    <Link to={`${username}`}>
+                    <Link to={`/${username}`}>
                       <p className="mr-2 user text-capitalize">{profileName}</p>
                     </Link>
-                    <Link to={`${username}`}>
+                    <Link to={`/${username}`}>
                         <p className="mr-2 nam text-capitalize">@{username}</p>
                     </Link>
                     <p className="mr-2 time">&#8231; {moment(createdAt).fromNow()}</p>
