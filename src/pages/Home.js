@@ -22,10 +22,6 @@ export default function () {
   
       try {
         const res = await axios.get(url,  {
-          headers: { Cookie: "cookie1=value; cookie2=value; cookie3=value;" },
-          // headers: {
-          //   'Content-Type': 'application/json'
-          // },
           withCredentials:true,
           cancelToken: signal.current.token })
         setTweets(res.data)

@@ -18,6 +18,7 @@ import Login from './pages/Login';
 
 
 function App() {
+  const username = localStorage.getItem('username');
   return (
     <div className="container-fluid">
       <div className="App row limited">
@@ -30,7 +31,7 @@ function App() {
             <Route exact path="/messages" component={Messages}/>
             <Route exact path="/bookmarks" component={Bookmarks}/>
             <Route exact path="/lists" component={Lists}/>
-            <Route exact path="/:username" component={Profile}/>
+            <Route exact path="/:username" component={() => <Profile username={username} /> }/>
             <Redirect from="*" to="/" />
           </Switch>
         <SideBar/>

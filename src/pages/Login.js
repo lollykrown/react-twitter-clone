@@ -32,7 +32,8 @@ export default function Login(props) {
                 },
                  withCredentials:true,
                  cancelToken: signal.current.token })
-            console.log(res)
+            console.log(res.data)
+            localStorage.setItem('username', res.data.user.username)
             res.data.status && props.history.replace('/')
 
             if (!res.status) {

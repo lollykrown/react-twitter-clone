@@ -4,7 +4,6 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const session = require('express-session');
-// const cookieSession = require('cookie-session');
 const mongoose = require('mongoose');
 const morgan = require('morgan');
 const debug = require('debug')('app:root')
@@ -34,7 +33,7 @@ const sessionOptions = {
     maxAge: 600000 // 60 x 1000sec
   },
   store: new MongoStore({ mongooseConnection: mongoose.connection }),
-  name: 'Authorization',
+  name: 'id',
 }
 
 db.on('error', console.error.bind(console, 'connection error:'));
@@ -55,17 +54,12 @@ const corsOptions = {
 //   optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
  }
 
-
 app.use(cors(corsOptions));
 app.use(morgan('tiny'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(session(sessionOptions));
-// app.use(cookieSession({
-//   name: 'session',
-//   keys: ['key1', 'key2']
-// }))
 
 require('./src/config/passport.js')(app);
 
@@ -79,11 +73,8 @@ app.get('/', function (req, res) {
 });
 
 app.use('/', authRouter);
-app.use('/', userRouter);
 app.use('/', tweetRouter);
-
-
-
+app.use('/', userRouter);
 
 
 const port = process.env.PORT || 5000
