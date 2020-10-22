@@ -1,10 +1,9 @@
 const createError = require('http-errors');
 const express = require('express');
 const path = require('path');
-const cookieParser = require('cookie-parser');
+// const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const session = require('express-session');
-// const cookieSession = require('cookie-session');
 const mongoose = require('mongoose');
 const morgan = require('morgan');
 const debug = require('debug')('app:root')
@@ -59,7 +58,7 @@ app.use(cors(corsOptions));
 app.use(morgan('tiny'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(cookieParser());
+// app.use(cookieParser());
 app.use(session(sessionOptions));
 
 require('./src/config/passport.js')(app);
@@ -74,11 +73,8 @@ app.get('/', function (req, res) {
 });
 
 app.use('/', authRouter);
-app.use('/', userRouter);
 app.use('/', tweetRouter);
-
-
-
+app.use('/', userRouter);
 
 
 const port = process.env.PORT || 5000
