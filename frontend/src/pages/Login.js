@@ -8,11 +8,11 @@ export default function Login(props) {
 
     const signal = useRef(axios.CancelToken.source());
 
-    let [account, setAccount ] = useState({
+    let [account, setAccount] = useState({
         username: '',
         password: ''
     });
-    const [ errors, setErrors ] = useState(null)
+    const [errors, setErrors] = useState(null)
 
     let handleChange = (e) => {
         let name = e.target.name;
@@ -23,13 +23,15 @@ export default function Login(props) {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        let { username, password } = account
 
-        console.log(username, password)
+        const proxyurl = "https://cors-anywhere.herokuapp.com/";
         try {
-            const res = await axios.post(url, {
-                username, password
-            }, { cancelToken: signal.current.token, })
+            const res = await axios.post(url, account, {
+                headers: {
+                  'Content-Type': 'application/json'
+                },
+                 withCredentials:true,
+                 cancelToken: signal.current.token })
             console.log(res)
             res.data.status && props.history.replace('/')
 
@@ -48,12 +50,12 @@ export default function Login(props) {
             }
         }
 
-        
+
         return () => {
             console.log('unmount and cancel running axios request');
             signal.current.cancel('Operation canceled by the user.');
             setAccount({ ...account, username: '', password: '' });
-          };
+        };
     }
 
     return (

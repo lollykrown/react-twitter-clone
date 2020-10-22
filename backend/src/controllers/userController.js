@@ -2,7 +2,6 @@ const debug = require("debug")("app:userController");
 const bcrypt = require("bcryptjs");
 const User = require("../models/users");
 
-
 function userController() {
   // Sign up with email address
   function signUpWithEmail(req, res) {

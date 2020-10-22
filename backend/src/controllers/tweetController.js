@@ -21,7 +21,7 @@ function tweetController() {
     (async function post() {
       try {
         let { tweet, image, video } = req.body;
-
+        req.user && console.log(req.user)
         const us = await User.findOne({ username: 'nazarite_' }).exec()
         console.log(us)
 
@@ -42,7 +42,9 @@ function tweetController() {
   function getAllTweets(req, res) {
     (async function get() {
       try {
-        
+        if (req.user) {
+          rconsole.log(req.user)
+        }
         const tweets = await Tweet.find({})
           .sort({createdAt:-1})
           .populate({ path: 'user', select: '-_id -email -password' })

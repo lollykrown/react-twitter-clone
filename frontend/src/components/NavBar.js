@@ -78,7 +78,7 @@ const NavBar = (props) => {
                     <p className="name text-capitalize">nurse kay</p>
                     <p className="username text-capitalize">@oluwakayy</p>
                 </div>
-                <i className="fa fa-angle-down dropdown" aria-hidden="true"></i>
+                {/* <i className="fa fa-angle-down dropdown" aria-hidden="true"></i> */}
             </div>
 
         </NavbarContainer>

@@ -4,6 +4,7 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const session = require('express-session');
+// const cookieSession = require('cookie-session');
 const mongoose = require('mongoose');
 const morgan = require('morgan');
 const debug = require('debug')('app:root')
@@ -20,7 +21,7 @@ require('dotenv').config()
 mongoose.connect(process.env.DB_URL, { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false, useCreateIndex: true });
 const db = mongoose.connection;
 
-app.set('trust proxy', 1);
+// app.set('trust proxy', 1);
 
 const sessionOptions = {
   saveUninitialized: false,
@@ -33,7 +34,7 @@ const sessionOptions = {
     maxAge: 600000 // 60 x 1000sec
   },
   store: new MongoStore({ mongooseConnection: mongoose.connection }),
-  name: 'id'
+  name: 'Authorization',
 }
 
 db.on('error', console.error.bind(console, 'connection error:'));
@@ -44,17 +45,29 @@ db.once('open', function () {
 
 // Set up CORS
 const corsOptions = {
+  origin: 'http://localhost:3000',
+  methods: ['POST', 'PUT', 'GET', 'OPTIONS', 'DELETE','HEAD'],
   credentials: true,
-};
-app.use(cors(corsOptions));
+  allowedHeaders: "Content-Type, Authorization, X-Requested-With",
 
-app.use(session(sessionOptions));
+  // "preflightContinue": false,
+  // "optionsSuccessStatus": 204,
+//   optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+ }
+
+
+app.use(cors(corsOptions));
 app.use(morgan('tiny'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(session(sessionOptions));
+// app.use(cookieSession({
+//   name: 'session',
+//   keys: ['key1', 'key2']
+// }))
 
-// require('./src/config/passport.js')(app);
+require('./src/config/passport.js')(app);
 
 // API
 const authRouter = require('./src/routes/authRoutes')();
@@ -65,9 +78,10 @@ app.get('/', function (req, res) {
   res.send('welcome');
 });
 
-app.use('/', tweetRouter);
 app.use('/', authRouter);
 app.use('/', userRouter);
+app.use('/', tweetRouter);
+
 
 
 

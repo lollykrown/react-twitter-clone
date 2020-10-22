@@ -18,8 +18,9 @@ function router() {
     .route("/login")
     .post((req, res, next) => {
       passport.authenticate("local", (err, user, info) => {
-        debug(info);
+        console.log(info);
         if (err) {
+          console.log(err)
           return next(err);
         }
         if (!user) {
@@ -31,11 +32,12 @@ function router() {
         // if (!user) { return res.render('404'); }
         req.logIn(user, function (err) {
           if (err) {
+            console.log(err)
             //logger.error(err)
             return next(err);
           }
-          //debug(req.sessionID);
-          return res.status(200).json({status:true,message:'logged in'});
+          console.log(req.headers.cookie);
+          return res.status(200).json({status:true,message:'logged in',user, cookie:req.header.cookie});
         });
       })(req, res, next);
     });

@@ -36,7 +36,7 @@ module.exports = function localStrategy() {
               }
               //if(user && valid){
                 const user = {
-                  _id: result._id,
+                  id: result._id,
                   email: result.email,
                   userName: result.userName,
                   profileName: result.profileName,
@@ -52,9 +52,10 @@ module.exports = function localStrategy() {
           })
         } catch (err) {
           debug(err.stack)
-          res.status(500).json({
-            message: 'Internal Server Error'
-          });
+          return done(err)
+          // res.status(500).json({
+          //   message: 'Internal Server Error'
+          // });
         }
       }());
     }
