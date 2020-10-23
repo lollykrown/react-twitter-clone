@@ -1,11 +1,14 @@
-import React, {useRef} from 'react'
+import React, { useRef, useContext } from 'react'
 import styled from "styled-components";
 import Avatar from './reusables/Avatar'
 import { Link } from "react-router-dom";
 import moment from 'moment';
 import axios from 'axios'
+import { DataContext } from "../contexts/dataContext";
 
 export default function Tweet(props) {
+    const { addTweets } = useContext(DataContext)
+
     const { _id:tweetId, tweet, user, createdAt, comments, likes, retweets } = props.tweet
     const { _id:userId, username, profileName, profilePictureUrl } = user
     const images = props.images
@@ -30,6 +33,7 @@ export default function Tweet(props) {
             withCredentials:true,
             cancelToken: signal.current.token })
           console.log(res)
+          
           if (!res.status) {
               console.log(res.data.message)
               return;

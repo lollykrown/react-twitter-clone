@@ -13,7 +13,6 @@ const DataProvider = ({ children }) => {
     const addUser = (res) => {        
         setUser(res);
     }
-   
 
     return (
         <DataContext.Provider value={{
