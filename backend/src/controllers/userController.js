@@ -103,7 +103,8 @@ function userController() {
       try {
         let username = req.params.username;
 
-        const user = await User.findOne({ username }).select('-_id -email -password').exec();
+        const user = await User.findOne({ username }).select('-email -password')
+        .populate({ path: 'following', select: '-email -password' }).exec();
         if (!user) {
           return res
             .status(423)
@@ -128,11 +129,40 @@ function userController() {
     })();
   }
 
+  function addFollowing(req, res) {
+    (async function update() {
+      try {
+        const username = req.params;
+        const id = req.body.userId
+        console.log('user', id, username)
+
+        // const update = await User.findOne(username, { new: true }).exec()
+        // console.log(update)
+
+        User.findOneAndUpdate(username, {$addToSet: {following: id}})
+        .then(user => {
+          console.log('user', user)
+          // user.followingCount = user.following.length+1
+
+          // user.save().then(resp => {
+          //   console.log('updated', resp.following, resp.followingCount)
+
+            res.status(200).json(user)
+          //})
+          //.catch(err => console.log(`Oops! ${err.stack}`))
+        })
+        .catch(err => console.log(`Oops! ${err.stack}`))
+      } catch (err) {
+        debug(err.stack)
+      }
+    }());
+  }
 
   return {
     signUpWithEmail,
     signOut,
-    getUser
+    getUser,
+    addFollowing
   };
 }
 

@@ -8,10 +8,10 @@ import moment from 'moment';
 import { DataContext } from "../contexts/dataContext";
 
 const Profile = (props) => {
-    const { tweets, user, addUser} = useContext(DataContext)
+    const { tweets, user, addUser } = useContext(DataContext)
 
     let act = props.location.pathname || '';
-    
+
     let loc = useLocation();
     const nameSlash = loc.pathname;
     const name = nameSlash.substring(1, nameSlash.length);
@@ -28,8 +28,9 @@ const Profile = (props) => {
             const url = `http://localhost:5000/${str}`;
             try {
                 const res = await axios.get(url, {
-                    withCredentials:true,
-                    cancelToken: signal.current.token })
+                    withCredentials: true,
+                    cancelToken: signal.current.token
+                })
 
                 console.log(res.data)
                 addUser(res.data.user)
@@ -49,8 +50,41 @@ const Profile = (props) => {
         };
     }, [userName])
 
-    const { username, profileName, bio, profilePictureUrl, backdropUrl, dateJoined, followers,
-        followersCount, following, followingCount, tweetsCount, location, website, birthDay } = user;   
+    const { _id: userId, username, profileName, bio, profilePictureUrl, backdropUrl, dateJoined, followers,
+        followersCount, following, followingCount, tweetsCount, location, website, birthDay } = user;
+
+    const followButton = async (username, action) => {
+        const url = `http://localhost:5000/${username}/${action}`;
+        try {
+            const res = await axios.post(url, { userId: userId }, {
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                withCredentials: true,
+                cancelToken: signal.current.token
+            })
+            console.log('following', res.data)
+
+            if (!res.status) {
+                console.log(res.data.message)
+                return;
+            }
+        } catch (err) {
+            if (axios.isCancel(err)) {
+                console.log('Get request canceled');
+                console.log(err.message)
+            } else {
+                console.log(err.message)
+                //setErrors(err.message)
+            }
+        }
+
+
+        return () => {
+            console.log('unmount and cancel running axios request');
+            signal.current.cancel('Operation canceled by the user.');
+        };
+    }
     return (
         <ProfileWrapper className="home col-sm-10 col-md-10 col-lg-6">
             <Title title="profile" titl={profileName} back={goBack} username={`${tweetsCount}k tweets`} />
@@ -79,7 +113,10 @@ const Profile = (props) => {
                             <Link className="link" to="/notifications">
                                 <i className="p far fa-bell" aria-hidden="true"></i>
                             </Link>
-                            <button className="btn link ml-auto text-capitalize">following</button>
+                            {(name !== localStorage.getItem('username')) ?
+                                <button onClick={() => followButton(localStorage.getItem('username'), 'following')} className="btn link ml-auto text-capitalize">
+                                    following
+                            </button> : null}
                         </div>
 
                     </div>
@@ -133,18 +170,18 @@ const Profile = (props) => {
                         </li>
                     </ul>
                 </div> */}
-                
+
                 <nav className="u">
                     <div className="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
                         <a className={`nav-item nav-link text-capitalize acti`} id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">tweets</a>
-                        <a className={`nav-item nav-link text-capitalize ${act === "/profile/likes" ? 'acti' : ''}`}  id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">tweets &amp; replies</a>
+                        <a className={`nav-item nav-link text-capitalize ${act === "/profile/likes" ? 'acti' : ''}`} id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">tweets &amp; replies</a>
                         <a className="nav-item nav-link text-capitalize" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">media</a>
                         <a className="nav-item nav-link text-capitalize" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">likes</a>
                     </div>
                 </nav>
                 <div className="up tab-content" id="nav-tabContent">
                     <div className="tab-pane fade show" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-                    {tweets.map((tweet, i) => <Tweet key={i} tweet={tweet}/>)}  
+                        {tweets.map((tweet, i) => <Tweet key={i} tweet={tweet} />)}
                     </div>
                     <div className="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
                         fdsfghjhgfdhg
