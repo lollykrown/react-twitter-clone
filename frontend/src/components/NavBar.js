@@ -10,7 +10,7 @@ const NavBar = (props) => {
 
   let act = props.location.pathname || ''
   return (
-    <NavbarContainer className="navbar col-sm-2 col-md-2 col-lg-2">
+    <NavbarContainer className="navbar col-sm-1 col-md-2 col-lg-2">
       <ul className="nav flex-column">
         <li className=''>
           <Link className="logo-container" to="/">
@@ -93,7 +93,7 @@ max-height: 100vh;
 // width:max-content;
 // position:fixed;
 padding: 0 !important;
-
+width: min-content;
   .navbar{
     padding: 0 1rem 0 1rem !important;
   }
