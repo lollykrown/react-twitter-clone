@@ -17,13 +17,13 @@ export default function () {
 
 
   useEffect(() => {
-
     const getTweets = async () => {    
   
       try {
         const res = await axios.get(url,  {
           withCredentials:true,
           cancelToken: signal.current.token })
+
         setTweets(res.data)
       } catch (error) {
         if (axios.isCancel(error)) {

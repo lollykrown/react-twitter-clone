@@ -2,7 +2,6 @@ const express = require("express");
 const authRouter = express.Router();
 const userController = require("../controllers/userController");
 const passport = require("passport");
-const debug = require("debug")("app:authRoutes");
 
 function router() {
   const {
@@ -13,6 +12,18 @@ function router() {
   //sign up with email
   authRouter.route("/register").post(signUpWithEmail)
 
+      // Signup/login with github
+      authRouter.get('/github',
+      passport.authenticate('github', { scope: ['read:user', 'user:email'] }))
+
+  // The middleware receives the data from Github and runs the function on Strategy config
+  authRouter.get('/github/callback', passport.authenticate('github'),
+      (req, res) => {
+          //res.send(req.user)
+          res.status(200).json({ message: "you reached the redirect URI", user: req.user });
+      });
+
+      
   //custom callback for logging in
   authRouter
     .route("/login")
