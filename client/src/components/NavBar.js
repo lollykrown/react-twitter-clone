@@ -1,13 +1,14 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import styled from "styled-components";
 import twitter from '../twitter.png';
 import { Link, withRouter } from "react-router-dom";
 import Avatar from "./reusables/Avatar";
+import { UserContext } from '../contexts/UserContext';
 
 const NavBar = (props) => {
-    const profilePictureUrl='https://res.cloudinary.com/lollykrown/image/upload/v1533672970/samples/bike.jpg'
+    const { user } = useContext(UserContext);
+    const { username, profileName, profilePictureUrl } = user
    
-    const username = localStorage.getItem('username')
     let act = props.location.pathname || ''
     return (
         <NavbarContainer className="navbar col-sm-2 col-md-2 col-lg-2">
@@ -73,14 +74,14 @@ const NavBar = (props) => {
             </ul>
             <button className="btn text-capitalize d-none d-lg-inline mr-4">tweet</button>
 
-            <div className="col-2 col-lg-3 profile-container d-none d-lg-flex  mb-0 ">
+            <Link to={`${username}`} className="col-2 col-lg-3 profile-container d-none d-lg-flex  mb-0 ">
                 <div className="mt-1"><Avatar src={profilePictureUrl} alt="avatar" /></div>
                 <div className="mt-3 d-none d-lg-block ">
-                    <p className="name text-capitalize">nurse kay</p>
-                    <p className="username text-capitalize">@oluwakayy</p>
+                    <p className="name text-capitalize">{profileName}</p>
+                    <p className="username text-capitalize">{username}</p>
                 </div>
                 {/* <i className="fa fa-angle-down dropdown" aria-hidden="true"></i> */}
-            </div>
+            </Link>
 
         </NavbarContainer>
     )
@@ -168,6 +169,7 @@ padding: 0 !important;
   .name{
     font-weight:700 ;
     font-size: 1.125rem;
+    color:var(--mainDark);
   }
   .username{
     color:var(--grey);

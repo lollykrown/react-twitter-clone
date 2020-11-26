@@ -4,12 +4,18 @@ import './index.css';
 import App from './App';
 import { BrowserRouter as Router } from "react-router-dom";
 import * as serviceWorker from './serviceWorker';
+import { DataProvider } from './contexts/dataContext';
+import { UserProvider } from './contexts/UserContext';
 
 ReactDOM.render(
   <React.StrictMode>
-    <Router>
-      <App />
-    </Router>
+    <DataProvider baseUrl="http://localhost:5000/tweets" routeName="">
+      <UserProvider>
+        <Router>
+          <App />
+        </Router>
+      </UserProvider>
+    </DataProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );

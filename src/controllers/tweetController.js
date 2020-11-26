@@ -14,7 +14,7 @@ function tweetController() {
     } else {
       // You are not logged in
       console.log('You need to log in first')
-      res.json({ message: 'You need to log in first' })
+      res.status(400).json({ status:false, message: 'You need to log in first' })
     }
   }
   function postTweet(req, res) {

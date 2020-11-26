@@ -1,43 +1,29 @@
-import React from 'react';
-import { Switch, Route, Redirect } from 'react-router-dom'
-import 'popper.js/dist/umd/popper.min.js';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import 'jquery/dist/jquery.min.js';
-import 'bootstrap/dist/js/bootstrap.min.js'
-import './App.css';
-import NavBar from './components/NavBar';
-import SideBar from './components/SideBar';
-import Home from './pages/Home';
-import Explore from './pages/Explore';
-import Notifications from './pages/Notifications';
-import Messages from './pages/Messages';
-import Bookmarks from './pages/Bookmarks';
-import Lists from './pages/Lists';
-import Profile from './pages/Profile';
-import Login from './pages/Login';
+import React, { useContext } from "react";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+// import { ThemeProvider as StyledThemeProvider } from "styled-components";
+// import GlobalStyle from "./styles/GlobalStyle";
+import Auth from "./components/Auth";
+import Routing from "./Routing";
+import { UserContext } from "./contexts/UserContext";
+import { ThemeContext } from "./contexts/ThemeContext";
 
+const App = () => {
+    const { user } = useContext(UserContext);
+    // const { theme } = useContext(ThemeContext);
+    console.log('user app', user)
 
-function App() {
-  const username = localStorage.getItem('username');
-  return (
-    <div className="container-fluid">
-      <div className="App row limited">
-        <NavBar/>
-          <Switch>
-            <Route exact path="/login" component={Login} />
-            <Route exact path="/" component={Home} />
-            <Route exact path="/explore" component={Explore}/>
-            <Route exact path="/notifications" component={Notifications}/>
-            <Route exact path="/messages" component={Messages}/>
-            <Route exact path="/bookmarks" component={Bookmarks}/>
-            <Route exact path="/lists" component={Lists}/>
-            <Route exact path="/:username" component={() => <Profile username={username} /> }/>
-            <Redirect from="*" to="/" />
-          </Switch>
-        <SideBar/>
-      </div>
-    </div>
-  );
-}
+    return (
+        <>
+            <ToastContainer autoClose={2000} closeButton={false} />
+            {user ? <Routing /> : <Auth />}
+        </>
+        // <StyledThemeProvider theme={theme}>
+        //   <GlobalStyle />
+        //   <ToastContainer autoClose={2000} closeButton={false} />
+        //   {user ? <Routing /> : <Auth />}
+        // </StyledThemeProvider>
+    );
+};
 
 export default App;

@@ -3,7 +3,6 @@ const tweetRouter = express.Router()
 const tweetController = require('../controllers/tweetController')
 
 function router() {
-
     const { isUserSignedIn, postTweet, getAllTweets, getTweetsByUser,updateTweetById,deleteTweetById, } = tweetController()
 
     // Check if user is logged in 

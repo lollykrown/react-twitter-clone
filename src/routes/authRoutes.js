@@ -22,14 +22,20 @@ function router() {
           //res.send(req.user)
           res.status(200).json({ message: "you reached the redirect URI", user: req.user });
       });
-
-      
+ 
   //custom callback for logging in
   authRouter
     .route("/login")
     .post((req, res, next) => {
       passport.authenticate("local", (err, user, info) => {
-        console.log(info);
+        // console.log('info', info);
+        // if(!info.status){
+        //   return res.json({
+        //     status:false,
+        //     message: info.message,
+        //     error: "Cannot log in",
+        //   });
+        // }
         if (err) {
           console.log(err)
           return next(err);

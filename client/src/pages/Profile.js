@@ -5,15 +5,14 @@ import styled from "styled-components";
 import { Link, withRouter, useLocation } from "react-router-dom";
 import axios from 'axios'
 import moment from 'moment';
-// moment().format()
 
 const Profile = (props) => {
     let act = props.location.pathname || '';
-    
+
     let loc = useLocation();
     const nameSlash = loc.pathname;
     const name = nameSlash.substring(1, nameSlash.length);
-    const userName = props.username || name;
+    const userName = name || props.username;
 
     const [user, setUser] = useState({})
 
@@ -28,8 +27,9 @@ const Profile = (props) => {
             const url = `http://localhost:5000/${str}`;
             try {
                 const res = await axios.get(url, {
-                    withCredentials:true,
-                    cancelToken: signal.current.token })
+                    withCredentials: true,
+                    cancelToken: signal.current.token
+                })
 
                 console.log(res.data)
                 setUser(res.data.user)
@@ -52,35 +52,46 @@ const Profile = (props) => {
     const { username, profileName, bio, profilePictureUrl, backdropUrl, dateJoined, followers,
         followersCount, following, followingCount, tweetsCount, location, website, birthDay } = user;
 
-        const url = "http://localhost:5000/tweets";
-        const [ tweets, setTweets ] = useState([])
-      
-        useEffect(() => {
-      
-          const getTweets = async () => {    
-        
+    const url = "http://localhost:5000/tweets";
+    const [tweets, setTweets] = useState([])
+
+    useEffect(() => {
+
+        const getTweets = async () => {
+
             try {
-              const res = await axios.get(url, {
-                withCredentials:true,
-                cancelToken: signal.current.token })
-              setTweets(res.data)
+                const res = await axios.get(url, {
+                    withCredentials: true,
+                    cancelToken: signal.current.token
+                })
+                setTweets(res.data)
             } catch (error) {
-              if (axios.isCancel(error)) {
-                console.log('Request canceled', error.message);
-              } else {
-                throw error
-              }
+                if (axios.isCancel(error)) {
+                    console.log('Request canceled', error.message);
+                } else {
+                    throw error
+                }
             }
-          };
-          
-          getTweets()
-          return () => {
+        };
+
+        getTweets()
+        return () => {
             console.log('unmount and cancel running axios request');
             signal.current.cancel('Operation canceled by the user.');
-          };
-        }, [url])
-        
-    
+        };
+    }, [url])
+
+    const logout = async() => {
+        try {
+            const res = await axios.get('http://localhost:5000/logout')
+            localStorage.removeItem("user");
+            props.history.replace('/')
+
+        } catch (err) {
+            console.log(err)
+        }
+    }
+
     return (
         <ProfileWrapper className="home col-sm-10 col-md-10 col-lg-6">
             <Title title="profile" titl={profileName} back={goBack} username={`${tweetsCount}k tweets`} />
@@ -103,7 +114,7 @@ const Profile = (props) => {
                             />
                         </div>
                         <div className="end">
-                            <Link className="link" to="/">
+                            <Link className="link" to="/" onClick={()=> logout()}>
                                 <i className="p fa fa-ellipsis-h" aria-hidden="true"></i>
                             </Link>
                             <Link className="link" to="/notifications">
@@ -163,18 +174,18 @@ const Profile = (props) => {
                         </li>
                     </ul>
                 </div> */}
-                
+
                 <nav className="u">
                     <div className="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
                         <a className={`nav-item nav-link text-capitalize acti`} id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">tweets</a>
-                        <a className={`nav-item nav-link text-capitalize ${act === "/profile/likes" ? 'acti' : ''}`}  id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">tweets &amp; replies</a>
+                        <a className={`nav-item nav-link text-capitalize ${act === "/profile/likes" ? 'acti' : ''}`} id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">tweets &amp; replies</a>
                         <a className="nav-item nav-link text-capitalize" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">media</a>
                         <a className="nav-item nav-link text-capitalize" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">likes</a>
                     </div>
                 </nav>
                 <div className="up tab-content" id="nav-tabContent">
                     <div className="tab-pane fade show" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-                    {tweets.map((tweet, i) => <Tweet key={i} tweet={tweet}/>)}  
+                        {tweets.map((tweet, i) => <Tweet key={i} tweet={tweet} />)}
                     </div>
                     <div className="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
                         fdsfghjhgfdhg

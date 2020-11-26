@@ -33,7 +33,7 @@ const sessionOptions = {
     maxAge: 600000 // 60 x 1000sec
   },
   store: new MongoStore({ mongooseConnection: mongoose.connection }),
-  name: 'id',
+  name: 'sid',
 }
 
 db.on('error', console.error.bind(console, 'connection error:'));
