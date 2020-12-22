@@ -18,9 +18,9 @@ function router() {
     .route("/login")
     .post((req, res, next) => {
       passport.authenticate("local", (err, user, info) => {
-        console.log(info);
+        debug(info);
         if (err) {
-          console.log(err)
+          debug(err)
           return next(err);
         }
         if (!user) {
